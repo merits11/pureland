@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  AWS CloudFormation Sample Template DynamoDB_Table: This template demonstrates
+  the creation of a DynamoDB table. This template creates an Amazon
+  DynamoDB table. You will be billed for the AWS resources used if you create a
+  stack from this template.
+  aws cloudformation deploy --template-file dynamo.yaml --stack-name PureLandDynamoBeta
+  --capabilities CAPABILITY_IAM --parameter-overrides TableNameSuffix=Beta
+Parameters:
+  TableNameSuffix:
+        Type: String
+  ReadCapacityUnits:
+    Description: Provisioned read throughput
+    Type: Number
+    Default: '2'
+    MinValue: '2'
+    MaxValue: '100'
+    ConstraintDescription: must be between 5 and 10000
+  WriteCapacityUnits:
+    Description: Provisioned write throughput
+    Type: Number
+    Default: '2'
+    MinValue: '2'
+    MaxValue: '100'
+    ConstraintDescription: must be between 5 and 10000
+Resources:
+  pureLandTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: !Sub "pureLandTable-${TableNameSuffix}"
+      AttributeDefinitions:
+        - AttributeName: token
+          AttributeType: S
+        - AttributeName: userid
+          AttributeType: S
+      KeySchema:
+        - AttributeName: token
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: "tokenExpireTime"
+        Enabled: YES
+      ProvisionedThroughput:
+        ReadCapacityUnits: !Ref ReadCapacityUnits
+        WriteCapacityUnits: !Ref WriteCapacityUnits
+      GlobalSecondaryIndexes:
+        - IndexName: UserIndex
+          KeySchema:
+          - AttributeName: userid
+            KeyType: HASH
+          Projection:
+            ProjectionType: INCLUDE
+            NonKeyAttributes:
+             - 'lastModified'
+             - 'deviceId'
+             - 'currentList'
+          ProvisionedThroughput:
+            ReadCapacityUnits: !Ref ReadCapacityUnits
+            WriteCapacityUnits: !Ref WriteCapacityUnits
+Outputs:
+  TableName:
+    Value: !Ref pureLandTable
+    Description: Table name of the newly created DynamoDB table

@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Parameters:
+    FunctionNameSuffix:
+        Type: String
+Resources:
+  MyFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName:  !Sub "PureLandMusic-${FunctionNameSuffix}"
+      Handler: merits.funskills.pureland.LambdaHandler::handleRequest
+      Runtime: java8
+      MemorySize: 512
+      Timeout: 15
+      CodeUri: build/distributions/purelandmusic-1.0-SNAPSHOT.zip
+      Policies:
+       - AWSLambdaExecute # Managed Policy
+       - AmazonS3ReadOnlyAccess
+       - Version: '2012-10-17' # S3 Policy Document
+         Statement:
+           - Effect: Allow
+             Action:
+               - s3:GeneratePresignedUrl
+             Resource: 'arn:aws:s3:::purelandmusic'
+       - Version: '2012-10-17' # S3 Policy Document
+         Statement:
+           - Effect: Allow
+             Action:
+               - dynamodb:GetItem
+               - dynamodb:DeleteItem
+               - dynamodb:GetRecords
+               - dynamodb:PutItem
+               - dynamodb:UpdateItem
+               - dynamodb:UpdateTimeToLive
+               - dynamodb:Query
+             Resource:
+               - !Sub 'arn:aws:dynamodb:us-east-1:711575676778:table/pureLandTable-${FunctionNameSuffix}'
+               - !Sub 'arn:aws:dynamodb:us-east-1:711575676778:table/pureLandTable-${FunctionNameSuffix}/index/*'
+      Events:
+        AlexaSkillEvent:
+          Type: AlexaSkill
