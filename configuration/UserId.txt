@@ -1,0 +1,7 @@
+
+fdu0157077@hotmail.com
+
+amzn1.ask.account.AFJSQCTJ6EYECBXUNTM7274IJBF3IS24RAVU2YFJTFLT5QD7VNAFMLAAYFACP7BT4OUQSWSMMMMIUQ554RSE5UH3NV4FMKEWQ5CJ7A3VYLX7J5TLOVEJCWSVXOWB3V6AZEW3LLFDUUC4OUAZHV6W5AXX42GPZFCWNBKOIKE4NRNJD7B6XY3Y4PFKUCKQPCNF2NEWOSIRCTB4O4A
+
+
+aws dynamodb scan --table-name pureLandTable-Beta --filter-expression  "begins_with(#t, :user)" --expression-attribute-values  '{":user":{"S":"amzn1"}}' --expression-attribute-names '{"#t":"token"}'
