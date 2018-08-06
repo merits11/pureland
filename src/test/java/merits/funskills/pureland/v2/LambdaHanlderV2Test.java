@@ -111,7 +111,7 @@ public class LambdaHanlderV2Test {
     @Test
     public void testMorningEveningService() throws Exception {
         testIntent("MorningService", "", true);
-        testIntent("EveningService", "", true);
+        testIntent("EveningService", "", false);
     }
 
     @Test

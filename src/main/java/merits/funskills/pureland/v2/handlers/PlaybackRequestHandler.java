@@ -58,28 +58,28 @@ public class PlaybackRequestHandler extends BaseRequestHandler {
         } else if (request instanceof PlayCommandIssuedRequest) {
             return toolbox.resumePlayList("", systemState(input), playState.currentPlayList());
         } else if (request instanceof PlaybackStartedRequest) {
-            return playbackStarted((PlaybackStartedRequest) request);
+            return playbackStarted((PlaybackStartedRequest) request, input);
         } else if (request instanceof PlaybackFailedRequest) {
-            return playbackFailed((PlaybackFailedRequest) request);
+            return playbackFailed((PlaybackFailedRequest) request, input);
         } else if (request instanceof PlaybackNearlyFinishedRequest) {
-            return playbackNearlyFinished((PlaybackNearlyFinishedRequest) request);
+            return playbackNearlyFinished((PlaybackNearlyFinishedRequest) request, input);
         } else if (request instanceof PlaybackStoppedRequest) {
-            return playbackStopped((PlaybackStoppedRequest) request);
+            return playbackStopped((PlaybackStoppedRequest) request, input);
         }
-        return Optional.empty();
+        return input.getResponseBuilder().build();
     }
 
-    private Optional<Response> playbackStopped(PlaybackStoppedRequest request) {
+    private Optional<Response> playbackStopped(PlaybackStoppedRequest request, HandlerInput input) {
         final String token = request.getToken();
         PlayState playState = playHelper.getPlayStateByStreamToken(token);
         if (playState != null) {
             playState.setOffsetInMs(request.getOffsetInMilliseconds());
             playHelper.savePlayState(playState);
         }
-        return Optional.empty();
+        return input.getResponseBuilder().build();
     }
 
-    private Optional<Response> playbackStarted(PlaybackStartedRequest request) {
+    private Optional<Response> playbackStarted(PlaybackStartedRequest request, HandlerInput input) {
         final String token = request.getToken();
         PlayState playState = playHelper.getPlayStateByStreamToken(token);
         if (playState == null) {
@@ -94,29 +94,26 @@ public class PlaybackRequestHandler extends BaseRequestHandler {
             final String newState = playState.toString();
             log.info("Changing play state from {} to {}", oldState, newState);
         }
-        return Optional.empty();
+        return input.getResponseBuilder().build();
     }
 
-    private Optional<Response> playbackFailed(PlaybackFailedRequest request) {
+    private Optional<Response> playbackFailed(PlaybackFailedRequest request, HandlerInput input) {
         final String token = request.getToken();
-        log.info("PlaybackFailedRequest received with token:" + token);
         PlayState playState = playHelper.getPlayStateByStreamToken(token);
         PlayList playList = playState.currentPlayList();
         PlayItem playItem = playHelper.getPlayItem(playList, playState.getCurrentSeq());
-        log.error("[DEBUGTAG] Playback failed for play item: {}", playItem);
         playState.setOffsetInMs(request.getCurrentPlaybackState().getOffsetInMilliseconds());
         return toolbox.playLastSong(playState, "");
     }
 
-    private Optional<Response> playbackNearlyFinished(PlaybackNearlyFinishedRequest request) {
+    private Optional<Response> playbackNearlyFinished(PlaybackNearlyFinishedRequest request, HandlerInput input) {
         final String token = request.getToken();
-        log.info("PlaybackNearlyFinishedRequest received with token:" + token);
         PlayState playState = playHelper.getPlayStateByStreamToken(token);
         playState.setOffsetInMs(request.getOffsetInMilliseconds());
         if (playState != null) {
             return toolbox.enqueNextSong(playState, "");
         }
-        return Optional.empty();
+        return input.getResponseBuilder().build();
     }
 
     private PlayState getPlayState(AudioPlayerState audioPlayerState, SystemState systemState) {

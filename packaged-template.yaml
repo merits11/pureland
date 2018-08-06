@@ -5,13 +5,13 @@ Parameters:
 Resources:
   MyFunction:
     Properties:
-      CodeUri: s3://purelandcodebucket/aaab1fc7b5f393f6119e5b36cd0b07db
+      CodeUri: s3://purelandcodebucket/531f1bf16f0c0ec1d4517abbc1be8a86
       Events:
         AlexaSkillEvent:
           Type: AlexaSkill
       FunctionName:
         Fn::Sub: PureLandMusic-${FunctionNameSuffix}
-      Handler: merits.funskills.pureland.LambdaHandler::handleRequest
+      Handler: merits.funskills.pureland.v2.LambdaHandlerV2::handleRequest
       MemorySize: 512
       Policies:
       - AWSLambdaExecute

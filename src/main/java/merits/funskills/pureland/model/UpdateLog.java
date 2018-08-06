@@ -8,7 +8,7 @@ import lombok.Getter;
 
 public class UpdateLog {
 
-    private static final int PLAY_TIMES = 3;
+    private static final int PLAY_TIMES = 1;
 
     private static Map<String, String> updates = new HashMap<String, String>() {
         {

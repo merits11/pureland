@@ -17,8 +17,10 @@ import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.model.services.Serializer;
 import com.amazon.ask.util.JacksonSerializer;
 
+import lombok.extern.log4j.Log4j2;
 import merits.funskills.pureland.model.PlayListUtils;
 import merits.funskills.pureland.utils.AppConfig;
+import merits.funskills.pureland.v2.handlers.CanFulfillHandler;
 import merits.funskills.pureland.v2.handlers.ControlRequestHandler;
 import merits.funskills.pureland.v2.handlers.CustomNameRequestHandler;
 import merits.funskills.pureland.v2.handlers.GeneralCategoryRequestHandler;
@@ -27,7 +29,10 @@ import merits.funskills.pureland.v2.handlers.LanguageRequestHandler;
 import merits.funskills.pureland.v2.handlers.LaunchRequestHandler;
 import merits.funskills.pureland.v2.handlers.PlaybackRequestHandler;
 import merits.funskills.pureland.v2.handlers.PlaylistRequestHandler;
+import merits.funskills.pureland.v2.handlers.RequestErrorHandler;
+import merits.funskills.pureland.v2.handlers.SessionEndedRequestHandler;
 
+@Log4j2
 public class LambdaHandlerV2 implements RequestStreamHandler {
 
     private static final String SKILL_ID = "amzn1.ask.skill.e256969a-f018-4ed5-967c-e231ecf51a81";
@@ -42,19 +47,20 @@ public class LambdaHandlerV2 implements RequestStreamHandler {
                 new ControlRequestHandler(),
                 new PlaybackRequestHandler(),
                 new LanguageRequestHandler(),
-                new HelpRequestHandler()
+                new HelpRequestHandler(),
+                new SessionEndedRequestHandler(),
+                new CanFulfillHandler()
             )
+            .addExceptionHandler(new RequestErrorHandler())
             .withAutoCreateTable(false)
             .withSkillId(SKILL_ID)
             .build();
     }
 
-    private final Skill skill;
     private final Serializer serializer;
 
     public LambdaHandlerV2() {
         this.serializer = new JacksonSerializer();
-        this.skill = getSkill();
     }
 
     @Override
@@ -62,12 +68,15 @@ public class LambdaHandlerV2 implements RequestStreamHandler {
         AppConfig.init(context);
         byte[] serializedSpeechletRequest = IOUtils.toByteArray(input);
         final String inputJson = new String(serializedSpeechletRequest, StandardCharsets.UTF_8);
+        log.info("Request received: {}", inputJson);
         if (isS3Event(inputJson)) {
             AudioPlayHelperV2.getInstance().updateLibrary();
             return;
         }
         RequestEnvelope requestEnvelope = serializer.deserialize(inputJson, RequestEnvelope.class);
-        ResponseEnvelope response = skill.invoke(requestEnvelope);
+        AppConfig.setLocale(requestEnvelope.getRequest().getLocale());
+        ResponseEnvelope response = getSkill().invoke(requestEnvelope);
+        log.info("Our response: {}", serializer.serialize(response));
         serializer.serialize(response, output);
     }
 

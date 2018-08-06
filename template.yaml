@@ -8,7 +8,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName:  !Sub "PureLandMusic-${FunctionNameSuffix}"
-      Handler: merits.funskills.pureland.LambdaHandler::handleRequest
+      Handler: merits.funskills.pureland.v2.LambdaHandlerV2::handleRequest
       Runtime: java8
       MemorySize: 512
       Timeout: 15

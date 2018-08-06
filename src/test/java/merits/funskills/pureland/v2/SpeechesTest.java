@@ -8,7 +8,8 @@ public class SpeechesTest {
 
     @Test
     public void shouldGetValidText() {
-        Speeches speeches = new Speeches();
+        Speeches speeches = Speeches.getSpeeches();
+        assertNotNull(speeches.get("app.name"));
         assertNotNull(speeches.get("app.name"));
     }
 

@@ -134,7 +134,7 @@ public class AudioPlayHelperV2 {
             playState.setLastModified(new Date());
         }
         this.dynamoDBMapper.save(playState, getConfig());
-        log.info("Play state saved into DB: {}", playState);
+        log.debug("Play state saved into DB: {}", playState);
     }
 
     public void saveUserSettings(final UserSetting setting) {
@@ -236,7 +236,7 @@ public class AudioPlayHelperV2 {
     public void deletePlayState(final String streamToken) {
         PlayState playState = getPlayStateByStreamToken(streamToken);
         if (playState != null) {
-            log.info("Deleting play state:{}", playState);
+            log.debug("Deleting play state:{}", playState);
             this.dynamoDBMapper.delete(playState, getConfig());
         }
     }

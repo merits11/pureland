@@ -1,16 +1,19 @@
-package merits.funskills.pureland;
+package merits.funskills.pureland.v2;
 
-import com.amazon.speech.speechlet.Device;
-import com.amazon.speech.speechlet.SpeechletResponse;
-import com.amazon.speech.speechlet.User;
-import com.amazon.speech.speechlet.interfaces.audioplayer.Stream;
-import com.amazon.speech.speechlet.interfaces.audioplayer.directive.PlayDirective;
-import com.amazon.speech.speechlet.interfaces.system.SystemState;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import merits.funskills.pureland.model.PlayState;
 import merits.funskills.pureland.utils.AppConfig;
+import merits.funskills.pureland.v2.AudioPlayHelperV2;
 
 import org.junit.BeforeClass;
+
+import com.amazon.ask.model.Device;
+import com.amazon.ask.model.Response;
+import com.amazon.ask.model.User;
+import com.amazon.ask.model.interfaces.audioplayer.PlayDirective;
+import com.amazon.ask.model.interfaces.audioplayer.Stream;
+import com.amazon.ask.model.interfaces.system.SystemState;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -22,7 +25,7 @@ public class AlphaAwsBaseTestCase {
     protected static final String TEST_USER_ID = "TestUserId";
     protected static final String UNKOWN_USER_ID = "UnknownUserId";
     protected static final String TEST_DEVICE_ID = "TestDeviceId";
-    protected static AudioPlayHelper audioPlayHelper;
+    protected static AudioPlayHelperV2 audioPlayHelper;
     protected SystemState systemState;
     protected SystemState unkownUserSystemState;
     protected User user;
@@ -33,7 +36,7 @@ public class AlphaAwsBaseTestCase {
         Context context = mock(Context.class);
         when(context.getFunctionName()).thenReturn("PureLandDynamoAlpha");
         AppConfig.init(context);
-        audioPlayHelper = AudioPlayHelper.getInstance();
+        audioPlayHelper = AudioPlayHelperV2.getInstance();
     }
 
     protected void initSystemState() {
@@ -63,13 +66,13 @@ public class AlphaAwsBaseTestCase {
     }
 
 
-    protected Stream getStreamFromResponse(final SpeechletResponse speechletResponse) {
+    protected Stream getStreamFromResponse(final Response speechletResponse) {
         PlayDirective directive = (PlayDirective) speechletResponse.getDirectives().get(0);
         Stream stream = directive.getAudioItem().getStream();
         return stream;
     }
 
-    protected PlayState getPlayStateFromResponse(final SpeechletResponse speechletResponse) {
+    protected PlayState getPlayStateFromResponse(final Response speechletResponse) {
         Stream stream = getStreamFromResponse(speechletResponse);
         return audioPlayHelper.getPlayStateByStreamToken(stream.getToken());
     }

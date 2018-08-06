@@ -27,7 +27,6 @@ repositories {
 dependencies {
     // Core dependencies usable in all skills
     compile(
-            'com.amazon.alexa:alexa-skills-kit:1.6.0',
             'com.amazonaws:aws-lambda-java-core:1.2.0',
             'com.amazonaws:aws-lambda-java-events:2.2.2',
             'com.amazonaws:aws-lambda-java-log4j2:1.1.0',
@@ -37,7 +36,7 @@ dependencies {
             'org.apache.directory.studio:org.apache.commons.io:2.4',
             'com.google.guava:guava:25.1-jre',
             // https://mvnrepository.com/artifact/com.amazon.alexa/ask-sdk-core
-            'com.amazon.alexa:ask-sdk:2.4.1'
+            'com.amazon.alexa:ask-sdk:2.4.0-beta.2'
 
     )
     // https://mvnrepository.com/artifact/com.google.code.gson/gson

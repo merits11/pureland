@@ -1,4 +1,4 @@
-package merits.funskills.pureland;
+package merits.funskills.pureland.v2;
 
 import java.util.Date;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.amazon.speech.speechlet.User;
-import com.amazon.speech.speechlet.interfaces.system.SystemState;
+import com.amazon.ask.model.User;
+import com.amazon.ask.model.interfaces.system.SystemState;
 
 import lombok.extern.log4j.Log4j2;
 import merits.funskills.pureland.model.PlayItem;
@@ -75,7 +75,7 @@ public class AudioPlayHelperTestAlpha extends AlphaAwsBaseTestCase {
 
     @Test
     public void testGetNextPlayItem() throws Exception {
-        AudioPlayHelper playHelper = AudioPlayHelper.getInstance();
+        AudioPlayHelperV2 playHelper = AudioPlayHelperV2.getInstance();
         PlayList playList = PlayList.OneHundredFour;
         PlayItem playItem = playHelper.getPlayItem(playList, 0);
         Token token = Token.builder()

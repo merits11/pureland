@@ -65,13 +65,13 @@ public class ControlRequestHandler extends BaseRequestHandler {
             case "AMAZON.StartOverIntent":
                 return startOver(input);
         }
-        return Optional.empty();
+        return input.getResponseBuilder().build();
     }
 
     private Optional<Response> next(HandlerInput input, boolean forward) {
         PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayer(input).getToken());
         if (playState != null) {
-            log.info("Retrieved play state for current system: {} ", playState);
+            log.debug("Retrieved play state for current system: {} ", playState);
             if (forward) {
                 int nextDisplaySeq = playHelper
                     .getPlayItem(playState.currentPlayList(), playState.getCurrentSeq() + 1)
@@ -140,7 +140,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
         long remainingMs = totalMs - elapsedMs;
         int randomMins = RandomUtils.nextInt(5, 11);
         long fastforwardMs = Math.max(MINUTES.toMillis(randomMins), remainingMs / 5);
-        log.info("Retrieved play state for current system: {} ", playState);
+        log.debug("Retrieved play state for current system: {} ", playState);
         long newOffset = (fastforwardMs + elapsedMs) % totalMs;
         playState.setOffsetInMs(newOffset);
         long percent = Math.round(playState.getOffsetInMs() * 100.0 / totalMs);
