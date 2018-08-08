@@ -15,3 +15,5 @@ aws cloudformation deploy --template-file packaged-template.yaml --stack-name "P
 echo "Publishing function PureLandMusic-${stage}"
 aws lambda publish-version --function-name  "PureLandMusic-${stage}" --description "Published at $(date)"
 #aws lambda publish-version --function-name  "PureLandMusic-Alpha" --description "Published at $(date)"
+
+

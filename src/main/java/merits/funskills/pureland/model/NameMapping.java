@@ -19,7 +19,7 @@ public class NameMapping {
         entry("Amituofo", of(AmitabhaSutraEnglish, AmitabhaChanting)),
         entry("EarthStore", of(DizangSutra, EarthStore)),
         entry("GuanYin", of(One)),
-        entry("SutraChanting", of(SutraChantings)),
+        entry("SutraChanting", of(SutraChantings, EnglishSutraChantings)),
         entry("LotusSutra", of(EnglishLotusSutra, Eight)),
         entry("DiamondSutra", of(Six, TwentySix)),
         entry("EmptyCloud", of(Twelve)),
@@ -43,6 +43,7 @@ public class NameMapping {
         entry("YinGuang", of(YinGuang)),
         entry("AmitabhaSutra", of(Ten, AmitabhaSutraEnglish)),
         entry("FaYuanWen", of(PureLandVows)),
+        entry("RepentancePrayer",of(Repentance)),
         entry("PersonalList", of(PersonalList))
     ).collect(entriesToMap()));
 

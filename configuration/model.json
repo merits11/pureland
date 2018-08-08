@@ -53,7 +53,6 @@
         },
         {
           "name": "DharmaTalk",
-          "slots": [],
           "samples": [
             "dharma talk",
             "talk"
@@ -61,7 +60,6 @@
         },
         {
           "name": "EveningService",
-          "slots": [],
           "samples": [
             "Wang Ke",
             "wan ke",
@@ -103,7 +101,6 @@
         },
         {
           "name": "MorningService",
-          "slots": [],
           "samples": [
             "Zhao Ke",
             "Zao Ke",
@@ -115,7 +112,6 @@
         },
         {
           "name": "MusicIntent",
-          "slots": [],
           "samples": [
             "Buddhist music",
             "play music",
@@ -145,7 +141,6 @@
         },
         {
           "name": "RandomList",
-          "slots": [],
           "samples": [
             "play something",
             "anything",
@@ -164,7 +159,6 @@
         },
         {
           "name": "SutraIntent",
-          "slots": [],
           "samples": [
             "sutta",
             "sutra",
@@ -176,7 +170,6 @@
         },
         {
           "name": "ChantIntent",
-          "slots": [],
           "samples": [
             "chantings",
             "chant",
@@ -293,6 +286,10 @@
             {
               "name": "FaYuanWen",
               "type": "FaYuanWen"
+            },
+            {
+              "name": "RepentancePrayer",
+              "type": "RepentancePrayer"
             }
           ],
           "samples": [
@@ -323,6 +320,7 @@
             "{InfiniteLife}",
             "{Amituofo}",
             "{JinKong}",
+            "{RepentancePrayer}",
             "play {AHan}",
             "play {XingYuanPin}",
             "play {PuMenPin}",
@@ -348,13 +346,40 @@
             "play {EarthStore}",
             "play {InfiniteLife}",
             "play {Amituofo}",
-            "play {JinKong}"
+            "play {JinKong}",
+            "play {RepentancePrayer}",
+            "uphold {AHan}",
+            "uphold {XingYuanPin}",
+            "uphold {PuMenPin}",
+            "uphold {MedicineBuddhaSutra}",
+            "uphold {HeartSutra}",
+            "uphold {WeiMoJie}",
+            "uphold {AmitabhaSutra}",
+            "uphold {ChinesePopMusic}",
+            "uphold {YiJiaoJing}",
+            "uphold {LengYan}",
+            "uphold {HuaYan}",
+            "uphold {YinGuang}",
+            "uphold {PersonalList}",
+            "uphold {VisualizationSutra}",
+            "uphold {PureLand}",
+            "uphold {EmptyCloud}",
+            "uphold {ShengYan}",
+            "uphold {PlatformSutra}",
+            "uphold {SutraChanting}",
+            "uphold {LotusSutra}",
+            "uphold {DiamondSutra}",
+            "uphold {GuanYin}",
+            "uphold {EarthStore}",
+            "uphold {InfiniteLife}",
+            "uphold {Amituofo}",
+            "uphold {JinKong}",
+            "uphold {RepentancePrayer}"
           ]
         }
       ],
       "types": [
         {
-          "name": "Lang",
           "values": [
             {
               "name": {
@@ -382,10 +407,10 @@
                 ]
               }
             }
-          ]
+          ],
+          "name": "Lang"
         },
         {
-          "name": "JinKong",
           "values": [
             {
               "name": {
@@ -427,10 +452,10 @@
                 "value": "Jing Kong"
               }
             }
-          ]
+          ],
+          "name": "JinKong"
         },
         {
-          "name": "InfiniteLife",
           "values": [
             {
               "name": {
@@ -462,10 +487,10 @@
                 "value": "infinite life"
               }
             }
-          ]
+          ],
+          "name": "InfiniteLife"
         },
         {
-          "name": "Amituofo",
           "values": [
             {
               "name": {
@@ -522,10 +547,10 @@
                 "value": "Amitabha"
               }
             }
-          ]
+          ],
+          "name": "Amituofo"
         },
         {
-          "name": "EarthStore",
           "values": [
             {
               "name": {
@@ -572,10 +597,10 @@
                 "value": "Earth Store"
               }
             }
-          ]
+          ],
+          "name": "EarthStore"
         },
         {
-          "name": "GuanYin",
           "values": [
             {
               "name": {
@@ -627,10 +652,10 @@
                 "value": "Guan Yin"
               }
             }
-          ]
+          ],
+          "name": "GuanYin"
         },
         {
-          "name": "SutraChanting",
           "values": [
             {
               "name": {
@@ -647,10 +672,10 @@
                 "value": "Sutra Chanting"
               }
             }
-          ]
+          ],
+          "name": "SutraChanting"
         },
         {
-          "name": "LotusSutra",
           "values": [
             {
               "name": {
@@ -667,10 +692,10 @@
                 "value": "Lotus Sutra"
               }
             }
-          ]
+          ],
+          "name": "LotusSutra"
         },
         {
-          "name": "DiamondSutra",
           "values": [
             {
               "name": {
@@ -687,10 +712,10 @@
                 "value": "Diamond Sutra"
               }
             }
-          ]
+          ],
+          "name": "DiamondSutra"
         },
         {
-          "name": "EmptyCloud",
           "values": [
             {
               "name": {
@@ -727,10 +752,10 @@
                 "value": "Empty Cloud"
               }
             }
-          ]
+          ],
+          "name": "EmptyCloud"
         },
         {
-          "name": "PlatformSutra",
           "values": [
             {
               "name": {
@@ -752,10 +777,10 @@
                 "value": "platform sutra"
               }
             }
-          ]
+          ],
+          "name": "PlatformSutra"
         },
         {
-          "name": "ShengYan",
           "values": [
             {
               "name": {
@@ -792,10 +817,10 @@
                 "value": "Sheng Yan Fa Shi"
               }
             }
-          ]
+          ],
+          "name": "ShengYan"
         },
         {
-          "name": "YinGuang",
           "values": [
             {
               "name": {
@@ -827,20 +852,20 @@
                 "value": "Yin Guang"
               }
             }
-          ]
+          ],
+          "name": "YinGuang"
         },
         {
-          "name": "PersonalList",
           "values": [
             {
               "name": {
                 "value": "Personal List"
               }
             }
-          ]
+          ],
+          "name": "PersonalList"
         },
         {
-          "name": "VisualizationSutra",
           "values": [
             {
               "name": {
@@ -862,10 +887,10 @@
                 "value": "Guan Jing"
               }
             }
-          ]
+          ],
+          "name": "VisualizationSutra"
         },
         {
-          "name": "PureLand",
           "values": [
             {
               "name": {
@@ -887,10 +912,10 @@
                 "value": "Jing Tu"
               }
             }
-          ]
+          ],
+          "name": "PureLand"
         },
         {
-          "name": "HuaYan",
           "values": [
             {
               "name": {
@@ -912,10 +937,10 @@
                 "value": "Hua Yan Jing"
               }
             }
-          ]
+          ],
+          "name": "HuaYan"
         },
         {
-          "name": "YiJiaoJing",
           "values": [
             {
               "name": {
@@ -932,10 +957,10 @@
                 "value": "Yi Jiao Jing"
               }
             }
-          ]
+          ],
+          "name": "YiJiaoJing"
         },
         {
-          "name": "LengYan",
           "values": [
             {
               "name": {
@@ -957,20 +982,20 @@
                 "value": "Leng Yan Jing"
               }
             }
-          ]
+          ],
+          "name": "LengYan"
         },
         {
-          "name": "ChinesePopMusic",
           "values": [
             {
               "name": {
-                "value": "Chines pop music"
+                "value": "Chinese Pop"
               }
             }
-          ]
+          ],
+          "name": "ChinesePopMusic"
         },
         {
-          "name": "AmitabhaSutra",
           "values": [
             {
               "name": {
@@ -992,10 +1017,10 @@
                 "value": "Amitabha Sutra"
               }
             }
-          ]
+          ],
+          "name": "AmitabhaSutra"
         },
         {
-          "name": "WeiMoJie",
           "values": [
             {
               "name": {
@@ -1012,10 +1037,10 @@
                 "value": "Wei Mo Jie"
               }
             }
-          ]
+          ],
+          "name": "WeiMoJie"
         },
         {
-          "name": "HeartSutra",
           "values": [
             {
               "name": {
@@ -1027,10 +1052,10 @@
                 "value": "Heart Sutra"
               }
             }
-          ]
+          ],
+          "name": "HeartSutra"
         },
         {
-          "name": "MedicineBuddhaSutra",
           "values": [
             {
               "name": {
@@ -1052,10 +1077,10 @@
                 "value": "Medicine Buddha Sutra"
               }
             }
-          ]
+          ],
+          "name": "MedicineBuddhaSutra"
         },
         {
-          "name": "PuMenPin",
           "values": [
             {
               "name": {
@@ -1072,10 +1097,10 @@
                 "value": "Pu Men Pin of Lotus Sutra"
               }
             }
-          ]
+          ],
+          "name": "PuMenPin"
         },
         {
-          "name": "XingYuanPin",
           "values": [
             {
               "name": {
@@ -1107,10 +1132,10 @@
                 "value": "Xing Yuan Pin"
               }
             }
-          ]
+          ],
+          "name": "XingYuanPin"
         },
         {
-          "name": "AHan",
           "values": [
             {
               "name": {
@@ -1142,10 +1167,10 @@
                 "value": "Theravada sutras"
               }
             }
-          ]
+          ],
+          "name": "AHan"
         },
         {
-          "name": "FaYuanWen",
           "values": [
             {
               "name": {
@@ -1162,7 +1187,28 @@
                 "value": "Xi Fang Fa Yuan Wen"
               }
             }
-          ]
+          ],
+          "name": "FaYuanWen"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Chang Hui Wen"
+              }
+            },
+            {
+              "name": {
+                "value": "Repentance"
+              }
+            },
+            {
+              "name": {
+                "value": "Repentance Prayer"
+              }
+            }
+          ],
+          "name": "RepentancePrayer"
         }
       ]
     },
@@ -1178,8 +1224,8 @@
             {
               "name": "Lang",
               "type": "Lang",
-              "confirmationRequired": false,
               "elicitationRequired": true,
+              "confirmationRequired": false,
               "prompts": {
                 "elicitation": "Elicit.Slot.991969149754.365926476130"
               }
@@ -1189,13 +1235,12 @@
         {
           "name": "PlayList",
           "confirmationRequired": false,
-          "prompts": {},
           "slots": [
             {
               "name": "LIST_NUMBER",
               "type": "AMAZON.NUMBER",
-              "confirmationRequired": false,
               "elicitationRequired": true,
+              "confirmationRequired": false,
               "prompts": {
                 "elicitation": "Elicit.Intent-PlayList.IntentSlot-LIST_NUMBER"
               }
@@ -1205,196 +1250,174 @@
         {
           "name": "CustomNameIntent",
           "confirmationRequired": false,
-          "prompts": {},
           "slots": [
             {
               "name": "JinKong",
               "type": "JinKong",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "Amituofo",
               "type": "Amituofo",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "EarthStore",
               "type": "EarthStore",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "InfiniteLife",
               "type": "InfiniteLife",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "GuanYin",
               "type": "GuanYin",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "DiamondSutra",
               "type": "DiamondSutra",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "LotusSutra",
               "type": "LotusSutra",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "SutraChanting",
               "type": "SutraChanting",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "EmptyCloud",
               "type": "EmptyCloud",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "PlatformSutra",
               "type": "PlatformSutra",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "ShengYan",
               "type": "ShengYan",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "YinGuang",
               "type": "YinGuang",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "PersonalList",
               "type": "PersonalList",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "VisualizationSutra",
               "type": "VisualizationSutra",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "PureLand",
               "type": "PureLand",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "HuaYan",
               "type": "HuaYan",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "YiJiaoJing",
               "type": "YiJiaoJing",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "LengYan",
               "type": "LengYan",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "ChinesePopMusic",
               "type": "ChinesePopMusic",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "AmitabhaSutra",
               "type": "AmitabhaSutra",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "WeiMoJie",
               "type": "WeiMoJie",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "HeartSutra",
               "type": "HeartSutra",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "MedicineBuddhaSutra",
               "type": "MedicineBuddhaSutra",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "AHan",
               "type": "AHan",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "PuMenPin",
               "type": "PuMenPin",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "XingYuanPin",
               "type": "XingYuanPin",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
             },
             {
               "name": "FaYuanWen",
               "type": "FaYuanWen",
-              "confirmationRequired": false,
               "elicitationRequired": false,
-              "prompts": {}
+              "confirmationRequired": false
+            },
+            {
+              "name": "RepentancePrayer",
+              "type": "RepentancePrayer",
+              "elicitationRequired": false,
+              "confirmationRequired": false
             }
           ]
         }

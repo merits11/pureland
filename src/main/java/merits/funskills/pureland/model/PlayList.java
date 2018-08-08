@@ -29,7 +29,7 @@ public enum PlayList {
     One(1, "Guan Yin bodhisattva", TAG(Chinese, Chanting, English)),
     Two(2, "Platform sutra", TAG(Sutra, Chinese)),
     AmitabhaChanting(3, "Chanting of Amitabha", TAG(Chanting, Chinese, English)),
-    SutraChantings(4, "", TAG(Chanting, Chinese, English)),
+    SutraChantings(4, "", TAG(Chanting, Chinese)),
     Five(5, "Dharma music", TAG(Music, Chinese, English)),
     Six(6, "Diamond sutra", TAG(Sutra, Chinese)),
     HeartSutra(7, "Heart Sutra", TAG(Sutra, Chinese)),
@@ -76,6 +76,7 @@ public enum PlayList {
     //English dharma talk
     ThichNhatHanh(50, "Thich Nhat Hanh", TAG(DharmaTalk, English)),
     WordOfBuddha(51, "Word of the Buddha", TAG(DharmaTalk, English)),
+    EnglishSutraChantings(52, "", TAG(Chanting, English)),
 
     ShengYen(60, "Lectures by Master Sheng Yen", TAG(Chinese, DharmaTalk)),
     //InfiniteSutraTalksByJingKong(61, "", TAG(Chinese, DharmaTalk)),

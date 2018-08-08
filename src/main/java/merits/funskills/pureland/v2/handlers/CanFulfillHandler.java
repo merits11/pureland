@@ -2,6 +2,9 @@ package merits.funskills.pureland.v2.handlers;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+
+import com.google.common.collect.ImmutableSet;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
@@ -21,6 +24,12 @@ public class CanFulfillHandler extends BaseRequestHandler {
 
     private static final String LIST_NUMBER_SLOT = "LIST_NUMBER";
 
+    private static final Set<String> MAYBE_INTENTS = ImmutableSet
+        .of("RandomList");
+
+    private static final Set<String> YES_INTENTS = ImmutableSet
+        .of("SutraIntent", "ChantIntent", "EveningService", "MorningService", "MusicIntent");
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(Predicates.requestType(CanFulfillIntentRequest.class));
@@ -34,6 +43,14 @@ public class CanFulfillHandler extends BaseRequestHandler {
             return canfulfillPlayList(input, intent);
         } else if (intent.getName().equals("CustomNameIntent")) {
             return canfulfillName(input, intent);
+        } else if (YES_INTENTS.contains(intent.getName())) {
+            input.getResponseBuilder().withCanFulfillIntent(
+                CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.YES).build()
+            ).build();
+        } else if (MAYBE_INTENTS.contains(intent.getName())) {
+            input.getResponseBuilder().withCanFulfillIntent(
+                CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.MAYBE).build()
+            ).build();
         }
         return input.getResponseBuilder().withCanFulfillIntent(
             CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.NO).build()
@@ -78,7 +95,7 @@ public class CanFulfillHandler extends BaseRequestHandler {
                 .withCanFulfill(CanFulfillSlotValues.YES)
                 .withCanUnderstand(CanUnderstandSlotValues.YES)
                 .build();
-            builder.putSlotsItem(slot.getName(),canFulfillSlot);
+            builder.putSlotsItem(slot.getName(), canFulfillSlot);
             if (slot.getValue() != null) {
                 builder.withCanFulfill(CanFulfillIntentValues.YES);
             }
