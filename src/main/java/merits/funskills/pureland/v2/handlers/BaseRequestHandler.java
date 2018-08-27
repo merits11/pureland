@@ -33,11 +33,14 @@ public abstract class BaseRequestHandler implements RequestHandler {
     protected ResponseHelperV2 responseHelper;
 
     public BaseRequestHandler() {
+        this(AudioPlayHelperV2.getInstance());
+    }
+
+    BaseRequestHandler(AudioPlayHelperV2 audioPlayHelperV2) {
         this.responseHelper = new ResponseHelperV2();
-        this.playHelper = AudioPlayHelperV2.getInstance();
+        this.playHelper = audioPlayHelperV2;
         this.toolbox = new PureLandMusicHelperV2(playHelper, responseHelper);
         this.speeches = Speeches.getSpeeches();
-
     }
 
     @Override

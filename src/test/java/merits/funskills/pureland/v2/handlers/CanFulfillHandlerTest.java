@@ -13,6 +13,10 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.canfulfill.CanFulfillIntentRequest;
 import com.amazon.ask.model.canfulfill.CanFulfillIntentValues;
+import com.amazon.ask.model.slu.entityresolution.Resolution;
+import com.amazon.ask.model.slu.entityresolution.Resolutions;
+import com.amazon.ask.model.slu.entityresolution.Status;
+import com.amazon.ask.model.slu.entityresolution.StatusCode;
 
 import static org.junit.Assert.assertEquals;
 
@@ -48,13 +52,58 @@ public class CanFulfillHandlerTest {
             .build());
         response = handler.handle(input);
         System.out.println(response.get());
+        assertEquals(CanFulfillIntentValues.NO, response.get().getCanFulfillIntent().getCanFulfill());
+
+        Slot slotA = Slot.builder().withName("A").withValue("A")
+            .withResolutions(Resolutions.builder().addResolutionsPerAuthorityItem(
+                Resolution.builder().withStatus(Status.builder().withCode(StatusCode.ER_SUCCESS_MATCH).build()).build())
+                .build()
+            ).build();
+
+        Slot slotNotMatched = Slot.builder().withName("A").withValue("A")
+            .withResolutions(Resolutions.builder().addResolutionsPerAuthorityItem(
+                Resolution.builder().withStatus(Status.builder().withCode(StatusCode.ER_SUCCESS_NO_MATCH).build())
+                    .build())
+                .build()
+            ).build();
+
+        input = createInput(Intent.builder()
+            .withName("CustomNameIntent")
+            .withSlots(ImmutableMap
+                .of("A", slotA,
+                    "B", Slot.builder().withName("B").withValue(null).build()
+                ))
+            .build());
+        response = handler.handle(input);
+        System.out.println(response.get());
         assertEquals(CanFulfillIntentValues.YES, response.get().getCanFulfillIntent().getCanFulfill());
 
         input = createInput(Intent.builder()
             .withName("CustomNameIntent")
             .withSlots(ImmutableMap
-                .of("A", Slot.builder().withName("A").withValue(null).build(),
+                .of("A", slotNotMatched,
                     "B", Slot.builder().withName("B").withValue(null).build()
+                ))
+            .build());
+        response = handler.handle(input);
+        System.out.println(response.get());
+        assertEquals(CanFulfillIntentValues.NO, response.get().getCanFulfillIntent().getCanFulfill());
+
+
+        input = createInput(Intent.builder()
+            .withName("FastForward")
+            .withSlots(ImmutableMap
+                .of("MINUTES", Slot.builder().withName("MINUTES").withValue("5").build()
+                ))
+            .build());
+        response = handler.handle(input);
+        System.out.println(response.get());
+        assertEquals(CanFulfillIntentValues.YES, response.get().getCanFulfillIntent().getCanFulfill());
+
+        input = createInput(Intent.builder()
+            .withName("FastForward")
+            .withSlots(ImmutableMap
+                .of("MINUTES", Slot.builder().withName("MINUTES").withValue("1001").build()
                 ))
             .build());
         response = handler.handle(input);

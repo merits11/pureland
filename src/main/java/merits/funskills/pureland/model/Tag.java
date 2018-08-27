@@ -29,6 +29,7 @@ public enum Tag {
     //Sort
     SortByKey(Sort),
     SortByTimeAsc(Sort),
+    SortByTimeAndKeyAsc(Sort),
     SortByTimeDesc(Sort),
     SortByEtag(Sort),
 

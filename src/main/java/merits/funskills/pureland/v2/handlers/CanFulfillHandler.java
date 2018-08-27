@@ -2,9 +2,12 @@ package merits.funskills.pureland.v2.handlers;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
+import java.util.function.Predicate;
 
-import com.google.common.collect.ImmutableSet;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.mutable.MutableBoolean;
+
+import com.amazonaws.util.CollectionUtils;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
@@ -16,19 +19,16 @@ import com.amazon.ask.model.canfulfill.CanFulfillIntentValues;
 import com.amazon.ask.model.canfulfill.CanFulfillSlot;
 import com.amazon.ask.model.canfulfill.CanFulfillSlotValues;
 import com.amazon.ask.model.canfulfill.CanUnderstandSlotValues;
+import com.amazon.ask.model.slu.entityresolution.Resolution;
+import com.amazon.ask.model.slu.entityresolution.StatusCode;
 import com.amazon.ask.request.Predicates;
 
 import merits.funskills.pureland.model.PlayListUtils;
 
+import static merits.funskills.pureland.model.Constants.SLOT_NAME_LIST_NUMBER;
+import static merits.funskills.pureland.model.Constants.SLOT_NAME_MINUTES;
+
 public class CanFulfillHandler extends BaseRequestHandler {
-
-    private static final String LIST_NUMBER_SLOT = "LIST_NUMBER";
-
-    private static final Set<String> MAYBE_INTENTS = ImmutableSet
-        .of("RandomList");
-
-    private static final Set<String> YES_INTENTS = ImmutableSet
-        .of("SutraIntent", "ChantIntent", "EveningService", "MorningService", "MusicIntent");
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -40,65 +40,117 @@ public class CanFulfillHandler extends BaseRequestHandler {
         CanFulfillIntentRequest request = (CanFulfillIntentRequest) input.getRequestEnvelope().getRequest();
         Intent intent = request.getIntent();
         if (intent.getName().equals("PlayList")) {
-            return canfulfillPlayList(input, intent);
+            return canfulfillSingleNumberIntent(input, intent, this::canfulfillPlayList);
         } else if (intent.getName().equals("CustomNameIntent")) {
             return canfulfillName(input, intent);
-        } else if (YES_INTENTS.contains(intent.getName())) {
-            input.getResponseBuilder().withCanFulfillIntent(
-                CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.YES).build()
-            ).build();
-        } else if (MAYBE_INTENTS.contains(intent.getName())) {
-            input.getResponseBuilder().withCanFulfillIntent(
-                CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.MAYBE).build()
-            ).build();
+        } else if (intent.getName().equals("FastForward") || intent.getName().equals("Rewind")) {
+            return canfulfillSingleNumberIntent(input, intent, this::canfulfillForward);
+        } else {
+            return sayNo(input, intent);
         }
+    }
+
+    private boolean canfulfillPlayList(Slot slot) {
+        return slot.getName().equals(SLOT_NAME_LIST_NUMBER) && PlayListUtils.getPlaylist(slot.getValue()) != null;
+    }
+
+    private boolean canfulfillForward(Slot slot) {
+        if (!slot.getName().equals(SLOT_NAME_MINUTES)) {
+            return false;
+        }
+        int minutes = Integer.parseInt(slot.getValue());
+        return minutes > 0 && minutes <= 100;
+
+    }
+
+    private Optional<Response> sayNo(HandlerInput input, Intent intent) {
         return input.getResponseBuilder().withCanFulfillIntent(
-            CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.NO).build()
+            CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.NO)
+                .build()
         ).build();
     }
 
-    private Optional<Response> canfulfillPlayList(HandlerInput input, Intent intent) {
+    private Optional<Response> canfulfillSingleNumberIntent(HandlerInput input, Intent intent,
+        Predicate<Slot> slotPredicate) {
         Map<String, Slot> slots = intent.getSlots();
-        CanFulfillIntent.Builder builder = CanFulfillIntent.builder();
-        if (slots.containsKey(LIST_NUMBER_SLOT)) {
-            builder.withCanFulfill(CanFulfillIntentValues.NO);
-            String number = slots.get(LIST_NUMBER_SLOT).getValue();
-            Integer listNum = -1;
-            try {
-                listNum = Integer.valueOf(number);
-            } catch (Exception e) {
-                //ignore
-            }
-            if (listNum > 0) {
-                CanFulfillSlot.Builder slotBuilder = CanFulfillSlot.builder();
-                slotBuilder.withCanUnderstand(CanUnderstandSlotValues.YES);
-                if (PlayListUtils.getPlaylist(number) != null) {
-                    slotBuilder.withCanFulfill(CanFulfillSlotValues.YES);
-                    builder.withCanFulfill(CanFulfillIntentValues.YES);
-                } else {
-                    slotBuilder.withCanFulfill(CanFulfillSlotValues.NO);
-                }
-                builder.putSlotsItem(LIST_NUMBER_SLOT, slotBuilder.build());
-            }
-        } else {
-            builder.withCanFulfill(CanFulfillIntentValues.NO);
+        if (slots == null || slots.isEmpty()) {
+            return sayNo(input, intent);
         }
-        return input.getResponseBuilder().withCanFulfillIntent(builder.build()).build();
+        CanFulfillIntent.Builder builder = CanFulfillIntent.builder();
+        MutableBoolean canFulfillIntent = new MutableBoolean(false);
+        MutableBoolean canNotFulfillIntent = new MutableBoolean(false);
+        slots.forEach((name, slot) -> {
+            String value = slot.getValue();
+            if (StringUtils.isEmpty(value)) {
+                return;
+            }
+            if (StringUtils.isNumeric(slot.getValue()) && slotPredicate.test(slot)) {
+                builder.putSlotsItem(name,
+                    CanFulfillSlot.builder()
+                        .withCanFulfill(CanFulfillSlotValues.YES)
+                        .withCanUnderstand(CanUnderstandSlotValues.YES)
+                        .build()
+                );
+                canFulfillIntent.setTrue();
+                return;
+            }
+            builder.putSlotsItem(name,
+                CanFulfillSlot.builder()
+                    .withCanFulfill(CanFulfillSlotValues.NO)
+                    .withCanUnderstand(CanUnderstandSlotValues.NO)
+                    .build()
+            );
+            canNotFulfillIntent.setTrue();
+        });
+        return getResponse(input, builder, canFulfillIntent, canNotFulfillIntent);
     }
 
     private Optional<Response> canfulfillName(HandlerInput input, Intent intent) {
         Map<String, Slot> slots = intent.getSlots();
         CanFulfillIntent.Builder builder = CanFulfillIntent.builder();
-        builder.withCanFulfill(CanFulfillIntentValues.NO);
+        MutableBoolean canFulfillIntent = new MutableBoolean(false);
+        MutableBoolean canNotFulfillIntent = new MutableBoolean(false);
         for (Slot slot : slots.values()) {
-            CanFulfillSlot canFulfillSlot = CanFulfillSlot.builder()
-                .withCanFulfill(CanFulfillSlotValues.YES)
-                .withCanUnderstand(CanUnderstandSlotValues.YES)
-                .build();
-            builder.putSlotsItem(slot.getName(), canFulfillSlot);
-            if (slot.getValue() != null) {
-                builder.withCanFulfill(CanFulfillIntentValues.YES);
+            String value = slot.getValue();
+            if (StringUtils.isEmpty(value)) {
+                continue;
             }
+            CanFulfillSlot.Builder canFulfillSlotBuilder = CanFulfillSlot.builder();
+            if (slot.getResolutions() == null || CollectionUtils.isNullOrEmpty(
+                slot.getResolutions().getResolutionsPerAuthority())) {
+                canNotFulfillIntent.setTrue();
+                canFulfillSlotBuilder.withCanFulfill(CanFulfillSlotValues.NO)
+                    .withCanUnderstand(CanUnderstandSlotValues.NO)
+                    .build();
+                builder.putSlotsItem(slot.getName(), canFulfillSlotBuilder.build());
+                continue;
+            }
+
+            Optional<Resolution> resolutionOptional = slot.getResolutions().getResolutionsPerAuthority().stream()
+                .filter(resolution -> resolution.getStatus().getCode() == StatusCode.ER_SUCCESS_MATCH)
+                .findAny();
+            if (resolutionOptional.isPresent()) {
+                canFulfillSlotBuilder.withCanFulfill(CanFulfillSlotValues.YES)
+                    .withCanUnderstand(CanUnderstandSlotValues.YES)
+                    .build();
+                canFulfillIntent.setTrue();
+            } else {
+                canFulfillSlotBuilder.withCanFulfill(CanFulfillSlotValues.NO)
+                    .withCanUnderstand(CanUnderstandSlotValues.NO)
+                    .build();
+                canNotFulfillIntent.setTrue();
+            }
+            builder.putSlotsItem(slot.getName(), canFulfillSlotBuilder.build());
+        }
+        return getResponse(input, builder, canFulfillIntent, canNotFulfillIntent);
+    }
+
+    private Optional<Response> getResponse(HandlerInput input, CanFulfillIntent.Builder builder,
+        MutableBoolean canFulfillIntent, MutableBoolean canNotFulfillIntent) {
+        if (canFulfillIntent.isFalse() || canNotFulfillIntent.isTrue()) {
+            builder.withCanFulfill(CanFulfillIntentValues.NO);
+        } else {
+            builder.withCanFulfill(CanFulfillIntentValues.YES);
         }
         return input.getResponseBuilder().withCanFulfillIntent(builder.build()).build();
     }

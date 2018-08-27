@@ -1,0 +1,48 @@
+{
+  "session":{
+    "new": true,
+    "sessionId":"SessionId.0d61885e-1050-4291-8f8e-773462a9fbb6",
+    "application":{
+      "applicationId":"amzn1.ask.skill.e256969a-f018-4ed5-967c-e231ecf51a81"
+    },
+    "attributes":{
+    },
+    "user":{
+      "userId":"amzn1.ask.account.6c9fe788-5fb8-4dc3-83e0-60e3b51b9ded"
+    }
+  },
+  "request":{
+    "type":"CanFulfillIntentRequest",
+    "requestId":"EdwRequestId.843510b1-085d-48a1-bc3b-feb6f3ef804a",
+    "intent":{
+      "name":"MorningService",
+      "slots":{
+        "LIST_NUMBER":{
+          "name":"LIST_NUMBER",
+          "value":"5"
+        }
+      }
+    },
+    "locale":"en-US",
+    "timestamp":"2017-10-03T22:02:29Z"
+  },
+  "context":{
+    "AudioPlayer":{
+      "playerActivity":"IDLE"
+    },
+    "System":{
+      "application":{
+        "applicationId":"amzn1.ask.skill.e256969a-f018-4ed5-967c-e231ecf51a81"
+      },
+      "user":{
+        "userId":"amzn1.ask.account.6c9fe788-5fb8-4dc3-83e0-60e3b51b9ded"
+      },
+      "device":{
+        "supportedInterfaces":{
+
+        }
+      }
+    }
+  },
+  "version":"1.0"
+}

@@ -13,24 +13,31 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.interfaces.audioplayer.AudioPlayerState;
 import com.amazon.ask.model.interfaces.system.SystemState;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import merits.funskills.pureland.model.PlayItem;
 import merits.funskills.pureland.model.PlayList;
 import merits.funskills.pureland.model.PlayListUtils;
 import merits.funskills.pureland.model.PlayState;
+import merits.funskills.pureland.v2.AudioPlayHelperV2;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.MINUTES;
+import static merits.funskills.pureland.model.Constants.SLOT_NAME_MINUTES;
 import static merits.funskills.pureland.model.PlayState.getDisplaySequence;
 
 @Log4j2
+@NoArgsConstructor
 public class ControlRequestHandler extends BaseRequestHandler {
 
     private static final ImmutableSet<String> INTENTS = ImmutableSet.of(
         "AMAZON.CancelIntent", "AMAZON.NextIntent", "AMAZON.PreviousIntent", "AMAZON.StopIntent",
         "AMAZON.ShuffleOnIntent", "AMAZON.ShuffleOffIntent", "AMAZON.PauseIntent", "AMAZON.ResumeIntent",
-        "AMAZON.RepeatIntent", "AMAZON.LoopOnIntent", "AMAZON.LoopOffIntent", "AMAZON.StartOverIntent"
+        "AMAZON.RepeatIntent", "AMAZON.LoopOnIntent", "AMAZON.LoopOffIntent", "AMAZON.StartOverIntent", "FastForward"
     );
+
+    ControlRequestHandler(AudioPlayHelperV2 audioPlayHelper) {
+        super(audioPlayHelper);
+    }
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -52,8 +59,6 @@ public class ControlRequestHandler extends BaseRequestHandler {
                 return next(input, false);
             case "AMAZON.ShuffleOnIntent":
                 return shuffleOn(input);
-            case "AMAZON.ShuffleOffIntent":
-                return fastforward(input);
             case "AMAZON.ResumeIntent":
                 return resume(input);
             case "AMAZON.RepeatIntent":
@@ -64,6 +69,10 @@ public class ControlRequestHandler extends BaseRequestHandler {
                 return loop(input, false);
             case "AMAZON.StartOverIntent":
                 return startOver(input);
+            case "FastForward":
+            case "Rewind":
+            case "AMAZON.ShuffleOffIntent":
+                return fastForward(input);
         }
         return input.getResponseBuilder().build();
     }
@@ -127,25 +136,50 @@ public class ControlRequestHandler extends BaseRequestHandler {
         return input.getResponseBuilder().withSpeech(text("error.cannotLoop")).build();
     }
 
-    private Optional<Response> fastforward(HandlerInput input) {
+    private Optional<Response> fastForward(HandlerInput input) {
         AudioPlayerState audioPlayerState = audioPlayer(input);
         PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayerState.getToken());
         if (playState == null) {
             return input.getResponseBuilder().withSpeech(text("error.noPlayState")).build();
         }
-        int currentDisplaySequence = getDisplaySequence(playState);
+        boolean forward = true;
+        int minutes = -1;
+        Intent intent = getIntent(input);
+        if (intent.getName().equals("Rewind")) {
+            forward = false;
+        }
+        if (intent.getSlots().containsKey(SLOT_NAME_MINUTES)) {
+            minutes = Integer.parseInt(intent.getSlots().get(SLOT_NAME_MINUTES).getValue());
+        }
+
+        PlayItem playItem = progress(forward, minutes, playState, audioPlayerState);
+        long percent = Math.round(playState.getOffsetInMs() * 100.0 / playItem.getApproximateDuration());
+        return toolbox.playLastSong(playState,
+            text("control.forward", percent, playItem.getDisplaySequence()));
+    }
+
+    private PlayItem progress(boolean goForward, int minutes, PlayState playState, AudioPlayerState audioPlayerState) {
         PlayItem playItem = playHelper.getPlayItem(playState.currentPlayList(), playState.getCurrentSeq());
         long totalMs = playItem.getApproximateDuration();
         long elapsedMs = audioPlayerState.getOffsetInMilliseconds();
         long remainingMs = totalMs - elapsedMs;
-        int randomMins = RandomUtils.nextInt(5, 11);
-        long fastforwardMs = Math.max(MINUTES.toMillis(randomMins), remainingMs / 5);
-        log.debug("Retrieved play state for current system: {} ", playState);
-        long newOffset = (fastforwardMs + elapsedMs) % totalMs;
+        long moveMs;
+        if (minutes > 0) {
+            moveMs = MINUTES.toMillis(minutes);
+        } else {
+            moveMs = Math.max(MINUTES.toMillis(RandomUtils.nextInt(5, 11)), remainingMs / 5);
+        }
+        long newOffset = (goForward ? moveMs : -moveMs) + elapsedMs;
+        if (newOffset < 0) {
+            playItem = playHelper.getPlayItem(playState.currentPlayList(), playState.getCurrentSeq() - 1);
+            newOffset = (newOffset + playItem.getApproximateDuration()) % playItem.getApproximateDuration();
+        } else if (newOffset >= totalMs) {
+            playItem = playHelper.getPlayItem(playState.currentPlayList(), playState.getCurrentSeq() + 1);
+            newOffset = newOffset % playItem.getApproximateDuration();
+        }
         playState.setOffsetInMs(newOffset);
-        long percent = Math.round(playState.getOffsetInMs() * 100.0 / totalMs);
-        return toolbox.playLastSong(playState,
-            text("control.forword", MILLISECONDS.toMinutes(fastforwardMs), percent, currentDisplaySequence));
+        playState.setCurrentSeq(playItem.getSeqNo());
+        return playItem;
     }
 
     private Optional<Response> resume(HandlerInput input) {

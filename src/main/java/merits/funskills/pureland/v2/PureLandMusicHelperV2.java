@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.interfaces.audioplayer.AudioPlayerState;
 import com.amazon.ask.model.interfaces.audioplayer.PlayBehavior;
@@ -62,7 +64,7 @@ public class PureLandMusicHelperV2 {
     }
 
     public PlayState saveAudioPlayState(final AudioPlayerState playerState) {
-        if (playerState != null) {
+        if (playerState != null && StringUtils.isNotEmpty(playerState.getToken())) {
             final String streamToken = playerState.getToken();
             Token token = Token.fromStreamToken(streamToken);
             PlayState dbPlayState = playHelper.getPlayStateByStreamToken(streamToken);

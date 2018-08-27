@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
@@ -168,6 +171,12 @@ public class PlayListManager {
                 break;
             case SortByTimeAsc:
                 s3ObjectSummaries.sort(comparing(S3ObjectSummary::getLastModified));
+                break;
+            case SortByTimeAndKeyAsc:
+                s3ObjectSummaries.sort(comparing(summary -> {
+                    long daysSinceEpoch = summary.getLastModified().getTime() / TimeUnit.HOURS.toMillis(12);
+                    return StringUtils.leftPad(String.valueOf(daysSinceEpoch), 10) + summary.getKey();
+                }));
                 break;
             case SortByEtag:
                 s3ObjectSummaries.sort(comparing(S3ObjectSummary::getETag));

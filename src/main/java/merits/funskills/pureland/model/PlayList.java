@@ -16,6 +16,7 @@ import static merits.funskills.pureland.model.Tag.English;
 import static merits.funskills.pureland.model.Tag.Music;
 import static merits.funskills.pureland.model.Tag.Pop;
 import static merits.funskills.pureland.model.Tag.Private;
+import static merits.funskills.pureland.model.Tag.SortByTimeAndKeyAsc;
 import static merits.funskills.pureland.model.Tag.SortByTimeDesc;
 import static merits.funskills.pureland.model.Tag.Sutra;
 import static merits.funskills.pureland.model.Tag.TAG;
@@ -84,6 +85,9 @@ public enum PlayList {
     PureLandVows(80, "", TAG(Chinese, Sutra)),
     InfiniteLifePlain(81, "Infinite Life Sutra In Plain Chinese", TAG(Chinese, Sutra)),
     Repentance(82, "Repentance Prayer", TAG(Chinese, Chanting)),
+    GreatCompassionSutra(83, "Great Compassion Mantra Sutra", TAG(Chinese, Sutra)),
+
+    MingHai(83, "", TAG(Chinese, DharmaTalk, Private, SortByTimeAndKeyAsc)),
 
     //private list
     OneHundredThree(103, "Classical music", TAG(Private, Music, Chinese, Pop)),

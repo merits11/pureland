@@ -33,6 +33,10 @@ public class NameMapping {
         entry("XingYuanPin", of(XingYuanPin, VowsOfSamantabhadra)),
         entry("AHan", of(Twenty)),
 
+        entry("DharmaMusic", of(Five)),
+
+        entry("ThichNhatHanh", of(ThichNhatHanh)),
+
         entry("HuaYan", of(VowsOfSamantabhadra, HuayanSutra)),
         entry("YiJiaoJing", of(Eleven)),
         entry("LengYan", of(LengYan)),
@@ -43,7 +47,7 @@ public class NameMapping {
         entry("YinGuang", of(YinGuang)),
         entry("AmitabhaSutra", of(Ten, AmitabhaSutraEnglish)),
         entry("FaYuanWen", of(PureLandVows)),
-        entry("RepentancePrayer",of(Repentance)),
+        entry("RepentancePrayer", of(Repentance)),
         entry("PersonalList", of(PersonalList))
     ).collect(entriesToMap()));
 
