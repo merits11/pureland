@@ -41,7 +41,7 @@ public class LaunchRequestHandler extends BaseRequestHandler {
             playHelper.incrementHeardCount(setting, latestUpdate);
 
         } else if (recentPlayed == null || recentPlayed.size() < 3) {
-            sb.append(text(""));
+            sb.append(text("play.introduction") + " ");
         }
         sb.append(text("play.prompt"));
         return askResponse(sb.toString(), text("play.reprompt"));

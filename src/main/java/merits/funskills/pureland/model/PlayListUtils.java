@@ -77,8 +77,7 @@ public class PlayListUtils {
 
     public static String getCardText() {
         StringBuffer sb = new StringBuffer(
-            "Say 'set language' to set your language. Ask me to play music, dharma talk, sutra, " +
-                ", random or a list name/number below\n");
+            "Ask me to play music, chant, dharma talk, sutra, random or a list name/number below\n");
         List<PlayList> playLists = getPublicPositiveLists();
         sb.append("Language agnostic -> ");
         Consumer<PlayList> textAppender = pl -> sb.append(String.format("%d: %s ", pl.getListNumber(), pl.getText()));
@@ -134,6 +133,7 @@ public class PlayListUtils {
     public static List<PlayList> getPublicLists() {
         return Arrays.stream(PlayList.values())
             .filter(PlayList::isAccessible)
+            .sorted(Comparator.comparing(PlayList::getListNumber))
             .collect(Collectors.toList());
     }
 

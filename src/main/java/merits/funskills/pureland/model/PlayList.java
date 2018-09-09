@@ -24,9 +24,6 @@ import static merits.funskills.pureland.model.Tag.Virtual;
 
 public enum PlayList {
 
-    MorningService(-1, "Morning service", TAG(Chinese, Chanting, English)),
-    EveningService(-2, "Evening service", TAG(Chinese, Chanting, English)),
-
     One(1, "Guan Yin bodhisattva", TAG(Chinese, Chanting, English)),
     Two(2, "Platform sutra", TAG(Sutra, Chinese)),
     AmitabhaChanting(3, "Chanting of Amitabha", TAG(Chanting, Chinese, English)),
@@ -69,25 +66,33 @@ public enum PlayList {
     XingYuanPin(38, "Ten Great Vows", TAG(Chinese, Sutra)),
     PuMenPin(39, "Pu Men Pin of Lotus Sutra", TAG(Chinese, Sutra)),
 
+    //English sutra
     AmitabhaSutraEnglish(41, "", TAG(English, Sutra)),
     InfiniteLifeSutraEnglish(42, "", TAG(English, Sutra)),
     VisualizationSutraEnglish(43, "", TAG(English, Sutra)),
     VowsOfSamantabhadra(44, "", TAG(English, Sutra)),
 
-    //English dharma talk
+    //English dharma talk/chant
     ThichNhatHanh(50, "Thich Nhat Hanh", TAG(DharmaTalk, English)),
     WordOfBuddha(51, "Word of the Buddha", TAG(DharmaTalk, English)),
     EnglishSutraChantings(52, "", TAG(Chanting, English)),
 
+    //Chinese Dharma talks
     ShengYen(60, "Lectures by Master Sheng Yen", TAG(Chinese, DharmaTalk)),
     //InfiniteSutraTalksByJingKong(61, "", TAG(Chinese, DharmaTalk)),
+    ThousandYearsBodhiRoad(61, "Thousand Years of Bodhi Road", TAG(Chinese, DharmaTalk)),
+    FaGuJiangTang(62, "Dharma Drum Mountain lectures ", TAG(Chinese, DharmaTalk)),
 
-    PureLandVows(80, "", TAG(Chinese, Sutra)),
-    InfiniteLifePlain(81, "Infinite Life Sutra In Plain Chinese", TAG(Chinese, Sutra)),
-    Repentance(82, "Repentance Prayer", TAG(Chinese, Chanting)),
-    GreatCompassionSutra(83, "Great Compassion Mantra Sutra", TAG(Chinese, Sutra)),
+    //Chinese Chanting
+    PureLandVows(80, "", TAG(Chinese, Chanting)),
+    Repentance(81, "Repentance Prayer", TAG(Chinese, Chanting)),
+    ThriceYearning(82, "Thrice Yearning Ceremony", TAG(Chinese, Chanting)),
+    MorningService(83, "Morning service", TAG(Chinese, Chanting, English)),
+    EveningService(84, "Evening service", TAG(Chinese, Chanting, English)),
 
-    MingHai(83, "", TAG(Chinese, DharmaTalk, Private, SortByTimeAndKeyAsc)),
+    //Chinese sutra
+    InfiniteLifePlain(90, "Infinite Life Sutra In Plain Chinese", TAG(Chinese, Sutra)),
+    GreatCompassionSutra(91, "Great Compassion Mantra Sutra", TAG(Chinese, Sutra)),
 
     //private list
     OneHundredThree(103, "Classical music", TAG(Private, Music, Chinese, Pop)),
@@ -95,6 +100,8 @@ public enum PlayList {
     OneHundredFour(104, "Pop music", TAG(Private, Music, Chinese, Pop, SortByTimeDesc)),
 
     PersonalList(105, "", TAG(Private, DharmaTalk, Chinese)),
+
+    MingHai(106, "", TAG(Chinese, DharmaTalk, Private, SortByTimeAndKeyAsc)),
 
     CompassionRepel(108, "", TAG(Private, Chanting, Chinese, SortByTimeDesc)),
 

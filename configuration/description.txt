@@ -1,0 +1,80 @@
+Pure land is a player for Buddhism sutras, chanting, music and dharma talks. We support English and Chinese languages. You can set your language preference easily within the skill.
+
+[User Manual]
+
+- Play a stream
+If you don't know what you want to hear, you can ask Pure Land to play one of the following general categories:
+    Sutra (or sutta)
+    Music
+    Chanting
+    Dharma talk
+    Random
+
+You can also ask Pure Land to play a specific list by name, currently supported names are:
+- English/Chinese:
+    Heart Sutra/心经
+    Diamond Sutra/金刚经
+    Lotus Sutra/法华经
+    Avatamsaka Sutra/Hua Yan/华严经
+    Ten Great Vows/Samantabhadra／普贤菩萨行愿品
+    Theravada sutras/阿含经
+    Earth Store/地藏菩萨本愿经
+    Medicine buddha sutra/药师经
+    Vimalakirti sutra/Wei Mo Jie/维摩诘经
+    Pure Land/净土
+    Platform sutra/六祖坛经
+    Amitabha Sutra/阿弥陀经
+    Infinite Life Sutra/无量寿经
+    Visualization Sutra/观经
+- Chinese only
+    Sutra Chantings/梵呗
+    Shurangama sutra/Leng Yan Sutra/楞严经
+    Amitabha/阿弥陀佛
+    Pure land vows/西方发愿文
+    Guan Yin/Avalokiteshvara/观音菩萨
+    Pu Men Pin/观世音菩萨普门品
+    Empty Cloud/虚云老和尚
+    Last Teaching of Buddha/佛遗教经
+    Master Yin Guang/印光大师
+    Master Jin Kong/净空法师
+    Master Shen Yen/圣严法师
+    Thousand Years of Bodhi Road/千年菩提路
+    Thrice Yearning/三时系念
+    Great Compassion Sutra/大悲心陀罗尼经
+    Morning Service
+    Evening Service
+- English only
+    Word of Buddha
+    Thich Nhat Hanh
+
+Alexa is most likely to understand Chinese names as well as English.(可直接对Alexa说中文名).
+
+You can also ask Pure Land to play a specific list number, the full catalog can be sent to your Alexa app by saying "help".
+
+Sample utterances:
+    Alexa open pure land and play music
+    Alexa open pure land and play heart sutra
+    Alexa ask pure land to play list 21
+
+- Navigate play list
+
+Once a stream starts playing, you can control the playing with the following commands(no need to invoke skill name again)
+
+    Alexa next: this will skip the current item and play next on the list.
+    Alexa go back: this will play the previous item on the list.
+    Alexa loop on: this will play the current item again and again.
+    Alexa repeat: this will restart the current item from beginning.
+    Alexa start over: this will restart the current play list from the beginning.
+    Alexa shuffle: this will select a new play list of the same category.
+    Alexa shuffle off: this will fast forward the current playing item(this is a trick to enable fast forwarding!)
+
+The skill will automatically save the last played position and will resume from that position whenever possible.
+
+- Locate a playlist
+
+After you launched the skill, say "help", the skill will send all available lists and instructions to your Alexa app. Check the below page for most complete information on all lists:
+
+https://bit.ly/2uz8Hdd
+
+- Language Settings
+The skill will ask you which language you prefer on first launch. With a language settings, it will try to deliver you content of your chosen language. Language can be set to English/Chinese/All Languages, default is 'All Languages'.

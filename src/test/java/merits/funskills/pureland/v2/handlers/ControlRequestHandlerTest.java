@@ -123,7 +123,7 @@ public class ControlRequestHandlerTest {
                 .withContext(Context.builder()
                     .withAudioPlayer(AudioPlayerState.builder()
                         .withOffsetInMilliseconds(currentOffset)
-                        .withToken("Test")
+                        .withToken("391d4162-5e51-4444-beed-7b2239d970b4,Ten,1")
                         .build())
                     .build())
                 .withRequest(IntentRequest.builder()

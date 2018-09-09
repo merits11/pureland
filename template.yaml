@@ -22,6 +22,10 @@ Resources:
              Action:
                - s3:GeneratePresignedUrl
              Resource: 'arn:aws:s3:::purelandmusic'
+           - Effect: Allow
+             Action:
+               - s3:Put*
+             Resource: 'arn:aws:s3:::purelandcodebucket'
        - Version: '2012-10-17' # S3 Policy Document
          Statement:
            - Effect: Allow

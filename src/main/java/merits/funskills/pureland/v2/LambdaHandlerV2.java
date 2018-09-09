@@ -51,7 +51,7 @@ public class LambdaHandlerV2 implements RequestStreamHandler {
                 new SessionEndedRequestHandler(),
                 new CanFulfillHandler()
             )
-            .addExceptionHandler(new RequestErrorHandler())
+            .addExceptionHandler(new RequestErrorHandler(AudioPlayHelperV2.getInstance()))
             .withAutoCreateTable(false)
             .withSkillId(SKILL_ID)
             .build();

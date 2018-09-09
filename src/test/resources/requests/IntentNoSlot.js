@@ -39,7 +39,7 @@
       "timestamp": "2017-11-11T16:41:20Z",
       "locale": "en-US",
       "intent": {
-        "name": "AMAZON.NextIntent",
+        "name": "{INTENT}",
         "confirmationStatus": "NONE"
       }
     }

@@ -19,6 +19,7 @@ import merits.funskills.pureland.model.PlayItem;
 import merits.funskills.pureland.model.PlayList;
 import merits.funskills.pureland.model.PlayListUtils;
 import merits.funskills.pureland.model.PlayState;
+import merits.funskills.pureland.model.Token;
 import merits.funskills.pureland.v2.AudioPlayHelperV2;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
@@ -32,7 +33,8 @@ public class ControlRequestHandler extends BaseRequestHandler {
     private static final ImmutableSet<String> INTENTS = ImmutableSet.of(
         "AMAZON.CancelIntent", "AMAZON.NextIntent", "AMAZON.PreviousIntent", "AMAZON.StopIntent",
         "AMAZON.ShuffleOnIntent", "AMAZON.ShuffleOffIntent", "AMAZON.PauseIntent", "AMAZON.ResumeIntent",
-        "AMAZON.RepeatIntent", "AMAZON.LoopOnIntent", "AMAZON.LoopOffIntent", "AMAZON.StartOverIntent", "FastForward"
+        "AMAZON.RepeatIntent", "AMAZON.LoopOnIntent", "AMAZON.LoopOffIntent", "AMAZON.StartOverIntent", "FastForward",
+        "Rewind"
     );
 
     ControlRequestHandler(AudioPlayHelperV2 audioPlayHelper) {
@@ -78,6 +80,10 @@ public class ControlRequestHandler extends BaseRequestHandler {
     }
 
     private Optional<Response> next(HandlerInput input, boolean forward) {
+        AudioPlayerState audioPlayerState = audioPlayer(input);
+        if (audioPlayerState == null || !Token.isValidToken(audioPlayerState.getToken())) {
+            return input.getResponseBuilder().withSpeech(text("error.noAudioState")).build();
+        }
         PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayer(input).getToken());
         if (playState != null) {
             log.debug("Retrieved play state for current system: {} ", playState);
@@ -138,6 +144,9 @@ public class ControlRequestHandler extends BaseRequestHandler {
 
     private Optional<Response> fastForward(HandlerInput input) {
         AudioPlayerState audioPlayerState = audioPlayer(input);
+        if (audioPlayerState == null || !Token.isValidToken(audioPlayerState.getToken())) {
+            return input.getResponseBuilder().withSpeech(text("error.noAudioState")).build();
+        }
         PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayerState.getToken());
         if (playState == null) {
             return input.getResponseBuilder().withSpeech(text("error.noPlayState")).build();
@@ -148,7 +157,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
         if (intent.getName().equals("Rewind")) {
             forward = false;
         }
-        if (intent.getSlots().containsKey(SLOT_NAME_MINUTES)) {
+        if (intent.getSlots() != null && intent.getSlots().containsKey(SLOT_NAME_MINUTES)) {
             minutes = Integer.parseInt(intent.getSlots().get(SLOT_NAME_MINUTES).getValue());
         }
 

@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.RandomUtils;
 
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -243,6 +244,14 @@ public class AudioPlayHelperV2 {
 
     public void deletePlayState(final Token token) {
         deletePlayState(token.getStreamToken());
+    }
+
+    public void putObjectToCodeBucket(String key, String content) {
+        try {
+            s3Client.putObject("purelandcodebucket", key, content);
+        } catch (AmazonServiceException error) {
+            log.error("Unable to put to code bucket", error);
+        }
     }
 
 }

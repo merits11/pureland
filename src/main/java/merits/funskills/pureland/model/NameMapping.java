@@ -34,8 +34,11 @@ public class NameMapping {
         entry("AHan", of(Twenty)),
 
         entry("DharmaMusic", of(Five)),
-
         entry("ThichNhatHanh", of(ThichNhatHanh)),
+        entry("WordOfBuddha", of(WordOfBuddha)),
+        entry("GreatCompassionSutra", of(GreatCompassionSutra)),
+        entry("ThriceYearning", of(ThriceYearning)),
+        entry("ThousandYearsBodhiRoad", of(ThousandYearsBodhiRoad)),
 
         entry("HuaYan", of(VowsOfSamantabhadra, HuayanSutra)),
         entry("YiJiaoJing", of(Eleven)),

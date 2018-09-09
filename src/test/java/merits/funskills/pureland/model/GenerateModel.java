@@ -1,12 +1,20 @@
 package merits.funskills.pureland.model;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.apache.commons.io.IOUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,12 +28,16 @@ import lombok.extern.log4j.Log4j2;
 
 import static com.fasterxml.jackson.databind.node.JsonNodeFactory.instance;
 import static merits.funskills.pureland.model.PlayListUtils.splitByCamelCase;
+import static org.junit.Assert.assertTrue;
 
 @Log4j2
 public class GenerateModel {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final String modelFile = "configuration/model.json";
+    private static final String manifestFile = "configuration/manifest.json";
+    private static final String descriptionFile = "configuration/description.txt";
+    private static final String htmlIndex = "configuration/purelandhelp.html";
 
     private JsonNode getModel() throws Exception {
         try (FileReader fileReader = new FileReader(modelFile)) {
@@ -33,21 +45,52 @@ public class GenerateModel {
         }
     }
 
-    private void writeModel(JsonNode model) throws Exception {
-        JsonNode current = getModel();
-        if (model.equals(current)) {
-            log.info("Model unchanged, skip writing.");
+    private JsonNode getManifest() throws Exception {
+        try (FileReader fileReader = new FileReader(manifestFile)) {
+            return objectMapper.readTree(fileReader);
+        }
+    }
+
+    private String getDescription() throws Exception {
+        try (FileReader fileReader = new FileReader(descriptionFile)) {
+            return IOUtils.toString(fileReader);
+        }
+    }
+
+    private void writeJson(JsonNode newJson, JsonNode current, String dest) throws Exception {
+        if (newJson.equals(current)) {
+            log.info("Json file not unchanged, skip writing.");
             return;
         }
-        log.info("Writing new model to {}", modelFile);
-        try (FileWriter fileWriter = new FileWriter(modelFile)) {
+        log.info("Writing new json to {}", dest);
+        try (FileWriter fileWriter = new FileWriter(dest)) {
             objectMapper.writerWithDefaultPrettyPrinter()
-                .writeValue(fileWriter, model);
+                .writeValue(fileWriter, newJson);
         }
     }
 
     @Test
-    public void populateNames() throws Exception {
+    public void updateManifest() throws Exception {
+        JsonNode manifest = getManifest();
+        String description = getDescription();
+        assertTrue("Description is max to 4000 characters.", description.length() <= 4000);
+        log.info("Description length: {}", description.length());
+        ObjectNode locales = (ObjectNode) manifest.get("manifest").get("publishingInformation").get("locales");
+        Iterator<String> fieldNames = locales.fieldNames();
+        while (fieldNames.hasNext()) {
+            String locale = fieldNames.next();
+            ObjectNode localeNode = (ObjectNode) locales.get(locale);
+            String currentDescription = localeNode.get("description").textValue();
+            if (!currentDescription.equals(description)) {
+                log.info("Updating {} description", locale);
+                localeNode.set("description", instance.textNode(description));
+            }
+        }
+        writeJson(manifest, getManifest(), manifestFile);
+    }
+
+    @Test
+    public void updateModel() throws Exception {
         JsonNode model = getModel();
         ArrayNode types = (ArrayNode) model.get("interactionModel").get("languageModel").get("types");
         ArrayNode intents = (ArrayNode) model.get("interactionModel").get("languageModel").get("intents");
@@ -62,7 +105,7 @@ public class GenerateModel {
                 throw new UncheckedIOException(e);
             }
         });
-        writeModel(model);
+        writeJson(model, getModel(), modelFile);
     }
 
     private void processName(String name, ArrayNode types, ObjectNode customNameIntent,
@@ -71,7 +114,7 @@ public class GenerateModel {
         if (thisType == null) {
             ObjectNode objectNode = instance.objectNode();
             objectNode.set("name", instance.textNode(name));
-            objectNode.set("value", objectMapper.readTree("[\n"
+            objectNode.set("values", objectMapper.readTree("[\n"
                 + "            {\n"
                 + "              \"name\": {\n"
                 + "                \"value\": \"" + Joiner.on(" ").join(splitByCamelCase(name)) + "\"\n"
@@ -118,5 +161,41 @@ public class GenerateModel {
             }
         }
         return null;
+    }
+
+    @Test
+    public void generateIndex() throws Exception {
+        Document document = Jsoup.parse(new File(htmlIndex), StandardCharsets.UTF_8.toString());
+        Element listBody = document.getElementById("list_body");
+        for (PlayList pl : PlayListUtils.getPublicLists()) {
+            int listNum = pl.getListNumber();
+            Element currentElement = listBody.getElementById("tr" + pl.getListNumber());
+            String listDescription = "";
+            String references = "";
+            String langs = Joiner.on(", ").join(
+                pl.getTags().stream()
+                    .filter(tag -> tag.isContent() || tag.isLanguage())
+                    .filter(tag -> tag != Tag.AllLanguages)
+                    .sorted()
+                    .collect(Collectors.toList()));
+            if (currentElement != null) {
+                listDescription = currentElement.getElementById("des" + pl.getListNumber()).html();
+                references = currentElement.getElementById("ref" + pl.getListNumber()).html();
+            }
+            String html = String.format(
+                "<td id='num%s'>%s</td> <td>%s</td> <td>%s</td> <td id='des%s'>%s</td> <td id='ref%s'>%s</td>",
+                listNum, listNum, pl.getText(), langs, listNum, listDescription, listNum, references);
+            Element element = new Element("tr");
+            element.attr("id", "tr" + listNum);
+            element.html(html);
+            if (currentElement == null) {
+                listBody.appendChild(element);
+            } else {
+                currentElement.replaceWith(element);
+            }
+        }
+        try (FileWriter fw = new FileWriter(htmlIndex)) {
+            fw.write(document.outerHtml());
+        }
     }
 }

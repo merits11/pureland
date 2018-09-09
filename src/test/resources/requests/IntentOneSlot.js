@@ -11,9 +11,11 @@
         }
     },
     "context": {
-        "AudioPlayer": {
-            "playerActivity": "IDLE"
-        },
+      "AudioPlayer": {
+        "offsetInMilliseconds": 41465,
+        "token": "{TOKEN}",
+        "playerActivity": "STOPPED"
+      },
         "System": {
             "application": {
                 "applicationId": "amzn1.ask.skill.e256969a-f018-4ed5-967c-e231ecf51a81"
@@ -40,9 +42,9 @@
             "name": "{INTENT}",
             "confirmationStatus": "NONE",
             "slots": {
-                "LIST_NUMBER": {
-                    "name": "LIST_NUMBER",
-                    "value": "{LISTNUM}",
+                "{SLOT_NAME}": {
+                    "name": "{SLOT_NAME}",
+                    "value": "{SLOT_VALUE}",
                     "confirmationStatus": "NONE"
                 }
             }
