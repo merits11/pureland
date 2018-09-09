@@ -12,11 +12,15 @@ import java.util.Optional;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import com.amazon.ask.dispatcher.exception.ExceptionHandler;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.services.Serializer;
-import com.amazon.ask.util.JacksonSerializer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,11 +31,19 @@ import merits.funskills.pureland.v2.Speeches;
 @RequiredArgsConstructor
 public class RequestErrorHandler implements ExceptionHandler {
 
-    private Speeches speeches = Speeches.getSpeeches();
-    private Serializer serializer = new JacksonSerializer();
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+    private static ObjectMapper mapper = new ObjectMapper();
+
+    static {
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.registerModule(new JavaTimeModule());
+    }
+
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHHmmss");
     private final AudioPlayHelperV2 playHelper;
+
+    private Speeches speeches = Speeches.getSpeeches();
 
     @Override
     public boolean canHandle(HandlerInput input, Throwable throwable) {
@@ -44,8 +56,8 @@ public class RequestErrorHandler implements ExceptionHandler {
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(byteOutputStream, StandardCharsets.UTF_8);
         try (PrintWriter printWriter = new PrintWriter(outputStreamWriter)) {
             printWriter.write("Time: " + new Date() + "\n");
-            printWriter.write("Input: \n" + serializer.serialize(input.getRequestEnvelope()) + "\n");
-            printWriter.write("Stack Trace:\n");
+            printWriter.write("\nInput:\n" + serialize(input.getRequestEnvelope()) + "\n");
+            printWriter.write("\nStack Trace:\n");
             throwable.printStackTrace(printWriter);
             printWriter.flush();
             putErrorLog(byteOutputStream);
@@ -54,6 +66,14 @@ public class RequestErrorHandler implements ExceptionHandler {
         return input.getResponseBuilder()
             .withSpeech(speeches.get("error.exception"))
             .build();
+    }
+
+    private <T> String serialize(T t) {
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(t);
+        } catch (JsonProcessingException e) {
+            return t.toString();
+        }
     }
 
     private void putErrorLog(ByteArrayOutputStream byteOutputStream) {
