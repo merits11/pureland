@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -26,6 +27,8 @@ import com.amazon.ask.model.services.Serializer;
 import com.amazon.ask.util.JacksonSerializer;
 
 import lombok.extern.log4j.Log4j2;
+import merits.funskills.pureland.model.NameMapping;
+import merits.funskills.pureland.model.PlayItem;
 import merits.funskills.pureland.model.PlayList;
 import merits.funskills.pureland.model.PlayListUtils;
 import merits.funskills.pureland.model.PlayState;
@@ -83,7 +86,7 @@ public class LambdaHanlderV2Test {
         assertTrue(speechletResponse.getOutputSpeech().toString().contains(speeches.get("lang.prompt")));
 
         //User set language
-        String langInput = getIntentInput("LangIntent","Lang","English");
+        String langInput = getIntentInput("LangIntent", "Lang", "English");
         handleRequest(langInput);
         UserSetting userSetting = audioPlayHelper.getUserSettings(fullUserId);
         assertEquals(userSetting.getLanguage(), "English");
@@ -134,6 +137,19 @@ public class LambdaHanlderV2Test {
             byteOutputStream, context);
         String output = new String(byteOutputStream.toByteArray());
         log.info("testUpdateLibrary output: {}", output);
+        int failCnt = 0;
+        for (PlayList pl : PlayList.values()) {
+            for (int i = 0; i < 10; i++) {
+                PlayItem playItem = audioPlayHelper.getPlayItem(pl, RandomUtils.nextInt(0, 100));
+                if (playItem.getApproximateDuration() <= 1000 * 15) {
+                    failCnt += 1;
+                    log.error("Can not retrieve duration for {}", playItem.getObjectKey());
+                }
+            }
+        }
+        log.info("{} items has no duration", failCnt);
+        assertTrue(failCnt <= 2);
+
     }
 
     @Test
@@ -164,14 +180,22 @@ public class LambdaHanlderV2Test {
     }
 
     @Test
-    public void testCustomNameIntent() throws Exception {
-        Response speechletResponse = handleRequest(getIntentInput("CustomNameIntent",
-            "EmptyCloud", "Empty Cloud"));
-        PlayDirective playDirective = getPlayDirective(speechletResponse);
-        assertEquals(PlayBehavior.REPLACE_ALL, playDirective.getPlayBehavior());
-        String firstToken = playDirective.getAudioItem().getStream().getToken();
-        PlayState playState = audioPlayHelper.getPlayStateByStreamToken(firstToken);
-        assertEquals(playState.currentPlayList(), PlayList.Twelve);
+    public void testAllCustomNameIntent() throws Exception {
+        for (String name : NameMapping.getNames()) {
+            try {
+                Response speechletResponse = handleRequest(
+                    getIntentInput("CustomNameIntent", name, name));
+                PlayDirective playDirective = getPlayDirective(speechletResponse);
+                assertEquals(PlayBehavior.REPLACE_ALL, playDirective.getPlayBehavior());
+                String firstToken = playDirective.getAudioItem().getStream().getToken();
+                PlayState playState = audioPlayHelper.getPlayStateByStreamToken(firstToken);
+                assertTrue(NameMapping.getPlayLists(name).contains(playState.currentPlayList()));
+            } catch (Exception e) {
+                log.error("Custom name failed: {}", name);
+                log.error(e);
+                throw e;
+            }
+        }
     }
 
     private void testPlayListIntent(final String listNum, boolean testPlayback) {

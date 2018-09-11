@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import merits.funskills.pureland.utils.PlayListManager;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -27,9 +28,14 @@ public class PlayItem {
     @Getter
     private S3ObjectSummary s3ObjectSummary;
 
+    private long duration;
+
     //128kbps
     public long getApproximateDuration() {
-        return (long) (1000.0 * size * 8 / 128000);
+        if (duration <= 0) {
+            return (long) (1000.0 * size * 8 / 128000);
+        }
+        return duration;
     }
 
     public static PlayItem fromS3Object(final S3ObjectSummary s3ObjectSummary,
@@ -42,6 +48,7 @@ public class PlayItem {
         playItem.seqNo = seqNo;
         playItem.size = s3ObjectSummary.getSize();
         playItem.s3ObjectSummary = s3ObjectSummary;
+        playItem.duration = PlayListManager.getDuration(playItem.objectKey);
         return playItem;
     }
 

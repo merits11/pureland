@@ -179,7 +179,8 @@
           "name": "RandomList",
           "samples": [
             "random",
-            "random list"
+            "random list",
+            "anything"
           ]
         },
         {
@@ -336,6 +337,10 @@
             {
               "name": "GreatCompassionSutra",
               "type": "GreatCompassionSutra"
+            },
+            {
+              "name": "FaGuJiangTang",
+              "type": "FaGuJiangTang"
             }
           ],
           "samples": [
@@ -440,7 +445,10 @@
             "uphold {ThriceYearning}",
             "{GreatCompassionSutra}",
             "play {GreatCompassionSutra}",
-            "uphold {GreatCompassionSutra}"
+            "uphold {GreatCompassionSutra}",
+            "{FaGuJiangTang}",
+            "play {FaGuJiangTang}",
+            "uphold {FaGuJiangTang}"
           ]
         }
       ],
@@ -1355,6 +1363,31 @@
               }
             }
           ]
+        },
+        {
+          "name": "FaGuJiangTang",
+          "values": [
+            {
+              "name": {
+                "value": "Fa Gu Jiang Tang"
+              }
+            },
+            {
+              "name": {
+                "value": "Dharma Drum Mountain"
+              }
+            },
+            {
+              "name": {
+                "value": "Dharma Drum Lectures"
+              }
+            },
+            {
+              "name": {
+                "value": "Dharma Drum Mountain lectures"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1598,6 +1631,12 @@
             {
               "name": "GreatCompassionSutra",
               "type": "GreatCompassionSutra",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "FaGuJiangTang",
+              "type": "FaGuJiangTang",
               "elicitationRequired": false,
               "confirmationRequired": false
             }

@@ -1,10 +1,14 @@
 package merits.funskills.pureland.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -12,8 +16,10 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
@@ -38,6 +44,7 @@ import static merits.funskills.pureland.model.Tag.Virtual;
 public class PlayListManager {
 
     private static Map<PlayList, List<PlayItem>> library = new HashMap<>();
+    private static Properties durations = new Properties();
     private static final long HALF_MB = 512 * 1024;
     private static final int MIN_LIST_SIZE = 4;
 
@@ -51,7 +58,24 @@ public class PlayListManager {
         PlayListUtils.getListsByTags(Lists.newArrayList(Virtual), null).forEach(pl -> {
             library.put(pl, buildVirtualList(pl));
         });
+        log.debug("Updating durations...");
+        updateDurations();
         log.debug("Cache was updated.");
+    }
+
+    private void updateDurations() {
+        GetObjectRequest getObjectRequest = new GetObjectRequest("purelandmusic", "duration.properties");
+        S3Object object = s3Client.getObject(getObjectRequest);
+        try (InputStream is = object.getObjectContent()) {
+            durations.load(is);
+            log.debug("{} items loaded for durations", durations.size());
+        } catch (IOException error) {
+            throw new UncheckedIOException(error);
+        }
+    }
+
+    public static long getDuration(String s3Key) {
+        return Long.valueOf(durations.getProperty(s3Key, "0"));
     }
 
     public List<PlayItem> getListItems(final PlayList playList) {

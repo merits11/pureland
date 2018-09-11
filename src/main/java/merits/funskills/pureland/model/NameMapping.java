@@ -39,6 +39,7 @@ public class NameMapping {
         entry("GreatCompassionSutra", of(GreatCompassionSutra)),
         entry("ThriceYearning", of(ThriceYearning)),
         entry("ThousandYearsBodhiRoad", of(ThousandYearsBodhiRoad)),
+        entry("FaGuJiangTang", of(FaGuJiangTang, EnglishFaGuJiangTang)),
 
         entry("HuaYan", of(VowsOfSamantabhadra, HuayanSutra)),
         entry("YiJiaoJing", of(Eleven)),

@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import boto3
 from dateutil import parser
 
+
 arg_parser = argparse.ArgumentParser(description='Stats for pure land skill')
 arg_parser.add_argument('-d', '--days', metavar='DAYS', type=int, default=30,
                         help='Number of recent days to count')

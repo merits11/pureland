@@ -82,6 +82,7 @@ public enum PlayList {
     //InfiniteSutraTalksByJingKong(61, "", TAG(Chinese, DharmaTalk)),
     ThousandYearsBodhiRoad(61, "Thousand Years of Bodhi Road", TAG(Chinese, DharmaTalk)),
     FaGuJiangTang(62, "Dharma Drum Mountain lectures ", TAG(Chinese, DharmaTalk)),
+    EnglishFaGuJiangTang(63, "Dharma Drum Mountain USA lectures ", TAG(English, Chinese, DharmaTalk, Private)),
 
     //Chinese Chanting
     PureLandVows(80, "", TAG(Chinese, Chanting)),
