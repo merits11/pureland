@@ -1,5 +1,6 @@
 package merits.funskills.pureland.v2.handlers;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -71,9 +72,10 @@ public class ControlRequestHandler extends BaseRequestHandler {
                 return loop(input, false);
             case "AMAZON.StartOverIntent":
                 return startOver(input);
+            case "AMAZON.ShuffleOffIntent":
+                return shuffleOff(input);
             case "FastForward":
             case "Rewind":
-            case "AMAZON.ShuffleOffIntent":
                 return fastForward(input);
         }
         return input.getResponseBuilder().build();
@@ -120,6 +122,26 @@ public class ControlRequestHandler extends BaseRequestHandler {
                 return handleTagIntent(input, playList.getTags().stream()
                     .filter(t -> t.isAccess() || t.isContent())
                     .collect(Collectors.toList()), text("control.shuffling"));
+            }
+        }
+        return input.getResponseBuilder().withSpeech(text("error.cannotShuffle")).build();
+    }
+
+    private Optional<Response> shuffleOff(HandlerInput input) {
+        AudioPlayerState audioPlayerState = audioPlayer(input);
+        if (audioPlayerState != null) {
+            PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayerState.getToken());
+            if (playState != null) {
+                toolbox.pauseAudio("", audioPlayerState);
+                List<PlayList> recentPlayed = playHelper.getRecentPlayed(systemState(input), 30);
+                Optional<PlayList> previousPlayed = recentPlayed.stream()
+                    .filter(pl -> pl != playState.currentPlayList())
+                    .findAny();
+                if (!previousPlayed.isPresent()) {
+                    input.getResponseBuilder().withSpeech(text("control.shuffleOff")).build();
+                }
+                return toolbox.resumePlayList(text("control.backToPrevious"),
+                    systemState(input), previousPlayed.get());
             }
         }
         return input.getResponseBuilder().withSpeech(text("error.cannotShuffle")).build();

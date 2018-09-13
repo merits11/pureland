@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -202,6 +204,7 @@ public class LambdaHanlderV2Test {
         Response speechletResponse = handleRequest(getIntentInput("PlayList", "LIST_NUMBER", listNum));
         PlayDirective playDirective = getPlayDirective(speechletResponse);
         assertEquals(PlayBehavior.REPLACE_ALL, playDirective.getPlayBehavior());
+        Queue<String> tokens = new LinkedList<>();
         String token1 = playDirective.getAudioItem().getStream().getToken();
         assertTrue(token1.endsWith(",0"));
         if (testPlayback) {

@@ -94,6 +94,9 @@ public class PlayListManager {
     }
 
     private List<PlayItem> fetchListItems(final PlayList playList) {
+        if (durations.isEmpty()) {
+            updateDurations();
+        }
         ListObjectsRequest listObjectsRequest = new ListObjectsRequest()
             .withBucketName(PlayListUtils.getBucket())
             .withPrefix(PlayListUtils.getListPattern(playList));
