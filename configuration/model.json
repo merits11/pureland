@@ -341,6 +341,14 @@
             {
               "name": "FaGuJiangTang",
               "type": "FaGuJiangTang"
+            },
+            {
+              "name": "GreatCompassionRepentance",
+              "type": "GreatCompassionRepentance"
+            },
+            {
+              "name": "EmperorLiangRepentance",
+              "type": "EmperorLiangRepentance"
             }
           ],
           "samples": [
@@ -448,7 +456,13 @@
             "uphold {GreatCompassionSutra}",
             "{FaGuJiangTang}",
             "play {FaGuJiangTang}",
-            "uphold {FaGuJiangTang}"
+            "uphold {FaGuJiangTang}",
+            "{GreatCompassionRepentance}",
+            "play {GreatCompassionRepentance}",
+            "uphold {GreatCompassionRepentance}",
+            "{EmperorLiangRepentance}",
+            "play {EmperorLiangRepentance}",
+            "uphold {EmperorLiangRepentance}"
           ]
         }
       ],
@@ -1273,12 +1287,17 @@
             },
             {
               "name": {
-                "value": "Repentance"
+                "value": "Repentance Prayer"
               }
             },
             {
               "name": {
-                "value": "Repentance Prayer"
+                "value": "88 Buddhas"
+              }
+            },
+            {
+              "name": {
+                "value": "Ba Shi Ba Fo"
               }
             }
           ],
@@ -1346,6 +1365,11 @@
               "name": {
                 "value": "San Shi Xi Nian"
               }
+            },
+            {
+              "name": {
+                "value": "San Si Xi Nian"
+              }
             }
           ]
         },
@@ -1385,6 +1409,41 @@
             {
               "name": {
                 "value": "Dharma Drum Mountain lectures"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GreatCompassionRepentance",
+          "values": [
+            {
+              "name": {
+                "value": "Great Compassion Repentance"
+              }
+            },
+            {
+              "name": {
+                "value": "Da Bei Zhou"
+              }
+            },
+            {
+              "name": {
+                "value": "Da Bei Zou"
+              }
+            }
+          ]
+        },
+        {
+          "name": "EmperorLiangRepentance",
+          "values": [
+            {
+              "name": {
+                "value": "Liang Huang Bao Chan"
+              }
+            },
+            {
+              "name": {
+                "value": "Emperor Liang Repentance"
               }
             }
           ]
@@ -1637,6 +1696,18 @@
             {
               "name": "FaGuJiangTang",
               "type": "FaGuJiangTang",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "GreatCompassionRepentance",
+              "type": "GreatCompassionRepentance",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "EmperorLiangRepentance",
+              "type": "EmperorLiangRepentance",
               "elicitationRequired": false,
               "confirmationRequired": false
             }

@@ -12,6 +12,8 @@ public class UpdateLog {
 
     private static Map<String, String> updates = new HashMap<String, String>() {
         {
+            put("2018.0915.1451",
+                " Latest update: volumes for all audio pieces have been adjusted. You might experience significant improvements for some lists. Enjoy!");
             put("2018.0720.1142",
                 " Latest update: I can now play by list name. Try saying: 'heart sutra'. Check pure land Alexa "
                     + "skills page for more. ");

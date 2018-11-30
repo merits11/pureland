@@ -1,6 +1,7 @@
 package merits.funskills.pureland.v2.handlers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import com.google.common.collect.ImmutableSet;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.interfaces.audioplayer.AudioPlayerState;
 import com.amazon.ask.model.interfaces.system.SystemState;
 
@@ -179,8 +181,12 @@ public class ControlRequestHandler extends BaseRequestHandler {
         if (intent.getName().equals("Rewind")) {
             forward = false;
         }
-        if (intent.getSlots() != null && intent.getSlots().containsKey(SLOT_NAME_MINUTES)) {
-            minutes = Integer.parseInt(intent.getSlots().get(SLOT_NAME_MINUTES).getValue());
+        Map<String, Slot> intentSlots = intent.getSlots();
+        if (intentSlots != null && intentSlots.containsKey(SLOT_NAME_MINUTES)
+            && intentSlots.get(SLOT_NAME_MINUTES).getValue() != null) {
+            minutes = Integer.parseInt(intentSlots.get(SLOT_NAME_MINUTES).getValue());
+        } else {
+            minutes = RandomUtils.nextInt(5, 16);
         }
 
         PlayItem playItem = progress(forward, minutes, playState, audioPlayerState);
@@ -217,7 +223,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
         AudioPlayerState audioPlayerState = audioPlayer(input);
         SystemState systemState = systemState(input);
         PlayState playState;
-        if (audioPlayerState != null) {
+        if (audioPlayerState != null && Token.isValidToken(audioPlayerState.getToken())) {
             playState = playHelper.getPlayStateByStreamToken(audioPlayerState.getToken());
 
         } else {

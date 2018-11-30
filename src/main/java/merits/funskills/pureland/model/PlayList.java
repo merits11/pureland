@@ -40,7 +40,7 @@ public enum PlayList {
     AHan(13, "Ah Han Sutra", TAG(Chinese, Sutra)),
     Fourteen(14, "Wei Mo Jie sutra", TAG(Chinese, Sutra)),
     Fifteen(15, "Medicine Buddha sutra", TAG(Chinese, Sutra)),
-    GreatCompassionPrayer(16, "Great compassion prayer", TAG(Chinese, Chanting)),
+    GreatCompassionPrayer(16, "Great Compassion Repentance", TAG(Chinese, Chanting)),
     DizangSutra(17, "Sutra of Di Zang bodhisattva", TAG(Chinese, Sutra)),
     HuayanSutra(18, "", TAG(Chinese, Sutra)),
     YinGuang(19, "Master Yin Guang", TAG(Chinese, DharmaTalk)),
@@ -49,8 +49,8 @@ public enum PlayList {
     EnglishPlatformSutra(21, "Platform sutra", TAG(English, Sutra)),
     EnglishLotusSutra(22, "Lotus sutra", TAG(English, Sutra)),
     EarthStore(23, "Sutra of Earth Store bodhisattva", TAG(Sutra, English)),
-    EnglishPureLand(25, "Pure land sutras", TAG(English, Sutra)),
     VimalakirtiSutra(24, "Vimalakirti sutra", TAG(English, Sutra)),
+    EnglishPureLand(25, "Pure land sutras", TAG(English, Sutra)),
     TwentySix(26, "Diamond Sutra", TAG(Sutra, English)),
     EnglishBuddhistSongs(27, "English Songs", TAG(Music, English)),
     EnglishMedicineBuddha(28, "Medicine Buddha sutra", TAG(Sutra, English)),
@@ -82,18 +82,20 @@ public enum PlayList {
     //InfiniteSutraTalksByJingKong(61, "", TAG(Chinese, DharmaTalk)),
     ThousandYearsBodhiRoad(61, "Thousand Years of Bodhi Road", TAG(Chinese, DharmaTalk)),
     FaGuJiangTang(62, "Dharma Drum Mountain lectures ", TAG(Chinese, DharmaTalk)),
-    EnglishFaGuJiangTang(63, "Dharma Drum Mountain USA lectures ", TAG(English, Chinese, DharmaTalk, Private)),
+    EnglishFaGuJiangTang(63, "Dharma Drum Mountain lectures, Chinese and English", TAG(English, Chinese, DharmaTalk)),
 
     //Chinese Chanting
     PureLandVows(80, "", TAG(Chinese, Chanting)),
-    Repentance(81, "Repentance Prayer", TAG(Chinese, Chanting)),
+    Repentance(81, "88 Buddhas Repentance", TAG(Chinese, Chanting)),
     ThriceYearning(82, "Thrice Yearning Ceremony", TAG(Chinese, Chanting)),
     MorningService(83, "Morning service", TAG(Chinese, Chanting, English)),
     EveningService(84, "Evening service", TAG(Chinese, Chanting, English)),
+    EmperorLiangRepentanceChant(85, "Emperor Liang Repentance Chant",TAG(Chinese, Chanting)),
 
     //Chinese sutra
     InfiniteLifePlain(90, "Infinite Life Sutra In Plain Chinese", TAG(Chinese, Sutra)),
     GreatCompassionSutra(91, "Great Compassion Mantra Sutra", TAG(Chinese, Sutra)),
+    EmperorLiangRepentance(92, "Emperor Liang Repentance",TAG(Chinese, Sutra)),
 
     //private list
     OneHundredThree(103, "Classical music", TAG(Private, Music, Chinese, Pop)),

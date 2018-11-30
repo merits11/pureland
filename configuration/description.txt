@@ -1,4 +1,4 @@
-Pure land is a player for Buddhism sutras, chanting, music and dharma talks. The goal is to help you practice dharma. We support English and Chinese languages. You can set your language preference easily within the skill.
+Pure land is a player for Buddhist sutras, chanting, music and dharma talks. The goal is to help you practice dharma. We support English and Chinese languages. You can set your language preference easily within the skill.
 
 [User Manual]
 
@@ -31,6 +31,7 @@ You can also ask Pure Land to play a specific list by name, currently supported 
     Sutra Chantings/梵呗
     Shurangama sutra/Leng Yan Sutra/楞严经
     Amitabha/阿弥陀佛
+    Great Compassion Repentance/大悲忏
     Pure land vows/西方发愿文
     Guan Yin/Avalokiteshvara/观音菩萨
     Pu Men Pin/观世音菩萨普门品
@@ -42,6 +43,7 @@ You can also ask Pure Land to play a specific list by name, currently supported 
     Thousand Years of Bodhi Road/千年菩提路
     Thrice Yearning/三时系念
     Great Compassion Sutra/大悲心陀罗尼经
+    Emperor Liang Repentance/梁皇宝忏
     Morning Service
     Evening Service
 - English only

@@ -36,10 +36,12 @@ public class NameMapping {
         entry("DharmaMusic", of(Five)),
         entry("ThichNhatHanh", of(ThichNhatHanh)),
         entry("WordOfBuddha", of(WordOfBuddha)),
+        entry("GreatCompassionRepentance", of(GreatCompassionPrayer)),
         entry("GreatCompassionSutra", of(GreatCompassionSutra)),
         entry("ThriceYearning", of(ThriceYearning)),
         entry("ThousandYearsBodhiRoad", of(ThousandYearsBodhiRoad)),
         entry("FaGuJiangTang", of(FaGuJiangTang, EnglishFaGuJiangTang)),
+        entry("EmperorLiangRepentance", of(EmperorLiangRepentance, EmperorLiangRepentanceChant)),
 
         entry("HuaYan", of(VowsOfSamantabhadra, HuayanSutra)),
         entry("YiJiaoJing", of(Eleven)),
