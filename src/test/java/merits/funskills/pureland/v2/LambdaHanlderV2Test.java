@@ -249,6 +249,14 @@ public class LambdaHanlderV2Test {
             speechletResponse = handleRequest(rewindInput);
             playDirective = getPlayDirective(speechletResponse);
             assertEquals(PlayBehavior.REPLACE_ALL, playDirective.getPlayBehavior());
+
+            String gotoInput = getIntentInput("GotoItem", "SEQUENCE", "2")
+                .replace("{TOKEN}", playDirective.getAudioItem().getStream().getToken());
+            speechletResponse = handleRequest(gotoInput);
+            playDirective = getPlayDirective(speechletResponse);
+            String token6 = playDirective.getAudioItem().getStream().getToken();
+            assertEquals(PlayBehavior.REPLACE_ALL, playDirective.getPlayBehavior());
+            assertTrue(token6.endsWith(",1"));
         }
     }
 

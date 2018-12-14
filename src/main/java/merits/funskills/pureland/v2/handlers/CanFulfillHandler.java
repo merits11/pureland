@@ -27,6 +27,7 @@ import merits.funskills.pureland.model.PlayListUtils;
 
 import static merits.funskills.pureland.model.Constants.SLOT_NAME_LIST_NUMBER;
 import static merits.funskills.pureland.model.Constants.SLOT_NAME_MINUTES;
+import static merits.funskills.pureland.model.Constants.SLOT_NAME_SEQUENCE;
 
 public class CanFulfillHandler extends BaseRequestHandler {
 
@@ -45,9 +46,13 @@ public class CanFulfillHandler extends BaseRequestHandler {
             return canfulfillName(input, intent);
         } else if (intent.getName().equals("FastForward") || intent.getName().equals("Rewind")) {
             return canfulfillSingleNumberIntent(input, intent, this::canfulfillForward);
-        } else {
-            return sayNo(input, intent);
+        } else if (intent.getName().equals("GotoItem")) {
+            return canfulfillSingleNumberIntent(input, intent, this::canfulfillGotoItem);
+        } else if (intent.getName().equals("WhatsThis")) {
+            return canfulfillNoSlotIntent(input, intent);
         }
+        return sayNo(input, intent);
+
     }
 
     private boolean canfulfillPlayList(Slot slot) {
@@ -63,11 +68,34 @@ public class CanFulfillHandler extends BaseRequestHandler {
 
     }
 
+    private boolean canfulfillGotoItem(Slot slot) {
+        if (!slot.getName().equals(SLOT_NAME_SEQUENCE)) {
+            return false;
+        }
+        int sequence = Integer.parseInt(slot.getValue());
+        return sequence >= 0 && sequence < 9999;
+
+    }
+
     private Optional<Response> sayNo(HandlerInput input, Intent intent) {
         return input.getResponseBuilder().withCanFulfillIntent(
             CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.NO)
                 .build()
         ).build();
+    }
+
+    private Optional<Response> sayYes(HandlerInput input, Intent intent) {
+        return input.getResponseBuilder().withCanFulfillIntent(
+            CanFulfillIntent.builder().withCanFulfill(CanFulfillIntentValues.YES)
+                .build()
+        ).build();
+    }
+
+    private Optional<Response> canfulfillNoSlotIntent(HandlerInput input, Intent intent) {
+        if (intent.getSlots() == null || intent.getSlots().size() == 0) {
+            return sayYes(input, intent);
+        }
+        return sayNo(input, intent);
     }
 
     private Optional<Response> canfulfillSingleNumberIntent(HandlerInput input, Intent intent,

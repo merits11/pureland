@@ -140,6 +140,34 @@
           ]
         },
         {
+          "name": "GotoItem",
+          "slots": [
+            {
+              "name": "SEQUENCE",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{SEQUENCE}"
+              ]
+            }
+          ],
+          "samples": [
+            "go to {SEQUENCE}",
+            "go to sequence {SEQUENCE}",
+            "jump to {SEQUENCE}",
+            "jump to sequence {SEQUENCE}"
+          ]
+        },
+        {
+          "name": "WhatsThis",
+          "samples": [
+            "what's this",
+            "what is this list",
+            "who is this",
+            "what is it",
+            "show status"
+          ]
+        },
+        {
           "name": "FastForward",
           "slots": [
             {

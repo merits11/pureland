@@ -158,7 +158,10 @@ public class PlayListManager {
             .filter(Tag::isSort)
             .findAny();
         List<S3ObjectSummary> resultListItems = new ArrayList<>();
-        List<PlayList> taggedLists = getListsByTags(applicableTags, ImmutableList.of(Virtual));
+        List<PlayList> taggedLists = getListsByTags(applicableTags, ImmutableList.of(Virtual))
+            .stream()
+            .filter(pl -> !pl.isTagged(Tag.Private))
+            .collect(Collectors.toList());
         switch (composition) {
             case Combine:
                 for (PlayList tagList : taggedLists) {

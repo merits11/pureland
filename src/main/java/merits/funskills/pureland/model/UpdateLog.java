@@ -8,15 +8,25 @@ import lombok.Getter;
 
 public class UpdateLog {
 
-    private static final int PLAY_TIMES = 1;
+    private static final int PLAY_TIMES = 2;
 
     private static Map<String, String> updates = new HashMap<String, String>() {
         {
+
+            put("2018.1214.0816",
+                " Latest update! Now you can ask Pure Land to jump to any piece in a list. While a stream is playing,"
+                    + " try something like 'ask pure land to go to sequence 5'. Check pure land skills page for more "
+                    + "details.");
+
             put("2018.0915.1451",
-                " Latest update: volumes for all audio pieces have been adjusted. You might experience significant improvements for some lists. Enjoy!");
+                " Latest update: volumes for all audio pieces have been adjusted. You might experience significant "
+                    + "improvements for some lists. Enjoy!");
+
+
             put("2018.0720.1142",
                 " Latest update: I can now play by list name. Try saying: 'heart sutra'. Check pure land Alexa "
                     + "skills page for more. ");
+
 
             put("000.0000.0001", "dummy");
         }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -27,6 +28,7 @@ import merits.funskills.pureland.v2.AudioPlayHelperV2;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static merits.funskills.pureland.model.Constants.SLOT_NAME_MINUTES;
+import static merits.funskills.pureland.model.Constants.SLOT_NAME_SEQUENCE;
 import static merits.funskills.pureland.model.PlayState.getDisplaySequence;
 
 @Log4j2
@@ -37,7 +39,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
         "AMAZON.CancelIntent", "AMAZON.NextIntent", "AMAZON.PreviousIntent", "AMAZON.StopIntent",
         "AMAZON.ShuffleOnIntent", "AMAZON.ShuffleOffIntent", "AMAZON.PauseIntent", "AMAZON.ResumeIntent",
         "AMAZON.RepeatIntent", "AMAZON.LoopOnIntent", "AMAZON.LoopOffIntent", "AMAZON.StartOverIntent", "FastForward",
-        "Rewind"
+        "Rewind", "GotoItem", "WhatsThis"
     );
 
     ControlRequestHandler(AudioPlayHelperV2 audioPlayHelper) {
@@ -79,6 +81,10 @@ public class ControlRequestHandler extends BaseRequestHandler {
             case "FastForward":
             case "Rewind":
                 return fastForward(input);
+            case "GotoItem":
+                return jumpTo(input);
+            case "WhatsThis":
+                return whatsThis(input);
         }
         return input.getResponseBuilder().build();
     }
@@ -104,6 +110,48 @@ public class ControlRequestHandler extends BaseRequestHandler {
                     .getSeqNo() + 1;
                 return toolbox.playPreviousSong(playState, text("control.previous", nextDisplaySeq));
             }
+        } else {
+            return input.getResponseBuilder().withSpeech(text("error.noPlayState")).build();
+        }
+    }
+
+    private Optional<Response> whatsThis(HandlerInput input) {
+        AudioPlayerState audioPlayerState = audioPlayer(input);
+        if (audioPlayerState == null || !Token.isValidToken(audioPlayerState.getToken())) {
+            return input.getResponseBuilder().withSpeech(text("error.noAudioState")).build();
+        }
+        Token token = Token.fromStreamToken(audioPlayerState.getToken());
+        PlayList playList = PlayList.valueOf(token.getListName());
+        return input.getResponseBuilder().withSpeech(text("control.status",
+            token.getListSequence() + 1,
+            playList.getListNumber(), playList.getText(), playHelper.getMaxDisplaySequence(playList)
+        )).build();
+    }
+
+    private Optional<Response> jumpTo(HandlerInput input) {
+        AudioPlayerState audioPlayerState = audioPlayer(input);
+        if (audioPlayerState == null || !Token.isValidToken(audioPlayerState.getToken())) {
+            return input.getResponseBuilder().withSpeech(text("error.noAudioState")).build();
+        }
+        Intent intent = getIntent(input);
+        Map<String, Slot> slots = intent.getSlots();
+        if (slots == null || slots.isEmpty() || !slots.containsKey(SLOT_NAME_SEQUENCE)) {
+            return input.getResponseBuilder().withSpeech(text("error.noSequence")).build();
+        }
+        String seqVal = slots.get(SLOT_NAME_SEQUENCE).getValue();
+        if (!NumberUtils.isParsable(seqVal)) {
+            return input.getResponseBuilder().withSpeech(text("error.noSequence")).build();
+        }
+        int sequence = Integer.parseInt(seqVal);
+        PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayer(input).getToken());
+        sequence = playHelper.getFlooredDisplaySequence(playState.currentPlayList(), sequence);
+        if (playState != null) {
+            log.debug("Retrieved play state for current system: {} ", playState);
+            // sequence is display sequence, actual desired is seq -1. Use seq - 2 to let it forward.
+            playState.setCurrentSeq(sequence - 2);
+            playState.setOffsetInMs(0L);
+            return toolbox.playNextSong(playState, text("control.jump", sequence,
+                playHelper.getMaxDisplaySequence(playState.currentPlayList())));
         } else {
             return input.getResponseBuilder().withSpeech(text("error.noPlayState")).build();
         }
@@ -140,7 +188,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
                     .filter(pl -> pl != playState.currentPlayList())
                     .findAny();
                 if (!previousPlayed.isPresent()) {
-                    input.getResponseBuilder().withSpeech(text("control.shuffleOff")).build();
+                    return input.getResponseBuilder().withSpeech(text("control.shuffleOff")).build();
                 }
                 return toolbox.resumePlayList(text("control.backToPrevious"),
                     systemState(input), previousPlayed.get());
@@ -168,10 +216,14 @@ public class ControlRequestHandler extends BaseRequestHandler {
 
     private Optional<Response> fastForward(HandlerInput input) {
         AudioPlayerState audioPlayerState = audioPlayer(input);
-        if (audioPlayerState == null || !Token.isValidToken(audioPlayerState.getToken())) {
+        PlayState playState;
+        if (audioPlayerState == null) {
+            playState = playHelper.getPlayStateBySystemState(systemState(input));
+        } else if (!Token.isValidToken(audioPlayerState.getToken())) {
             return input.getResponseBuilder().withSpeech(text("error.noAudioState")).build();
+        } else {
+            playState = playHelper.getPlayStateByStreamToken(audioPlayerState.getToken());
         }
-        PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayerState.getToken());
         if (playState == null) {
             return input.getResponseBuilder().withSpeech(text("error.noPlayState")).build();
         }

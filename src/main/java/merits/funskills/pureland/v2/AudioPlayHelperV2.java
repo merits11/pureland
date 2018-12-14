@@ -99,6 +99,18 @@ public class AudioPlayHelperV2 {
         return playItems.get(index);
     }
 
+    public int getMaxDisplaySequence(final PlayList playList) {
+        return playListManager.getListItems(playList).size() + 1;
+    }
+
+    public int getFlooredDisplaySequence(final PlayList playList, int inputDisplaySequence) {
+        int maxSeq = getMaxDisplaySequence(playList);
+        if (inputDisplaySequence > maxSeq) {
+            return maxSeq;
+        }
+        return (inputDisplaySequence - 1) % (maxSeq - 1) + 1;
+    }
+
     public PlayItem getNextPlayItem(final PlayState playState) {
         PlayList playList = playState.currentPlayList();
         if (playState.isRepeat() || playState.isPaused()) {
