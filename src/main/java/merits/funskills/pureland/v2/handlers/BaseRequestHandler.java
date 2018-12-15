@@ -43,6 +43,13 @@ public abstract class BaseRequestHandler implements RequestHandler {
         this.speeches = Speeches.getSpeeches();
     }
 
+    BaseRequestHandler(AudioPlayHelperV2 audioPlayHelperV2, PureLandMusicHelperV2 toolbox) {
+        this.responseHelper = new ResponseHelperV2();
+        this.playHelper = audioPlayHelperV2;
+        this.toolbox = toolbox;
+        this.speeches = Speeches.getSpeeches();
+    }
+
     @Override
     public abstract boolean canHandle(HandlerInput input);
 

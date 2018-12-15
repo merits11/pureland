@@ -41,6 +41,7 @@ if [ "$publish" -eq "1" ];then
     fi
     ask api submit -s $id
 else
+    gradle build
     for locale in en-US en-GB en-CA en-AU en-IN
     do
         echo "Updating model for $locale..."

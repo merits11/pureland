@@ -37,13 +37,14 @@ public class LaunchRequestHandler extends BaseRequestHandler {
             return askResponse(sb.toString(), text("lang.reprompt"));
         } else if (shouldPlayLatest(setting)) {
             UpdateLog.Update latestUpdate = getLatestUpdate();
-            sb.append(latestUpdate.getUpdate());
+            //Add space to start and end to avoid bad dot
+            sb.append(" " + latestUpdate.getUpdate() + " ");
             playHelper.incrementHeardCount(setting, latestUpdate);
 
         } else if (recentPlayed == null || recentPlayed.size() < 3) {
-            sb.append(text("play.introduction") + " ");
+            sb.append(text("play.introduction"));
         }
-        sb.append(text("play.prompt"));
+        sb.append(" " + text("play.prompt"));
         return askResponse(sb.toString(), text("play.reprompt"));
     }
 }

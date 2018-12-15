@@ -58,6 +58,7 @@ Sample utterances:
     Alexa ask pure land to play music
     Alexa ask pure land to play heart sutra
     Alexa ask pure land to play list 21
+    Alexa ask pure land for help
 
 If voice recognition is not so good, try start with "open pure land" and then speak your list number or name.
 
@@ -76,10 +77,10 @@ Fast forwarding and rewinding will still require invocation name:
     Alexa ask pure land to fast forward N minutes: fast forwarding N minutes
     Alexa ask pure land to rewind N minutes: rewind N minutes
 
-Jumping within the play list(while stream is playing): 
+Jumping within the play list:
     Alexa ask pure land to go to sequence N : jump to the the N-th item in the list
 
-Getting information on current playing list and item:
+Getting information on current playing stream:
     Alexa ask pure land what's this
 
 

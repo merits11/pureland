@@ -25,6 +25,7 @@ import merits.funskills.pureland.model.PlayListUtils;
 import merits.funskills.pureland.model.PlayState;
 import merits.funskills.pureland.model.Token;
 import merits.funskills.pureland.v2.AudioPlayHelperV2;
+import merits.funskills.pureland.v2.PureLandMusicHelperV2;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static merits.funskills.pureland.model.Constants.SLOT_NAME_MINUTES;
@@ -44,6 +45,10 @@ public class ControlRequestHandler extends BaseRequestHandler {
 
     ControlRequestHandler(AudioPlayHelperV2 audioPlayHelper) {
         super(audioPlayHelper);
+    }
+
+    ControlRequestHandler(AudioPlayHelperV2 audioPlayHelper, PureLandMusicHelperV2 toolbox) {
+        super(audioPlayHelper, toolbox);
     }
 
     @Override
