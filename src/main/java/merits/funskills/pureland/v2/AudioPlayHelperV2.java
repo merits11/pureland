@@ -100,7 +100,7 @@ public class AudioPlayHelperV2 {
     }
 
     public int getMaxDisplaySequence(final PlayList playList) {
-        return playListManager.getListItems(playList).size() + 1;
+        return playListManager.getListItems(playList).size();
     }
 
     public int getFlooredDisplaySequence(final PlayList playList, int inputDisplaySequence) {
@@ -108,7 +108,7 @@ public class AudioPlayHelperV2 {
         if (inputDisplaySequence > maxSeq) {
             return maxSeq;
         }
-        return (inputDisplaySequence - 1) % (maxSeq - 1) + 1;
+        return inputDisplaySequence;
     }
 
     public PlayItem getNextPlayItem(final PlayState playState) {
