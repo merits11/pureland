@@ -30,7 +30,7 @@ public class LanguageRequestHandler extends BaseRequestHandler {
             return delegate(input);
         }
         Slot slot = intent.getSlots().get(SLOT_LANG);
-        if(StringUtils.isEmpty(slot.getValue())){
+        if (StringUtils.isEmpty(slot.getValue())) {
             return delegate(input);
         }
         String lang = slot.getValue().toLowerCase();
@@ -49,7 +49,7 @@ public class LanguageRequestHandler extends BaseRequestHandler {
         return askResponse(text("lang.set", slot.getValue()), text("play.reprompt"));
     }
 
-    private  Optional<Response> delegate(HandlerInput input){
+    private Optional<Response> delegate(HandlerInput input) {
         return input.getResponseBuilder()
             .addDelegateDirective(Intent.builder()
                 .withName("LangIntent")

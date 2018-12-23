@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
@@ -51,6 +52,9 @@ public class PlayListUtils {
     }
 
     public static PlayList getPlaylist(final String listName) {
+        if (StringUtils.isBlank(listName)) {
+            return null;
+        }
         if (LIST_NAME_MAPPINGS.containsKey(listName.toLowerCase())) {
             return LIST_NAME_MAPPINGS.get(listName.toLowerCase());
         }

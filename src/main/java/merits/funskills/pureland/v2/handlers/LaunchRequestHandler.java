@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.interfaces.audioplayer.AudioPlayerState;
 import com.amazon.ask.model.interfaces.system.SystemState;
 import com.amazon.ask.request.Predicates;
 
@@ -28,6 +29,10 @@ public class LaunchRequestHandler extends BaseRequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         SystemState systemState = input.getRequestEnvelope().getContext().getSystem();
+        AudioPlayerState audioPlayerState = audioPlayer(input);
+        if (audioPlayerState != null) {
+            toolbox.saveAudioPlayState(audioPlayerState);
+        }
         List<PlayList> recentPlayed = this.playHelper.getRecentPlayed(systemState, 180);
         StringBuffer sb = new StringBuffer();
         sb.append(text("app.welcome"));

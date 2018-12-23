@@ -127,6 +127,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
         }
         Token token = Token.fromStreamToken(audioPlayerState.getToken());
         PlayList playList = PlayList.valueOf(token.getListName());
+        toolbox.saveAudioPlayState(audioPlayerState);
         return input.getResponseBuilder().withSpeech(text("control.status",
             token.getListSequence() + 1,
             playList.getListNumber(), playList.getText(), playHelper.getMaxDisplaySequence(playList)
@@ -138,6 +139,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
         if (audioPlayerState == null || !Token.isValidToken(audioPlayerState.getToken())) {
             return input.getResponseBuilder().withSpeech(text("error.noAudioState")).build();
         }
+
         Intent intent = getIntent(input);
         Map<String, Slot> slots = intent.getSlots();
         if (slots == null || slots.isEmpty() || !slots.containsKey(SLOT_NAME_SEQUENCE)) {

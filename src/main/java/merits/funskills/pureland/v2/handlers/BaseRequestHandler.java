@@ -104,6 +104,10 @@ public abstract class BaseRequestHandler implements RequestHandler {
     }
 
     protected AudioPlayerState audioPlayer(HandlerInput handlerInput) {
+        if (handlerInput == null || handlerInput.getRequestEnvelope() == null
+            || handlerInput.getRequestEnvelope().getContext() == null) {
+            return null;
+        }
         return handlerInput.getRequestEnvelope().getContext().getAudioPlayer();
     }
 
@@ -120,8 +124,8 @@ public abstract class BaseRequestHandler implements RequestHandler {
     }
 
     protected Optional<Response> playList(HandlerInput input, PlayList myList) {
-        final String listDescription = myList.getListNumber() > 0 ?
-            (myList.getListNumber() + ": " + myList.getText()) : myList.getText();
+        final String listDescription = myList.getListNumber() > 0
+            ? (myList.getListNumber() + ": " + myList.getText()) : myList.getText();
         return toolbox.resumePlayList(text("playlist.response", listDescription), systemState(input), myList);
     }
 }

@@ -136,6 +136,7 @@
             "play {LIST_NUMBER}",
             "uphold {LIST_NUMBER}",
             "{LIST_NUMBER}",
+            "number {LIST_NUMBER}",
             "list {LIST_NUMBER}"
           ]
         },

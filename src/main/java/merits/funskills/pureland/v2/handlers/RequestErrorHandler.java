@@ -81,8 +81,8 @@ public class RequestErrorHandler implements ExceptionHandler {
         Date now = new Date();
         try {
             String contents = IOUtils.toString(bytes, "UTF-8");
-            String logKey = "Errors/" + simpleDateFormat.format(now) + "/" + dateTimeFormat.format(now) + "-" +
-                RandomStringUtils.randomAlphanumeric(4) + ".txt";
+            String logKey = "Errors/" + simpleDateFormat.format(now) + "/" + dateTimeFormat.format(now) + "-"
+                + RandomStringUtils.randomAlphanumeric(4) + ".txt";
             playHelper.putObjectToCodeBucket(logKey, contents);
         } catch (IOException e) {
             log.error("Failed to put error log.", e);

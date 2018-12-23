@@ -109,8 +109,8 @@ public class PlaybackRequestHandler extends BaseRequestHandler {
     private Optional<Response> playbackNearlyFinished(PlaybackNearlyFinishedRequest request, HandlerInput input) {
         final String token = request.getToken();
         PlayState playState = playHelper.getPlayStateByStreamToken(token);
-        playState.setOffsetInMs(request.getOffsetInMilliseconds());
         if (playState != null) {
+            playState.setOffsetInMs(request.getOffsetInMilliseconds());
             return toolbox.enqueNextSong(playState, "");
         }
         return input.getResponseBuilder().build();
