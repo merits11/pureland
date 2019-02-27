@@ -91,6 +91,7 @@ public enum PlayList {
     MorningService(83, "Morning service", TAG(Chinese, Chanting, English)),
     EveningService(84, "Evening service", TAG(Chinese, Chanting, English)),
     EmperorLiangRepentanceChant(85, "Emperor Liang Repentance Chant",TAG(Chinese, Chanting)),
+    InfiniteLifeSutraChanting(86, "",TAG(Chinese, Chanting)),
 
     //Chinese sutra
     InfiniteLifePlain(90, "Infinite Life Sutra In Plain Chinese", TAG(Chinese, Sutra)),

@@ -56,7 +56,7 @@ You can also ask Pure Land to play a specific list number, the full catalog can 
 
 Sample utterances:
     Alexa ask pure land to play music
-    Alexa ask pure land to play heart sutra
+    Alexa ask pure land for heart sutra
     Alexa ask pure land to play list 21
     Alexa ask pure land for help
 

@@ -99,11 +99,14 @@ public class PlaybackRequestHandler extends BaseRequestHandler {
 
     private Optional<Response> playbackFailed(PlaybackFailedRequest request, HandlerInput input) {
         final String token = request.getToken();
-        PlayState playState = playHelper.getPlayStateByStreamToken(token);
-        PlayList playList = playState.currentPlayList();
-        PlayItem playItem = playHelper.getPlayItem(playList, playState.getCurrentSeq());
-        playState.setOffsetInMs(request.getCurrentPlaybackState().getOffsetInMilliseconds());
-        return toolbox.playLastSong(playState, "");
+        PlayState playState = getPlayState(audioPlayer(input), systemState(input));
+        if (playState != null) {
+            PlayList playList = playState.currentPlayList();
+            PlayItem playItem = playHelper.getPlayItem(playList, playState.getCurrentSeq());
+            playState.setOffsetInMs(request.getCurrentPlaybackState().getOffsetInMilliseconds());
+            return toolbox.playLastSong(playState, "");
+        }
+        return input.getResponseBuilder().build();
     }
 
     private Optional<Response> playbackNearlyFinished(PlaybackNearlyFinishedRequest request, HandlerInput input) {

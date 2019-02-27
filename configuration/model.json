@@ -155,7 +155,8 @@
             "go to {SEQUENCE}",
             "go to sequence {SEQUENCE}",
             "jump to {SEQUENCE}",
-            "jump to sequence {SEQUENCE}"
+            "jump to sequence {SEQUENCE}",
+            "sequence {SEQUENCE}"
           ]
         },
         {
