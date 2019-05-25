@@ -379,6 +379,10 @@
             {
               "name": "EmperorLiangRepentance",
               "type": "EmperorLiangRepentance"
+            },
+            {
+              "name": "EditorFavorite",
+              "type": "EditorFavorite"
             }
           ],
           "samples": [
@@ -492,7 +496,10 @@
             "uphold {GreatCompassionRepentance}",
             "{EmperorLiangRepentance}",
             "play {EmperorLiangRepentance}",
-            "uphold {EmperorLiangRepentance}"
+            "uphold {EmperorLiangRepentance}",
+            "{EditorFavorite}",
+            "play {EditorFavorite}",
+            "uphold {EditorFavorite}"
           ]
         }
       ],
@@ -1477,6 +1484,26 @@
               }
             }
           ]
+        },
+        {
+          "name": "EditorFavorite",
+          "values": [
+            {
+              "name": {
+                "value": "Editor Favorite"
+              }
+            },
+            {
+              "name": {
+                "value": "Favorite Sutras"
+              }
+            },
+            {
+              "name": {
+                "value": "Jin Xuan"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1738,6 +1765,12 @@
             {
               "name": "EmperorLiangRepentance",
               "type": "EmperorLiangRepentance",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "EditorFavorite",
+              "type": "EditorFavorite",
               "elicitationRequired": false,
               "confirmationRequired": false
             }

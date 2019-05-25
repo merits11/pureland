@@ -1,12 +1,10 @@
 package merits.funskills.pureland.model;
 
-import java.util.List;
-
+import com.google.common.base.Joiner;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
-import com.google.common.base.Joiner;
-
-import lombok.Getter;
+import java.util.List;
 
 import static merits.funskills.pureland.model.Tag.Chanting;
 import static merits.funskills.pureland.model.Tag.Chinese;
@@ -90,13 +88,14 @@ public enum PlayList {
     ThriceYearning(82, "Thrice Yearning Ceremony", TAG(Chinese, Chanting)),
     MorningService(83, "Morning service", TAG(Chinese, Chanting, English)),
     EveningService(84, "Evening service", TAG(Chinese, Chanting, English)),
-    EmperorLiangRepentanceChant(85, "Emperor Liang Repentance Chant",TAG(Chinese, Chanting)),
-    InfiniteLifeSutraChanting(86, "",TAG(Chinese, Chanting)),
+    EmperorLiangRepentanceChant(85, "Emperor Liang Repentance Chant", TAG(Chinese, Chanting)),
+    InfiniteLifeSutraChanting(86, "", TAG(Chinese, Chanting)),
 
     //Chinese sutra
     InfiniteLifePlain(90, "Infinite Life Sutra In Plain Chinese", TAG(Chinese, Sutra)),
     GreatCompassionSutra(91, "Great Compassion Mantra Sutra", TAG(Chinese, Sutra)),
-    EmperorLiangRepentance(92, "Emperor Liang Repentance",TAG(Chinese, Sutra)),
+    EmperorLiangRepentance(92, "Emperor Liang Repentance", TAG(Chinese, Sutra)),
+    FavoriteSutras(93, "Editor's Favorite Sutras", TAG(Chinese, Sutra)),
 
     //private list
     OneHundredThree(103, "Classical music", TAG(Private, Music, Chinese, Pop)),
@@ -128,7 +127,7 @@ public enum PlayList {
     public String getText() {
         if (StringUtils.isEmpty(text)) {
             return Joiner.on(" ").join(
-                PlayListUtils.splitByCamelCase(this.toString())
+                    PlayListUtils.splitByCamelCase(this.toString())
             );
         } else {
             return text;

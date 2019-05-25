@@ -89,9 +89,9 @@ public class PureLandMusicHelperV2 {
     public Optional<Response> playLastSong(@NonNull final PlayState currentState,
         final String textResponse) {
         PlayState nextState = currentState.toBuilder().build();
-        if (nextState.isRepeat()) {
-            nextState.setRepeatSeq(null);
-        }
+//        if (nextState.isRepeat()) {
+//            nextState.setRepeatSeq(null);
+//        }
         nextState.setPaused(false);
         PlayItem newPlayItem = playHelper.getPlayItem(currentState.currentPlayList(), nextState.getCurrentSeq());
         if (nextState.getOffsetInMs() >= newPlayItem.getApproximateDuration()) {

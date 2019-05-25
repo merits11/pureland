@@ -28,6 +28,7 @@ You can also ask Pure Land to play a specific list by name, currently supported 
     Visualization Sutra/观经
     Dharma Drum Mountain/法鼓讲堂
 - Chinese only
+    Editor's Favorite/精选
     Sutra Chantings/梵呗
     Shurangama sutra/Leng Yan Sutra/楞严经
     Amitabha/阿弥陀佛
