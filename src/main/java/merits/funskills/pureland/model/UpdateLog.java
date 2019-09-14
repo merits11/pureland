@@ -13,6 +13,14 @@ public class UpdateLog {
     private static Map<String, String> updates = new HashMap<String, String>() {
         {
 
+            put("2019.0824.0810",
+                   "<voice name=\"Salli\">We have added a new list!\n" +
+                           "Now you can play the full <prosody rate=\"slow\">80</prosody> scrolls of Avatamsaka Sutra" +
+                           ".\n" +
+                           "Also known as: </voice>\n" +
+                           "<voice name=\"Matthew\">Hua Yan Jin</voice>\n" +
+                           "<voice name=\"Salli\"> or, Flower Garland Sutra.</voice>\n" +
+                           "To play this list, try list number <prosody rate=\"slow\">80.</prosody> ");
             put("2018.1214.0816",
                 "Latest update! Now you can ask Pure Land to jump to any piece in a list. While a stream is playing,"
                     + " try something like: ask pure land to go to sequence 5. Check pure land skills page for more "

@@ -15,7 +15,7 @@ You can also ask Pure Land to play a specific list by name, currently supported 
     Heart Sutra/心经
     Diamond Sutra/金刚经
     Lotus Sutra/法华经
-    Avatamsaka Sutra/Hua Yan/华严经
+    Avatamsaka Sutra/Hua Yan/华严经(节选,全本八十华严请用数字80)
     Ten Great Vows/Samantabhadra／普贤菩萨行愿品
     Theravada sutras/阿含经
     Earth Store/地藏菩萨本愿经

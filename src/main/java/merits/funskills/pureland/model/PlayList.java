@@ -83,13 +83,14 @@ public enum PlayList {
     EnglishFaGuJiangTang(63, "Dharma Drum Mountain lectures, Chinese and English", TAG(English, Chinese, DharmaTalk)),
 
     //Chinese Chanting
-    PureLandVows(80, "", TAG(Chinese, Chanting)),
+    EightyScrollHuaYan(80,"",TAG(Chinese, Sutra)),
     Repentance(81, "88 Buddhas Repentance", TAG(Chinese, Chanting)),
     ThriceYearning(82, "Thrice Yearning Ceremony", TAG(Chinese, Chanting)),
     MorningService(83, "Morning service", TAG(Chinese, Chanting, English)),
     EveningService(84, "Evening service", TAG(Chinese, Chanting, English)),
     EmperorLiangRepentanceChant(85, "Emperor Liang Repentance Chant", TAG(Chinese, Chanting)),
     InfiniteLifeSutraChanting(86, "", TAG(Chinese, Chanting)),
+    PureLandVows(87, "", TAG(Chinese, Chanting)),
 
     //Chinese sutra
     InfiniteLifePlain(90, "Infinite Life Sutra In Plain Chinese", TAG(Chinese, Sutra)),
@@ -108,7 +109,14 @@ public enum PlayList {
 
     CompassionRepel(108, "", TAG(Private, Chanting, Chinese, SortByTimeDesc)),
 
-    AllMusic(200, "", TAG(Combine, Chinese, Music, Virtual, SortByTimeDesc));
+    AllMusic(200, "", TAG(Combine, Chinese, Music, Virtual, SortByTimeDesc)),
+
+    //Dharm Talks:
+    //300-399: 唯识
+    FoundationForYogaPractitioners(300, "", TAG(Chinese, DharmaTalk));
+
+
+
 
     @Getter
     private final int listNumber;
