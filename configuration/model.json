@@ -383,6 +383,14 @@
             {
               "name": "EditorFavorite",
               "type": "EditorFavorite"
+            },
+            {
+              "name": "BabyStories",
+              "type": "BabyStories"
+            },
+            {
+              "name": "BabySongs",
+              "type": "BabySongs"
             }
           ],
           "samples": [
@@ -499,7 +507,13 @@
             "uphold {EmperorLiangRepentance}",
             "{EditorFavorite}",
             "play {EditorFavorite}",
-            "uphold {EditorFavorite}"
+            "uphold {EditorFavorite}",
+            "{BabyStories}",
+            "play {BabyStories}",
+            "uphold {BabyStories}",
+            "{BabySongs}",
+            "play {BabySongs}",
+            "uphold {BabySongs}"
           ]
         }
       ],
@@ -1504,6 +1518,46 @@
               }
             }
           ]
+        },
+        {
+          "name": "BabyStories",
+          "values": [
+            {
+              "name": {
+                "value": "Baby Stories"
+              }
+            },
+            {
+              "name": {
+                "value": "Baby Story"
+              }
+            },
+            {
+              "name": {
+                "value": "tell a baby story"
+              }
+            },
+            {
+              "name": {
+                "value": "bedtime story"
+              }
+            }
+          ]
+        },
+        {
+          "name": "BabySongs",
+          "values": [
+            {
+              "name": {
+                "value": "Baby Songs"
+              }
+            },
+            {
+              "name": {
+                "value": "Baby Music"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1771,6 +1825,18 @@
             {
               "name": "EditorFavorite",
               "type": "EditorFavorite",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "BabyStories",
+              "type": "BabyStories",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            },
+            {
+              "name": "BabySongs",
+              "type": "BabySongs",
               "elicitationRequired": false,
               "confirmationRequired": false
             }

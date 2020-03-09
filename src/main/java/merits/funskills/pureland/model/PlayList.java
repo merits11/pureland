@@ -1,11 +1,6 @@
 package merits.funskills.pureland.model;
 
-import com.google.common.base.Joiner;
-import lombok.Getter;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
-
+import static merits.funskills.pureland.model.Tag.BabyStuff;
 import static merits.funskills.pureland.model.Tag.Chanting;
 import static merits.funskills.pureland.model.Tag.Chinese;
 import static merits.funskills.pureland.model.Tag.Combine;
@@ -19,6 +14,12 @@ import static merits.funskills.pureland.model.Tag.SortByTimeDesc;
 import static merits.funskills.pureland.model.Tag.Sutra;
 import static merits.funskills.pureland.model.Tag.TAG;
 import static merits.funskills.pureland.model.Tag.Virtual;
+
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Joiner;
+import lombok.Getter;
 
 public enum PlayList {
 
@@ -40,7 +41,7 @@ public enum PlayList {
     Fifteen(15, "Medicine Buddha sutra", TAG(Chinese, Sutra)),
     GreatCompassionPrayer(16, "Great Compassion Repentance", TAG(Chinese, Chanting)),
     DizangSutra(17, "Sutra of Di Zang bodhisattva", TAG(Chinese, Sutra)),
-    HuayanSutra(18, "", TAG(Chinese, Sutra)),
+    HuayanSutra(18, "Hua Yan Sutra Collection", TAG(Chinese, Sutra)),
     YinGuang(19, "Master Yin Guang", TAG(Chinese, DharmaTalk)),
 
     Twenty(20, "Theravada sutras", TAG(Sutra, English)),
@@ -63,6 +64,7 @@ public enum PlayList {
     AmitabhaChantingChinKung(37, "Chanting of Amitabha, Master Chin Kung", TAG(Chinese)),
     XingYuanPin(38, "Ten Great Vows", TAG(Chinese, Sutra)),
     PuMenPin(39, "Pu Men Pin of Lotus Sutra", TAG(Chinese, Sutra)),
+    FourtyScrollHuaYan(40, "Forty Scroll Hua Yan", TAG(Chinese, Sutra)),
 
     //English sutra
     AmitabhaSutraEnglish(41, "", TAG(English, Sutra)),
@@ -76,14 +78,14 @@ public enum PlayList {
     EnglishSutraChantings(52, "", TAG(Chanting, English)),
 
     //Chinese Dharma talks
-    ShengYen(60, "Lectures by Master Sheng Yen", TAG(Chinese, DharmaTalk)),
     //InfiniteSutraTalksByJingKong(61, "", TAG(Chinese, DharmaTalk)),
+    ShengYen(60, "Lectures by Master Sheng Yen", TAG(Chinese, DharmaTalk)),
     ThousandYearsBodhiRoad(61, "Thousand Years of Bodhi Road", TAG(Chinese, DharmaTalk)),
     FaGuJiangTang(62, "Dharma Drum Mountain lectures ", TAG(Chinese, DharmaTalk)),
     EnglishFaGuJiangTang(63, "Dharma Drum Mountain lectures, Chinese and English", TAG(English, Chinese, DharmaTalk)),
 
     //Chinese Chanting
-    EightyScrollHuaYan(80,"",TAG(Chinese, Sutra)),
+    EightyScrollHuaYan(80, "", TAG(Chinese, Sutra)),
     Repentance(81, "88 Buddhas Repentance", TAG(Chinese, Chanting)),
     ThriceYearning(82, "Thrice Yearning Ceremony", TAG(Chinese, Chanting)),
     MorningService(83, "Morning service", TAG(Chinese, Chanting, English)),
@@ -113,9 +115,14 @@ public enum PlayList {
 
     //Dharm Talks:
     //300-399: 唯识
-    FoundationForYogaPractitioners(300, "", TAG(Chinese, DharmaTalk));
+    FoundationForYogaPractitioners(300, "", TAG(Chinese, DharmaTalk)),
 
 
+    //Baby Stories and songs
+    BabySongsChinese(800, "", TAG(Chinese, Private, BabyStuff)),
+    BabySongsEnglish(801, "", TAG(English, Private, BabyStuff)),
+    BabyStoriesChinese(802, "", TAG(Chinese, Private, BabyStuff)),
+    BabyStoriesEnglish(803, "", TAG(English, Private, BabyStuff));
 
 
     @Getter
@@ -134,9 +141,7 @@ public enum PlayList {
 
     public String getText() {
         if (StringUtils.isEmpty(text)) {
-            return Joiner.on(" ").join(
-                    PlayListUtils.splitByCamelCase(this.toString())
-            );
+            return Joiner.on(" ").join(PlayListUtils.splitByCamelCase(this.toString()));
         } else {
             return text;
         }
@@ -169,5 +174,4 @@ public enum PlayList {
         }
         return true;
     }
-
 }

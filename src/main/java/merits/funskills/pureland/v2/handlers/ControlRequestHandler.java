@@ -176,6 +176,7 @@ public class ControlRequestHandler extends BaseRequestHandler {
             if (playState != null) {
                 toolbox.pauseAudio("", audioPlayerState);
                 PlayList playList = PlayListUtils.getPlaylist(playState.getCurrentList());
+
                 return handleTagIntent(input, playList.getTags().stream()
                     .filter(t -> t.isAccess() || t.isContent())
                     .collect(Collectors.toList()), text("control.shuffling"));

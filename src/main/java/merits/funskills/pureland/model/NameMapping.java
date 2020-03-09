@@ -10,6 +10,10 @@ import java.util.stream.Stream;
 
 import static com.google.common.collect.ImmutableSet.of;
 import static merits.funskills.pureland.model.PlayList.*;
+import static merits.funskills.pureland.model.Tag.Chinese;
+import static merits.funskills.pureland.model.Tag.English;
+import static merits.funskills.pureland.model.Tag.Private;
+import static merits.funskills.pureland.model.Tag.TAG;
 
 public class NameMapping {
 
@@ -55,7 +59,9 @@ public class NameMapping {
             entry("AmitabhaSutra", of(Ten, AmitabhaSutraEnglish)),
             entry("FaYuanWen", of(PureLandVows)),
             entry("RepentancePrayer", of(Repentance)),
-            entry("PersonalList", of(PersonalList))
+            entry("PersonalList", of(PersonalList)),
+            entry("BabyStories", of(BabyStoriesChinese, BabyStoriesEnglish)),
+            entry("BabySongs", of(BabySongsChinese, BabySongsEnglish))
     ).collect(entriesToMap()));
 
     private static <K, V> Map.Entry<K, V> entry(K key, V value) {

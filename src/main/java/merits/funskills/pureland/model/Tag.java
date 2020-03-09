@@ -1,13 +1,5 @@
 package merits.funskills.pureland.model;
 
-import com.google.common.collect.Sets;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import static merits.funskills.pureland.model.Tag.Type.Access;
 import static merits.funskills.pureland.model.Tag.Type.Composition;
 import static merits.funskills.pureland.model.Tag.Type.Content;
@@ -15,6 +7,14 @@ import static merits.funskills.pureland.model.Tag.Type.Language;
 import static merits.funskills.pureland.model.Tag.Type.ListType;
 import static merits.funskills.pureland.model.Tag.Type.Navigation;
 import static merits.funskills.pureland.model.Tag.Type.Sort;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.google.common.collect.Sets;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum Tag {
@@ -25,6 +25,7 @@ public enum Tag {
     Chanting(Content),
     DharmaTalk(Content),
     Pop(Content),
+    BabyStuff(Content),
 
     //Sort
     SortByKey(Sort),
