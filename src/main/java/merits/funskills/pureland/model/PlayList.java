@@ -119,10 +119,10 @@ public enum PlayList {
 
 
     //Baby Stories and songs
-    BabySongsChinese(800, "", TAG(Chinese, Private, BabyStuff)),
-    BabySongsEnglish(801, "", TAG(English, Private, BabyStuff)),
-    BabyStoriesChinese(802, "", TAG(Chinese, Private, BabyStuff)),
-    BabyStoriesEnglish(803, "", TAG(English, Private, BabyStuff));
+    BabySongsChinese(800, "", TAG(Chinese, English, Private, BabyStuff)),
+    BabySongsEnglish(801, "", TAG(English, Chinese, Private, BabyStuff)),
+    BabyStoriesChinese(802, "", TAG(Chinese, English, Private, BabyStuff)),
+    BabyStoriesEnglish(803, "", TAG(English, Chinese, Private, BabyStuff));
 
 
     @Getter
