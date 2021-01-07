@@ -48,7 +48,7 @@ public class PlayItem {
         playItem.seqNo = seqNo;
         playItem.size = s3ObjectSummary.getSize();
         playItem.s3ObjectSummary = s3ObjectSummary;
-        playItem.duration = PlayListManager.getDuration(playItem.objectKey);
+        playItem.duration = PlayListManager.getDuration(s3ObjectSummary);
         return playItem;
     }
 

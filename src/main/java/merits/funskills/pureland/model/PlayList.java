@@ -10,6 +10,7 @@ import static merits.funskills.pureland.model.Tag.Music;
 import static merits.funskills.pureland.model.Tag.Pop;
 import static merits.funskills.pureland.model.Tag.Private;
 import static merits.funskills.pureland.model.Tag.SortByTimeAndKeyAsc;
+import static merits.funskills.pureland.model.Tag.SortByTimeAsc;
 import static merits.funskills.pureland.model.Tag.SortByTimeDesc;
 import static merits.funskills.pureland.model.Tag.Sutra;
 import static merits.funskills.pureland.model.Tag.TAG;
@@ -118,11 +119,14 @@ public enum PlayList {
     FoundationForYogaPractitioners(300, "", TAG(Chinese, DharmaTalk)),
 
 
+    TechTalks(404, "", TAG(English, SortByTimeAsc, Private)),
+
     //Baby Stories and songs
     BabySongsChinese(800, "", TAG(Chinese, English, Private, BabyStuff)),
     BabySongsEnglish(801, "", TAG(English, Chinese, Private, BabyStuff)),
     BabyStoriesChinese(802, "", TAG(Chinese, English, Private, BabyStuff)),
-    BabyStoriesEnglish(803, "", TAG(English, Chinese, Private, BabyStuff));
+    BabyStoriesEnglish(803, "", TAG(English, Chinese, Private, BabyStuff)),
+    BabyReadingsChinese(804, "", TAG(Chinese, English, Private, BabyStuff));
 
 
     @Getter

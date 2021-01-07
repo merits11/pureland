@@ -9,7 +9,7 @@ Resources:
     Properties:
       FunctionName:  !Sub "PureLandMusic-${FunctionNameSuffix}"
       Handler: merits.funskills.pureland.v2.LambdaHandlerV2::handleRequest
-      Runtime: java8
+      Runtime: java11
       MemorySize: 512
       Timeout: 15
       CodeUri: build/distributions/purelandmusic-1.0-SNAPSHOT.zip

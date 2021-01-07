@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 import argparse
 import os
@@ -26,34 +26,34 @@ def main(args):
     cut_off_date = None
     if args.since > 0:
         cut_off_date = datetime.now() - timedelta(days=args.since)
-        print u"Only selecting files newer than %s" % cut_off_date
+        print(u"Only selecting files newer than %s" % cut_off_date)
     files = get_files(args.dir, args.recursive)
     files = [f for f in files if not cut_off_date or datetime.fromtimestamp(os.path.getmtime(f)) > cut_off_date]
-    print u"Total %d files matched" % len(files)
+    print(u"Total %d files matched" % len(files))
     index = 1
     for mp3 in files:
         if args.show:
-            print u"%s : %s" % (datetime.fromtimestamp(os.path.getmtime(mp3)), mp3)
+            print(u"%s : %s" % (datetime.fromtimestamp(os.path.getmtime(mp3)), mp3))
             continue
         try:
             song = AudioSegment.from_mp3(mp3)
             current_dbs = song.dBFS
             dbs_to_add = args.target - current_dbs
-            print u"%d/%d %s: volume %.2f max %.2f, need to adjust %.2f db" % (
-                index, len(files), mp3, current_dbs, song.max_dBFS, dbs_to_add)
+            print(u"%d/%d %s: volume %.2f max %.2f, need to adjust %.2f db" % (
+                index, len(files), mp3, current_dbs, song.max_dBFS, dbs_to_add))
             if dbs_to_add > args.minChange:
                 if args.update:
-                    print u"Exporting %s, add %.2f db" % (mp3, dbs_to_add)
+                    print(u"Exporting %s, add %.2f db" % (mp3, dbs_to_add))
                     song = song + dbs_to_add
                     tmp = mp3 + u".tmp"
                     song.export(tmp, format=u"mp3")
                     shutil.move(tmp, mp3)
                 else:
-                    print u"Skip under dry run mode."
+                    print(u"Skip under dry run mode.")
             else:
-                print u"Volume is okay, ignore"
+                print(u"Volume is okay, ignore")
         except Exception as e:
-            print u"%s: failed  due to exception." % mp3
+            print(u"%s: failed  due to exception." % mp3)
             traceback.print_exc()
         finally:
             index += 1
