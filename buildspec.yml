@@ -13,6 +13,11 @@ phases:
     commands:
      - echo Build started on `date`
      - gradle build
+reports:
+  junit-tests-group:
+    files:
+      - '**/*'
+    base-directory: 'build/reports'
 artifacts:
   files:
     - 'build/distributions/purelandmusic-1.0-SNAPSHOT.zip'
