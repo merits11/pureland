@@ -13,6 +13,7 @@ phases:
     commands:
      - echo Build started on `date`
      - gradle build
+     - sam package --template-file template.yaml --s3-bucket purelandcodebucket --output-template-file packaged-template.yaml
 reports:
   junit-tests-group:
     files:
@@ -20,6 +21,6 @@ reports:
     base-directory: 'build/reports'
 artifacts:
   files:
-    - 'build/distributions/purelandmusic-1.0-SNAPSHOT.zip'
+    - 'packaged-template.yaml'
     - 'configuration/description.txt'
     - 'configuration/*.json'
