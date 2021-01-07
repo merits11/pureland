@@ -56,6 +56,11 @@ dependencies {
 
 compileJava.options.encoding = 'UTF-8'
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
 task buildZip(type: Zip) {
     from compileJava
     from processResources

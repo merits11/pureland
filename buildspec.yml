@@ -8,11 +8,13 @@ phases:
   pre_build:
     commands:
       - export LC_ALL="en_US.utf8"
+      - export GRADLE_OPTS="-Dfile.encoding=utf-8"
   build:
     commands:
      - echo Build started on `date`
      - gradle build
 artifacts:
-  type: zip
   files:
     - 'build/distributions/purelandmusic-1.0-SNAPSHOT.zip'
+    - 'configuration/description.txt'
+    - 'configuration/*.json'
