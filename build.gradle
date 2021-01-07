@@ -54,6 +54,8 @@ dependencies {
     testAnnotationProcessor "org.projectlombok:lombok:1.18.16"
 }
 
+compileJava.options.encoding = 'UTF-8'
+
 task buildZip(type: Zip) {
     from compileJava
     from processResources
