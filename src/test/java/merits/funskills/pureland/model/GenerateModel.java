@@ -50,7 +50,7 @@ public class GenerateModel {
     }
 
     private String getDescription() throws Exception {
-        try (FileReader fileReader = new FileReader(descriptionFile)) {
+        try (FileReader fileReader = new FileReader(descriptionFile, StandardCharsets.UTF_8)) {
             return IOUtils.toString(fileReader);
         }
     }
