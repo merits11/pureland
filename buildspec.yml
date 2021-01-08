@@ -4,7 +4,7 @@ phases:
   install:
    commands:
      - echo Entering install phase...
-     - echo Nothing to do now
+     - yum install -y jq
   pre_build:
     commands:
       - export LC_ALL="en_US.utf8"
@@ -14,6 +14,7 @@ phases:
      - echo Build started on `date`
      - gradle build
      - sam package --template-file template.yaml --s3-bucket purelandcodebucket --output-template-file packaged-template.yaml
+     - ./create-app-spec.sh
 reports:
   junit-tests-group:
     files:
