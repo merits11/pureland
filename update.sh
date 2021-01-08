@@ -48,5 +48,5 @@ else
         ask api update-model -s $id -f configuration/model.json -l $locale
     done
 
-    ask api update-skill -s $id -f configuration/manifest.json
+    ask api update-skill -s $id -f skill.json
 fi

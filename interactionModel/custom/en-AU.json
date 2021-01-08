@@ -1,1886 +1,1293 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "pure land",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.LoopOnIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.NextIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.PauseIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.PreviousIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.RepeatIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.ResumeIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.ShuffleOffIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.ShuffleOnIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StartOverIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "DharmaTalk",
-          "samples": [
-            "dharma talk",
-            "talk"
-          ]
-        },
-        {
-          "name": "EveningService",
-          "samples": [
-            "Wang Ke",
-            "wan ke",
-            "evening service",
-            "night service",
-            "evening prayer",
-            "night prayer",
-            "play evening service",
-            "play night service",
-            "play evening prayer",
-            "play night prayer"
-          ]
-        },
-        {
-          "name": "LangIntent",
-          "slots": [
-            {
-              "name": "Lang",
-              "type": "Lang",
-              "samples": [
-                "I prefer {Lang}",
-                "try {Lang}",
-                "I want {Lang}",
-                "{Lang}"
-              ]
-            }
-          ],
-          "samples": [
-            "{Lang}",
-            "language settings",
-            "language preference",
-            "language",
-            "change language",
-            "set language",
-            "change to {Lang}",
-            "change language to {Lang}",
-            "set language to {Lang}"
-          ]
-        },
-        {
-          "name": "MorningService",
-          "samples": [
-            "Zhao Ke",
-            "Zao Ke",
-            "morning service",
-            "morning prayer",
-            "play morning service",
-            "play morning prayer"
-          ]
-        },
-        {
-          "name": "MusicIntent",
-          "samples": [
-            "play music",
-            "music",
-            "songs",
-            "play a song",
-            "song"
-          ]
-        },
-        {
-          "name": "PlayList",
-          "slots": [
-            {
-              "name": "LIST_NUMBER",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "{LIST_NUMBER}"
-              ]
-            }
-          ],
-          "samples": [
-            "play list {LIST_NUMBER}",
-            "play {LIST_NUMBER}",
-            "uphold {LIST_NUMBER}",
-            "{LIST_NUMBER}",
-            "number {LIST_NUMBER}",
-            "list {LIST_NUMBER}"
-          ]
-        },
-        {
-          "name": "GotoItem",
-          "slots": [
-            {
-              "name": "SEQUENCE",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "{SEQUENCE}"
-              ]
-            }
-          ],
-          "samples": [
-            "go to {SEQUENCE}",
-            "go to sequence {SEQUENCE}",
-            "jump to {SEQUENCE}",
-            "jump to sequence {SEQUENCE}",
-            "sequence {SEQUENCE}"
-          ]
-        },
-        {
-          "name": "WhatsThis",
-          "samples": [
-            "what's this",
-            "what is this list",
-            "who is this",
-            "what is it",
-            "show status"
-          ]
-        },
-        {
-          "name": "FastForward",
-          "slots": [
-            {
-              "name": "MINUTES",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "{MINUTES}"
-              ]
-            }
-          ],
-          "samples": [
-            "fast forward {MINUTES} minutes",
-            "fast forward {MINUTES} minute",
-            "forward {MINUTES} minutes",
-            "forward {MINUTES} minute"
-          ]
-        },
-        {
-          "name": "Rewind",
-          "slots": [
-            {
-              "name": "MINUTES",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "{MINUTES}"
-              ]
-            }
-          ],
-          "samples": [
-            "rewind {MINUTES} minutes",
-            "backward {MINUTES} minutes",
-            "rewind {MINUTES} minute",
-            "backward {MINUTES} minute"
-          ]
-        },
-        {
-          "name": "RandomList",
-          "samples": [
-            "random",
-            "random list",
-            "anything"
-          ]
-        },
-        {
-          "name": "SutraIntent",
-          "samples": [
-            "sutta",
-            "sutra",
-            "play a sutra"
-          ]
-        },
-        {
-          "name": "ChantIntent",
-          "samples": [
-            "chantings",
-            "chant",
-            "chanting"
-          ]
-        },
-        {
-          "name": "CustomNameIntent",
-          "slots": [
-            {
-              "name": "JinKong",
-              "type": "JinKong"
-            },
-            {
-              "name": "Amituofo",
-              "type": "Amituofo"
-            },
-            {
-              "name": "EarthStore",
-              "type": "EarthStore"
-            },
-            {
-              "name": "InfiniteLife",
-              "type": "InfiniteLife"
-            },
-            {
-              "name": "GuanYin",
-              "type": "GuanYin"
-            },
-            {
-              "name": "DiamondSutra",
-              "type": "DiamondSutra"
-            },
-            {
-              "name": "LotusSutra",
-              "type": "LotusSutra"
-            },
-            {
-              "name": "SutraChanting",
-              "type": "SutraChanting"
-            },
-            {
-              "name": "EmptyCloud",
-              "type": "EmptyCloud"
-            },
-            {
-              "name": "PlatformSutra",
-              "type": "PlatformSutra"
-            },
-            {
-              "name": "ShengYan",
-              "type": "ShengYan"
-            },
-            {
-              "name": "YinGuang",
-              "type": "YinGuang"
-            },
-            {
-              "name": "PersonalList",
-              "type": "PersonalList"
-            },
-            {
-              "name": "VisualizationSutra",
-              "type": "VisualizationSutra"
-            },
-            {
-              "name": "PureLand",
-              "type": "PureLand"
-            },
-            {
-              "name": "HuaYan",
-              "type": "HuaYan"
-            },
-            {
-              "name": "YiJiaoJing",
-              "type": "YiJiaoJing"
-            },
-            {
-              "name": "LengYan",
-              "type": "LengYan"
-            },
-            {
-              "name": "ChinesePopMusic",
-              "type": "ChinesePopMusic"
-            },
-            {
-              "name": "AmitabhaSutra",
-              "type": "AmitabhaSutra"
-            },
-            {
-              "name": "WeiMoJie",
-              "type": "WeiMoJie"
-            },
-            {
-              "name": "HeartSutra",
-              "type": "HeartSutra"
-            },
-            {
-              "name": "MedicineBuddhaSutra",
-              "type": "MedicineBuddhaSutra"
-            },
-            {
-              "name": "AHan",
-              "type": "AHan"
-            },
-            {
-              "name": "PuMenPin",
-              "type": "PuMenPin"
-            },
-            {
-              "name": "XingYuanPin",
-              "type": "XingYuanPin"
-            },
-            {
-              "name": "FaYuanWen",
-              "type": "FaYuanWen"
-            },
-            {
-              "name": "RepentancePrayer",
-              "type": "RepentancePrayer"
-            },
-            {
-              "name": "DharmaMusic",
-              "type": "DharmaMusic"
-            },
-            {
-              "name": "ThichNhatHanh",
-              "type": "ThichNhatHanh"
-            },
-            {
-              "name": "WordOfBuddha",
-              "type": "WordOfBuddha"
-            },
-            {
-              "name": "ThousandYearsBodhiRoad",
-              "type": "ThousandYearsBodhiRoad"
-            },
-            {
-              "name": "ThriceYearning",
-              "type": "ThriceYearning"
-            },
-            {
-              "name": "GreatCompassionSutra",
-              "type": "GreatCompassionSutra"
-            },
-            {
-              "name": "FaGuJiangTang",
-              "type": "FaGuJiangTang"
-            },
-            {
-              "name": "GreatCompassionRepentance",
-              "type": "GreatCompassionRepentance"
-            },
-            {
-              "name": "EmperorLiangRepentance",
-              "type": "EmperorLiangRepentance"
-            },
-            {
-              "name": "EditorFavorite",
-              "type": "EditorFavorite"
-            },
-            {
-              "name": "BabyStories",
-              "type": "BabyStories"
-            },
-            {
-              "name": "BabySongs",
-              "type": "BabySongs"
-            }
-          ],
-          "samples": [
-            "{FaYuanWen}",
-            "{AHan}",
-            "{XingYuanPin}",
-            "{PuMenPin}",
-            "{MedicineBuddhaSutra}",
-            "{HeartSutra}",
-            "{WeiMoJie}",
-            "{AmitabhaSutra}",
-            "{ChinesePopMusic}",
-            "{YiJiaoJing}",
-            "{LengYan}",
-            "{HuaYan}",
-            "{YinGuang}",
-            "{PersonalList}",
-            "{VisualizationSutra}",
-            "{PureLand}",
-            "{EmptyCloud}",
-            "{ShengYan}",
-            "{PlatformSutra}",
-            "{SutraChanting}",
-            "{LotusSutra}",
-            "{DiamondSutra}",
-            "{GuanYin}",
-            "{EarthStore}",
-            "{InfiniteLife}",
-            "{Amituofo}",
-            "{JinKong}",
-            "{RepentancePrayer}",
-            "play {AHan}",
-            "play {XingYuanPin}",
-            "play {PuMenPin}",
-            "play {MedicineBuddhaSutra}",
-            "play {HeartSutra}",
-            "play {WeiMoJie}",
-            "play {AmitabhaSutra}",
-            "play {ChinesePopMusic}",
-            "play {YiJiaoJing}",
-            "play {LengYan}",
-            "play {HuaYan}",
-            "play {YinGuang}",
-            "play {PersonalList}",
-            "play {VisualizationSutra}",
-            "play {PureLand}",
-            "play {EmptyCloud}",
-            "play {ShengYan}",
-            "play {PlatformSutra}",
-            "play {SutraChanting}",
-            "play {LotusSutra}",
-            "play {DiamondSutra}",
-            "play {GuanYin}",
-            "play {EarthStore}",
-            "play {InfiniteLife}",
-            "play {Amituofo}",
-            "play {JinKong}",
-            "play {RepentancePrayer}",
-            "uphold {AHan}",
-            "uphold {XingYuanPin}",
-            "uphold {PuMenPin}",
-            "uphold {MedicineBuddhaSutra}",
-            "uphold {HeartSutra}",
-            "uphold {WeiMoJie}",
-            "uphold {AmitabhaSutra}",
-            "uphold {ChinesePopMusic}",
-            "uphold {YiJiaoJing}",
-            "uphold {LengYan}",
-            "uphold {HuaYan}",
-            "uphold {YinGuang}",
-            "uphold {PersonalList}",
-            "uphold {VisualizationSutra}",
-            "uphold {PureLand}",
-            "uphold {EmptyCloud}",
-            "uphold {ShengYan}",
-            "uphold {PlatformSutra}",
-            "uphold {SutraChanting}",
-            "uphold {LotusSutra}",
-            "uphold {DiamondSutra}",
-            "uphold {GuanYin}",
-            "uphold {EarthStore}",
-            "uphold {InfiniteLife}",
-            "uphold {Amituofo}",
-            "uphold {JinKong}",
-            "uphold {RepentancePrayer}",
-            "{DharmaMusic}",
-            "play {DharmaMusic}",
-            "uphold {DharmaMusic}",
-            "play {FaYuanWen}",
-            "uphold {FaYuanWen}",
-            "{ThichNhatHanh}",
-            "play {ThichNhatHanh}",
-            "uphold {ThichNhatHanh}",
-            "{WordOfBuddha}",
-            "play {WordOfBuddha}",
-            "uphold {WordOfBuddha}",
-            "{ThousandYearsBodhiRoad}",
-            "play {ThousandYearsBodhiRoad}",
-            "uphold {ThousandYearsBodhiRoad}",
-            "{ThriceYearning}",
-            "play {ThriceYearning}",
-            "uphold {ThriceYearning}",
-            "{GreatCompassionSutra}",
-            "play {GreatCompassionSutra}",
-            "uphold {GreatCompassionSutra}",
-            "{FaGuJiangTang}",
-            "play {FaGuJiangTang}",
-            "uphold {FaGuJiangTang}",
-            "{GreatCompassionRepentance}",
-            "play {GreatCompassionRepentance}",
-            "uphold {GreatCompassionRepentance}",
-            "{EmperorLiangRepentance}",
-            "play {EmperorLiangRepentance}",
-            "uphold {EmperorLiangRepentance}",
-            "{EditorFavorite}",
-            "play {EditorFavorite}",
-            "uphold {EditorFavorite}",
-            "{BabyStories}",
-            "play {BabyStories}",
-            "uphold {BabyStories}",
-            "{BabySongs}",
-            "play {BabySongs}",
-            "uphold {BabySongs}"
-          ]
-        }
-      ],
-      "types": [
-        {
-          "values": [
-            {
-              "name": {
-                "value": "English",
-                "synonyms": [
-                  "english"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Chinese",
-                "synonyms": [
-                  "chinese"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "all languages",
-                "synonyms": [
-                  "all language",
-                  "All languages",
-                  "all"
-                ]
-              }
-            }
-          ],
-          "name": "Lang"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Master  Jin Kong"
-              }
-            },
-            {
-              "name": {
-                "value": "Venerable Master Jin Kong"
-              }
-            },
-            {
-              "name": {
-                "value": "Jin Kong Fa Shi"
-              }
-            },
-            {
-              "name": {
-                "value": "Ching Kong"
-              }
-            },
-            {
-              "name": {
-                "value": "Jin Kong"
-              }
-            },
-            {
-              "name": {
-                "value": "Chin Kung"
-              }
-            },
-            {
-              "name": {
-                "value": "Chin Kong"
-              }
-            },
-            {
-              "name": {
-                "value": "Jing Kong"
-              }
-            }
-          ],
-          "name": "JinKong"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Wu Liang Shou"
-              }
-            },
-            {
-              "name": {
-                "value": "Wu Liang Sow"
-              }
-            },
-            {
-              "name": {
-                "value": "Wu Liang Shou Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Wu Liang Sow Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "infinite life sutra"
-              }
-            },
-            {
-              "name": {
-                "value": "infinite life"
-              }
-            }
-          ],
-          "name": "InfiniteLife"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Chanting of Amitabha"
-              }
-            },
-            {
-              "name": {
-                "value": "Amida Buddha"
-              }
-            },
-            {
-              "name": {
-                "value": "Amitabha Buddha"
-              }
-            },
-            {
-              "name": {
-                "value": "Oh Mi Tuo Fo"
-              }
-            },
-            {
-              "name": {
-                "value": "O Mi Tuo Fo"
-              }
-            },
-            {
-              "name": {
-                "value": "Ah Mi Tuo Fo"
-              }
-            },
-            {
-              "name": {
-                "value": "A mi tuo fo"
-              }
-            },
-            {
-              "name": {
-                "value": "Ah Mi Tu Fo"
-              }
-            },
-            {
-              "name": {
-                "value": "Amitayus"
-              }
-            },
-            {
-              "name": {
-                "value": "Amida"
-              }
-            },
-            {
-              "name": {
-                "value": "Amitabha"
-              }
-            }
-          ],
-          "name": "Amituofo"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Sutra of Earth Store bodhisattva"
-              }
-            },
-            {
-              "name": {
-                "value": "Earth Store bodhisattva"
-              }
-            },
-            {
-              "name": {
-                "value": "Di Zang Pu Sa"
-              }
-            },
-            {
-              "name": {
-                "value": "Di Zang Pu Sa Ben Yuan Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Di Zhang"
-              }
-            },
-            {
-              "name": {
-                "value": "De Zhang"
-              }
-            },
-            {
-              "name": {
-                "value": "Di Zhan"
-              }
-            },
-            {
-              "name": {
-                "value": "Di Zang"
-              }
-            },
-            {
-              "name": {
-                "value": "Earth Store"
-              }
-            }
-          ],
-          "name": "EarthStore"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Guan Si Yin Pu Sa"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Yin bodhisattva"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Yin Pu Sa"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Zi Zhai"
-              }
-            },
-            {
-              "name": {
-                "value": "Avalokiteshvara"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Zi Zai"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Shi Yin"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Shi Yin Pu Sa"
-              }
-            },
-            {
-              "name": {
-                "value": "Guang Yin"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Yin"
-              }
-            }
-          ],
-          "name": "GuanYin"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Sutra Chantings"
-              }
-            },
-            {
-              "name": {
-                "value": "Fang Bei"
-              }
-            },
-            {
-              "name": {
-                "value": "Sutra Chanting"
-              }
-            }
-          ],
-          "name": "SutraChanting"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Fa Hua Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Miao Fa Lian Hua Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Lotus Sutra"
-              }
-            }
-          ],
-          "name": "LotusSutra"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Jing Gang Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Jin Gang Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Diamond Sutra"
-              }
-            }
-          ],
-          "name": "DiamondSutra"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Master Empty Cloud"
-              }
-            },
-            {
-              "name": {
-                "value": "Chan master Empty Cloud"
-              }
-            },
-            {
-              "name": {
-                "value": "Zen master Empty Cloud"
-              }
-            },
-            {
-              "name": {
-                "value": "Xu Yun Lao He Shang"
-              }
-            },
-            {
-              "name": {
-                "value": "Xu Yun"
-              }
-            },
-            {
-              "name": {
-                "value": "Hsu Yun"
-              }
-            },
-            {
-              "name": {
-                "value": "Empty Cloud"
-              }
-            }
-          ],
-          "name": "EmptyCloud"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "the six patriarch"
-              }
-            },
-            {
-              "name": {
-                "value": "Six patriarch"
-              }
-            },
-            {
-              "name": {
-                "value": "liu zu tan jing"
-              }
-            },
-            {
-              "name": {
-                "value": "platform sutra"
-              }
-            }
-          ],
-          "name": "PlatformSutra"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Da Fa Gu"
-              }
-            },
-            {
-              "name": {
-                "value": "Lectures by Master Sheng Yen"
-              }
-            },
-            {
-              "name": {
-                "value": "Master Sheng Yen"
-              }
-            },
-            {
-              "name": {
-                "value": "Master Sheng Yan"
-              }
-            },
-            {
-              "name": {
-                "value": "Sheng Yan"
-              }
-            },
-            {
-              "name": {
-                "value": "Sheng Yen"
-              }
-            },
-            {
-              "name": {
-                "value": "Sheng Yan Fa Shi"
-              }
-            }
-          ],
-          "name": "ShengYan"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Teachings of Master Yin Guang"
-              }
-            },
-            {
-              "name": {
-                "value": "Yin Guang Da Shi"
-              }
-            },
-            {
-              "name": {
-                "value": "Yin Guang Da Si"
-              }
-            },
-            {
-              "name": {
-                "value": "Master Yin Guang"
-              }
-            },
-            {
-              "name": {
-                "value": "Yin Guan"
-              }
-            },
-            {
-              "name": {
-                "value": "Yin Guang"
-              }
-            }
-          ],
-          "name": "YinGuang"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Personal List"
-              }
-            }
-          ],
-          "name": "PersonalList"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Sutra on visualization of Amitabha"
-              }
-            },
-            {
-              "name": {
-                "value": "Visualization Sutra"
-              }
-            },
-            {
-              "name": {
-                "value": "Guang Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Guan Jing"
-              }
-            }
-          ],
-          "name": "VisualizationSutra"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Pure land sutras collection"
-              }
-            },
-            {
-              "name": {
-                "value": "Pure land sutras"
-              }
-            },
-            {
-              "name": {
-                "value": "pure land"
-              }
-            },
-            {
-              "name": {
-                "value": "Jing Tu"
-              }
-            }
-          ],
-          "name": "PureLand"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Da Fan Guang Fo Hua Yan Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Da Fan Guan Fu Hua Yen Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Avatamsaka Sutra"
-              }
-            },
-            {
-              "name": {
-                "value": "Hua Yan Jing"
-              }
-            }
-          ],
-          "name": "HuaYan"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Fo Yi Jiao Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Last teachings of Buddha"
-              }
-            },
-            {
-              "name": {
-                "value": "Yi Jiao Jing"
-              }
-            }
-          ],
-          "name": "YiJiaoJing"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Shurangama"
-              }
-            },
-            {
-              "name": {
-                "value": " Shurangama Sutra"
-              }
-            },
-            {
-              "name": {
-                "value": "Leng Yan"
-              }
-            },
-            {
-              "name": {
-                "value": "Leng Yan Jing"
-              }
-            }
-          ],
-          "name": "LengYan"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Chinese Pop"
-              }
-            }
-          ],
-          "name": "ChinesePopMusic"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "A Mi Tuo Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Sutra of Amitabha"
-              }
-            },
-            {
-              "name": {
-                "value": "O Mi Tuo Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Amitabha Sutra"
-              }
-            }
-          ],
-          "name": "AmitabhaSutra"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Vimalakirti Sutra"
-              }
-            },
-            {
-              "name": {
-                "value": "Wei Mo Jie Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Wei Mo Jie"
-              }
-            }
-          ],
-          "name": "WeiMoJie"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Xin Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Heart Sutra"
-              }
-            }
-          ],
-          "name": "HeartSutra"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Medicine Buddha"
-              }
-            },
-            {
-              "name": {
-                "value": "Yao Si Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Yao Shi Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "Medicine Buddha Sutra"
-              }
-            }
-          ],
-          "name": "MedicineBuddhaSutra"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Guan Shi Yin Pu Sa Pu Men Pin"
-              }
-            },
-            {
-              "name": {
-                "value": "Pu Men Pin"
-              }
-            },
-            {
-              "name": {
-                "value": "Pu Men Pin of Lotus Sutra"
-              }
-            }
-          ],
-          "name": "PuMenPin"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Pu Xian Pu Sa"
-              }
-            },
-            {
-              "name": {
-                "value": "Samantabhadra"
-              }
-            },
-            {
-              "name": {
-                "value": "Vows Of Samantabhadra"
-              }
-            },
-            {
-              "name": {
-                "value": "Ten Great Vows"
-              }
-            },
-            {
-              "name": {
-                "value": "Pu Xian Pu Sa Xing Yuan Pin"
-              }
-            },
-            {
-              "name": {
-                "value": "Xing Yuan Pin"
-              }
-            }
-          ],
-          "name": "XingYuanPin"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Agama Sutra"
-              }
-            },
-            {
-              "name": {
-                "value": "Ah Han Jing"
-              }
-            },
-            {
-              "name": {
-                "value": "A Han"
-              }
-            },
-            {
-              "name": {
-                "value": "Ah Han"
-              }
-            },
-            {
-              "name": {
-                "value": "Theravada"
-              }
-            },
-            {
-              "name": {
-                "value": "Theravada sutras"
-              }
-            }
-          ],
-          "name": "AHan"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Fa Yuan Wen"
-              }
-            },
-            {
-              "name": {
-                "value": "pure land vows"
-              }
-            },
-            {
-              "name": {
-                "value": "Xi Fang Fa Yuan Wen"
-              }
-            }
-          ],
-          "name": "FaYuanWen"
-        },
-        {
-          "values": [
-            {
-              "name": {
-                "value": "Chang Hui Wen"
-              }
-            },
-            {
-              "name": {
-                "value": "Repentance Prayer"
-              }
-            },
-            {
-              "name": {
-                "value": "88 Buddhas"
-              }
-            },
-            {
-              "name": {
-                "value": "Ba Shi Ba Fo"
-              }
-            }
-          ],
-          "name": "RepentancePrayer"
-        },
-        {
-          "name": "DharmaMusic",
-          "values": [
-            {
-              "name": {
-                "value": "Dharma Music"
-              }
-            }
-          ]
-        },
-        {
-          "name": "ThichNhatHanh",
-          "values": [
-            {
-              "name": {
-                "value": "Thich Nhat Hanh"
-              }
-            }
-          ]
-        },
-        {
-          "name": "WordOfBuddha",
-          "values": [
-            {
-              "name": {
-                "value": "Word Of Buddha"
-              }
-            }
-          ]
-        },
-        {
-          "name": "ThousandYearsBodhiRoad",
-          "values": [
-            {
-              "name": {
-                "value": "Thousand Years Bodhi Road"
-              }
-            },
-            {
-              "name": {
-                "value": "Thousand Years of Bodhi Road"
-              }
-            },
-            {
-              "name": {
-                "value": "Qian Nian Pu Ti Lu"
-              }
-            }
-          ]
-        },
-        {
-          "name": "ThriceYearning",
-          "values": [
-            {
-              "name": {
-                "value": "Thrice Yearning"
-              }
-            },
-            {
-              "name": {
-                "value": "San Shi Xi Nian"
-              }
-            },
-            {
-              "name": {
-                "value": "San Si Xi Nian"
-              }
-            }
-          ]
-        },
-        {
-          "name": "GreatCompassionSutra",
-          "values": [
-            {
-              "name": {
-                "value": "Great Compassion Sutra"
-              }
-            },
-            {
-              "name": {
-                "value": "Da Bei Xin Tuo Luo Ni Jing"
-              }
-            }
-          ]
-        },
-        {
-          "name": "FaGuJiangTang",
-          "values": [
-            {
-              "name": {
-                "value": "Fa Gu Jiang Tang"
-              }
-            },
-            {
-              "name": {
-                "value": "Dharma Drum Mountain"
-              }
-            },
-            {
-              "name": {
-                "value": "Dharma Drum Lectures"
-              }
-            },
-            {
-              "name": {
-                "value": "Dharma Drum Mountain lectures"
-              }
-            }
-          ]
-        },
-        {
-          "name": "GreatCompassionRepentance",
-          "values": [
-            {
-              "name": {
-                "value": "Great Compassion Repentance"
-              }
-            },
-            {
-              "name": {
-                "value": "Da Bei Zhou"
-              }
-            },
-            {
-              "name": {
-                "value": "Da Bei Zou"
-              }
-            }
-          ]
-        },
-        {
-          "name": "EmperorLiangRepentance",
-          "values": [
-            {
-              "name": {
-                "value": "Liang Huang Bao Chan"
-              }
-            },
-            {
-              "name": {
-                "value": "Emperor Liang Repentance"
-              }
-            }
-          ]
-        },
-        {
-          "name": "EditorFavorite",
-          "values": [
-            {
-              "name": {
-                "value": "Editor Favorite"
-              }
-            },
-            {
-              "name": {
-                "value": "Favorite Sutras"
-              }
-            },
-            {
-              "name": {
-                "value": "Jin Xuan"
-              }
-            }
-          ]
-        },
-        {
-          "name": "BabyStories",
-          "values": [
-            {
-              "name": {
-                "value": "Baby Stories"
-              }
-            },
-            {
-              "name": {
-                "value": "Baby Story"
-              }
-            },
-            {
-              "name": {
-                "value": "tell a baby story"
-              }
-            },
-            {
-              "name": {
-                "value": "bedtime story"
-              }
-            }
-          ]
-        },
-        {
-          "name": "BabySongs",
-          "values": [
-            {
-              "name": {
-                "value": "Baby Songs"
-              }
-            },
-            {
-              "name": {
-                "value": "Baby Music"
-              }
-            }
-          ]
-        }
-      ]
+  "interactionModel" : {
+    "languageModel" : {
+      "invocationName" : "pure land",
+      "intents" : [ {
+        "name" : "AMAZON.CancelIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.HelpIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.LoopOnIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.NextIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.PauseIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.PreviousIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.RepeatIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.ResumeIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.ShuffleOffIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.ShuffleOnIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.StartOverIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "AMAZON.StopIntent",
+        "samples" : [ ]
+      }, {
+        "name" : "DharmaTalk",
+        "samples" : [ "dharma talk", "talk" ]
+      }, {
+        "name" : "EveningService",
+        "samples" : [ "Wang Ke", "wan ke", "evening service", "night service", "evening prayer", "night prayer", "play evening service", "play night service", "play evening prayer", "play night prayer" ]
+      }, {
+        "name" : "LangIntent",
+        "slots" : [ {
+          "name" : "Lang",
+          "type" : "Lang",
+          "samples" : [ "I prefer {Lang}", "try {Lang}", "I want {Lang}", "{Lang}" ]
+        } ],
+        "samples" : [ "{Lang}", "language settings", "language preference", "language", "change language", "set language", "change to {Lang}", "change language to {Lang}", "set language to {Lang}" ]
+      }, {
+        "name" : "MorningService",
+        "samples" : [ "Zhao Ke", "Zao Ke", "morning service", "morning prayer", "play morning service", "play morning prayer" ]
+      }, {
+        "name" : "MusicIntent",
+        "samples" : [ "play music", "music", "songs", "play a song", "song" ]
+      }, {
+        "name" : "PlayList",
+        "slots" : [ {
+          "name" : "LIST_NUMBER",
+          "type" : "AMAZON.NUMBER",
+          "samples" : [ "{LIST_NUMBER}" ]
+        } ],
+        "samples" : [ "play list {LIST_NUMBER}", "play {LIST_NUMBER}", "uphold {LIST_NUMBER}", "{LIST_NUMBER}", "number {LIST_NUMBER}", "list {LIST_NUMBER}" ]
+      }, {
+        "name" : "GotoItem",
+        "slots" : [ {
+          "name" : "SEQUENCE",
+          "type" : "AMAZON.NUMBER",
+          "samples" : [ "{SEQUENCE}" ]
+        } ],
+        "samples" : [ "go to {SEQUENCE}", "go to sequence {SEQUENCE}", "jump to {SEQUENCE}", "jump to sequence {SEQUENCE}", "sequence {SEQUENCE}" ]
+      }, {
+        "name" : "WhatsThis",
+        "samples" : [ "what's this", "what is this list", "who is this", "what is it", "show status" ]
+      }, {
+        "name" : "FastForward",
+        "slots" : [ {
+          "name" : "MINUTES",
+          "type" : "AMAZON.NUMBER",
+          "samples" : [ "{MINUTES}" ]
+        } ],
+        "samples" : [ "fast forward {MINUTES} minutes", "fast forward {MINUTES} minute", "forward {MINUTES} minutes", "forward {MINUTES} minute" ]
+      }, {
+        "name" : "Rewind",
+        "slots" : [ {
+          "name" : "MINUTES",
+          "type" : "AMAZON.NUMBER",
+          "samples" : [ "{MINUTES}" ]
+        } ],
+        "samples" : [ "rewind {MINUTES} minutes", "backward {MINUTES} minutes", "rewind {MINUTES} minute", "backward {MINUTES} minute" ]
+      }, {
+        "name" : "RandomList",
+        "samples" : [ "random", "random list", "anything" ]
+      }, {
+        "name" : "SutraIntent",
+        "samples" : [ "sutta", "sutra", "play a sutra" ]
+      }, {
+        "name" : "ChantIntent",
+        "samples" : [ "chantings", "chant", "chanting" ]
+      }, {
+        "name" : "CustomNameIntent",
+        "slots" : [ {
+          "name" : "JinKong",
+          "type" : "JinKong"
+        }, {
+          "name" : "Amituofo",
+          "type" : "Amituofo"
+        }, {
+          "name" : "EarthStore",
+          "type" : "EarthStore"
+        }, {
+          "name" : "InfiniteLife",
+          "type" : "InfiniteLife"
+        }, {
+          "name" : "GuanYin",
+          "type" : "GuanYin"
+        }, {
+          "name" : "DiamondSutra",
+          "type" : "DiamondSutra"
+        }, {
+          "name" : "LotusSutra",
+          "type" : "LotusSutra"
+        }, {
+          "name" : "SutraChanting",
+          "type" : "SutraChanting"
+        }, {
+          "name" : "EmptyCloud",
+          "type" : "EmptyCloud"
+        }, {
+          "name" : "PlatformSutra",
+          "type" : "PlatformSutra"
+        }, {
+          "name" : "ShengYan",
+          "type" : "ShengYan"
+        }, {
+          "name" : "YinGuang",
+          "type" : "YinGuang"
+        }, {
+          "name" : "PersonalList",
+          "type" : "PersonalList"
+        }, {
+          "name" : "VisualizationSutra",
+          "type" : "VisualizationSutra"
+        }, {
+          "name" : "PureLand",
+          "type" : "PureLand"
+        }, {
+          "name" : "HuaYan",
+          "type" : "HuaYan"
+        }, {
+          "name" : "YiJiaoJing",
+          "type" : "YiJiaoJing"
+        }, {
+          "name" : "LengYan",
+          "type" : "LengYan"
+        }, {
+          "name" : "ChinesePopMusic",
+          "type" : "ChinesePopMusic"
+        }, {
+          "name" : "AmitabhaSutra",
+          "type" : "AmitabhaSutra"
+        }, {
+          "name" : "WeiMoJie",
+          "type" : "WeiMoJie"
+        }, {
+          "name" : "HeartSutra",
+          "type" : "HeartSutra"
+        }, {
+          "name" : "MedicineBuddhaSutra",
+          "type" : "MedicineBuddhaSutra"
+        }, {
+          "name" : "AHan",
+          "type" : "AHan"
+        }, {
+          "name" : "PuMenPin",
+          "type" : "PuMenPin"
+        }, {
+          "name" : "XingYuanPin",
+          "type" : "XingYuanPin"
+        }, {
+          "name" : "FaYuanWen",
+          "type" : "FaYuanWen"
+        }, {
+          "name" : "RepentancePrayer",
+          "type" : "RepentancePrayer"
+        }, {
+          "name" : "DharmaMusic",
+          "type" : "DharmaMusic"
+        }, {
+          "name" : "ThichNhatHanh",
+          "type" : "ThichNhatHanh"
+        }, {
+          "name" : "WordOfBuddha",
+          "type" : "WordOfBuddha"
+        }, {
+          "name" : "ThousandYearsBodhiRoad",
+          "type" : "ThousandYearsBodhiRoad"
+        }, {
+          "name" : "ThriceYearning",
+          "type" : "ThriceYearning"
+        }, {
+          "name" : "GreatCompassionSutra",
+          "type" : "GreatCompassionSutra"
+        }, {
+          "name" : "FaGuJiangTang",
+          "type" : "FaGuJiangTang"
+        }, {
+          "name" : "GreatCompassionRepentance",
+          "type" : "GreatCompassionRepentance"
+        }, {
+          "name" : "EmperorLiangRepentance",
+          "type" : "EmperorLiangRepentance"
+        }, {
+          "name" : "EditorFavorite",
+          "type" : "EditorFavorite"
+        }, {
+          "name" : "BabyStories",
+          "type" : "BabyStories"
+        }, {
+          "name" : "BabySongs",
+          "type" : "BabySongs"
+        }, {
+          "name" : "TechTalks",
+          "type" : "TechTalks"
+        } ],
+        "samples" : [ "{FaYuanWen}", "{AHan}", "{XingYuanPin}", "{PuMenPin}", "{MedicineBuddhaSutra}", "{HeartSutra}", "{WeiMoJie}", "{AmitabhaSutra}", "{ChinesePopMusic}", "{YiJiaoJing}", "{LengYan}", "{HuaYan}", "{YinGuang}", "{PersonalList}", "{VisualizationSutra}", "{PureLand}", "{EmptyCloud}", "{ShengYan}", "{PlatformSutra}", "{SutraChanting}", "{LotusSutra}", "{DiamondSutra}", "{GuanYin}", "{EarthStore}", "{InfiniteLife}", "{Amituofo}", "{JinKong}", "{RepentancePrayer}", "play {AHan}", "play {XingYuanPin}", "play {PuMenPin}", "play {MedicineBuddhaSutra}", "play {HeartSutra}", "play {WeiMoJie}", "play {AmitabhaSutra}", "play {ChinesePopMusic}", "play {YiJiaoJing}", "play {LengYan}", "play {HuaYan}", "play {YinGuang}", "play {PersonalList}", "play {VisualizationSutra}", "play {PureLand}", "play {EmptyCloud}", "play {ShengYan}", "play {PlatformSutra}", "play {SutraChanting}", "play {LotusSutra}", "play {DiamondSutra}", "play {GuanYin}", "play {EarthStore}", "play {InfiniteLife}", "play {Amituofo}", "play {JinKong}", "play {RepentancePrayer}", "uphold {AHan}", "uphold {XingYuanPin}", "uphold {PuMenPin}", "uphold {MedicineBuddhaSutra}", "uphold {HeartSutra}", "uphold {WeiMoJie}", "uphold {AmitabhaSutra}", "uphold {ChinesePopMusic}", "uphold {YiJiaoJing}", "uphold {LengYan}", "uphold {HuaYan}", "uphold {YinGuang}", "uphold {PersonalList}", "uphold {VisualizationSutra}", "uphold {PureLand}", "uphold {EmptyCloud}", "uphold {ShengYan}", "uphold {PlatformSutra}", "uphold {SutraChanting}", "uphold {LotusSutra}", "uphold {DiamondSutra}", "uphold {GuanYin}", "uphold {EarthStore}", "uphold {InfiniteLife}", "uphold {Amituofo}", "uphold {JinKong}", "uphold {RepentancePrayer}", "{DharmaMusic}", "play {DharmaMusic}", "uphold {DharmaMusic}", "play {FaYuanWen}", "uphold {FaYuanWen}", "{ThichNhatHanh}", "play {ThichNhatHanh}", "uphold {ThichNhatHanh}", "{WordOfBuddha}", "play {WordOfBuddha}", "uphold {WordOfBuddha}", "{ThousandYearsBodhiRoad}", "play {ThousandYearsBodhiRoad}", "uphold {ThousandYearsBodhiRoad}", "{ThriceYearning}", "play {ThriceYearning}", "uphold {ThriceYearning}", "{GreatCompassionSutra}", "play {GreatCompassionSutra}", "uphold {GreatCompassionSutra}", "{FaGuJiangTang}", "play {FaGuJiangTang}", "uphold {FaGuJiangTang}", "{GreatCompassionRepentance}", "play {GreatCompassionRepentance}", "uphold {GreatCompassionRepentance}", "{EmperorLiangRepentance}", "play {EmperorLiangRepentance}", "uphold {EmperorLiangRepentance}", "{EditorFavorite}", "play {EditorFavorite}", "uphold {EditorFavorite}", "{BabyStories}", "play {BabyStories}", "uphold {BabyStories}", "{BabySongs}", "play {BabySongs}", "uphold {BabySongs}", "{TechTalks}", "play {TechTalks}", "uphold {TechTalks}" ]
+      } ],
+      "types" : [ {
+        "values" : [ {
+          "name" : {
+            "value" : "English",
+            "synonyms" : [ "english" ]
+          }
+        }, {
+          "name" : {
+            "value" : "Chinese",
+            "synonyms" : [ "chinese" ]
+          }
+        }, {
+          "name" : {
+            "value" : "all languages",
+            "synonyms" : [ "all language", "All languages", "all" ]
+          }
+        } ],
+        "name" : "Lang"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Master  Jin Kong"
+          }
+        }, {
+          "name" : {
+            "value" : "Venerable Master Jin Kong"
+          }
+        }, {
+          "name" : {
+            "value" : "Jin Kong Fa Shi"
+          }
+        }, {
+          "name" : {
+            "value" : "Ching Kong"
+          }
+        }, {
+          "name" : {
+            "value" : "Jin Kong"
+          }
+        }, {
+          "name" : {
+            "value" : "Chin Kung"
+          }
+        }, {
+          "name" : {
+            "value" : "Chin Kong"
+          }
+        }, {
+          "name" : {
+            "value" : "Jing Kong"
+          }
+        } ],
+        "name" : "JinKong"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Wu Liang Shou"
+          }
+        }, {
+          "name" : {
+            "value" : "Wu Liang Sow"
+          }
+        }, {
+          "name" : {
+            "value" : "Wu Liang Shou Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Wu Liang Sow Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "infinite life sutra"
+          }
+        }, {
+          "name" : {
+            "value" : "infinite life"
+          }
+        } ],
+        "name" : "InfiniteLife"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Chanting of Amitabha"
+          }
+        }, {
+          "name" : {
+            "value" : "Amida Buddha"
+          }
+        }, {
+          "name" : {
+            "value" : "Amitabha Buddha"
+          }
+        }, {
+          "name" : {
+            "value" : "Oh Mi Tuo Fo"
+          }
+        }, {
+          "name" : {
+            "value" : "O Mi Tuo Fo"
+          }
+        }, {
+          "name" : {
+            "value" : "Ah Mi Tuo Fo"
+          }
+        }, {
+          "name" : {
+            "value" : "A mi tuo fo"
+          }
+        }, {
+          "name" : {
+            "value" : "Ah Mi Tu Fo"
+          }
+        }, {
+          "name" : {
+            "value" : "Amitayus"
+          }
+        }, {
+          "name" : {
+            "value" : "Amida"
+          }
+        }, {
+          "name" : {
+            "value" : "Amitabha"
+          }
+        } ],
+        "name" : "Amituofo"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Sutra of Earth Store bodhisattva"
+          }
+        }, {
+          "name" : {
+            "value" : "Earth Store bodhisattva"
+          }
+        }, {
+          "name" : {
+            "value" : "Di Zang Pu Sa"
+          }
+        }, {
+          "name" : {
+            "value" : "Di Zang Pu Sa Ben Yuan Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Di Zhang"
+          }
+        }, {
+          "name" : {
+            "value" : "De Zhang"
+          }
+        }, {
+          "name" : {
+            "value" : "Di Zhan"
+          }
+        }, {
+          "name" : {
+            "value" : "Di Zang"
+          }
+        }, {
+          "name" : {
+            "value" : "Earth Store"
+          }
+        } ],
+        "name" : "EarthStore"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Guan Si Yin Pu Sa"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Yin bodhisattva"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Yin Pu Sa"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Zi Zhai"
+          }
+        }, {
+          "name" : {
+            "value" : "Avalokiteshvara"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Zi Zai"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Shi Yin"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Shi Yin Pu Sa"
+          }
+        }, {
+          "name" : {
+            "value" : "Guang Yin"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Yin"
+          }
+        } ],
+        "name" : "GuanYin"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Sutra Chantings"
+          }
+        }, {
+          "name" : {
+            "value" : "Fang Bei"
+          }
+        }, {
+          "name" : {
+            "value" : "Sutra Chanting"
+          }
+        } ],
+        "name" : "SutraChanting"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Fa Hua Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Miao Fa Lian Hua Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Lotus Sutra"
+          }
+        } ],
+        "name" : "LotusSutra"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Jing Gang Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Jin Gang Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Diamond Sutra"
+          }
+        } ],
+        "name" : "DiamondSutra"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Master Empty Cloud"
+          }
+        }, {
+          "name" : {
+            "value" : "Chan master Empty Cloud"
+          }
+        }, {
+          "name" : {
+            "value" : "Zen master Empty Cloud"
+          }
+        }, {
+          "name" : {
+            "value" : "Xu Yun Lao He Shang"
+          }
+        }, {
+          "name" : {
+            "value" : "Xu Yun"
+          }
+        }, {
+          "name" : {
+            "value" : "Hsu Yun"
+          }
+        }, {
+          "name" : {
+            "value" : "Empty Cloud"
+          }
+        } ],
+        "name" : "EmptyCloud"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "the six patriarch"
+          }
+        }, {
+          "name" : {
+            "value" : "Six patriarch"
+          }
+        }, {
+          "name" : {
+            "value" : "liu zu tan jing"
+          }
+        }, {
+          "name" : {
+            "value" : "platform sutra"
+          }
+        } ],
+        "name" : "PlatformSutra"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Da Fa Gu"
+          }
+        }, {
+          "name" : {
+            "value" : "Lectures by Master Sheng Yen"
+          }
+        }, {
+          "name" : {
+            "value" : "Master Sheng Yen"
+          }
+        }, {
+          "name" : {
+            "value" : "Master Sheng Yan"
+          }
+        }, {
+          "name" : {
+            "value" : "Sheng Yan"
+          }
+        }, {
+          "name" : {
+            "value" : "Sheng Yen"
+          }
+        }, {
+          "name" : {
+            "value" : "Sheng Yan Fa Shi"
+          }
+        } ],
+        "name" : "ShengYan"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Teachings of Master Yin Guang"
+          }
+        }, {
+          "name" : {
+            "value" : "Yin Guang Da Shi"
+          }
+        }, {
+          "name" : {
+            "value" : "Yin Guang Da Si"
+          }
+        }, {
+          "name" : {
+            "value" : "Master Yin Guang"
+          }
+        }, {
+          "name" : {
+            "value" : "Yin Guan"
+          }
+        }, {
+          "name" : {
+            "value" : "Yin Guang"
+          }
+        } ],
+        "name" : "YinGuang"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Personal List"
+          }
+        } ],
+        "name" : "PersonalList"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Sutra on visualization of Amitabha"
+          }
+        }, {
+          "name" : {
+            "value" : "Visualization Sutra"
+          }
+        }, {
+          "name" : {
+            "value" : "Guang Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Guan Jing"
+          }
+        } ],
+        "name" : "VisualizationSutra"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Pure land sutras collection"
+          }
+        }, {
+          "name" : {
+            "value" : "Pure land sutras"
+          }
+        }, {
+          "name" : {
+            "value" : "pure land"
+          }
+        }, {
+          "name" : {
+            "value" : "Jing Tu"
+          }
+        } ],
+        "name" : "PureLand"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Da Fan Guang Fo Hua Yan Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Da Fan Guan Fu Hua Yen Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Avatamsaka Sutra"
+          }
+        }, {
+          "name" : {
+            "value" : "Hua Yan Jing"
+          }
+        } ],
+        "name" : "HuaYan"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Fo Yi Jiao Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Last teachings of Buddha"
+          }
+        }, {
+          "name" : {
+            "value" : "Yi Jiao Jing"
+          }
+        } ],
+        "name" : "YiJiaoJing"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Shurangama"
+          }
+        }, {
+          "name" : {
+            "value" : " Shurangama Sutra"
+          }
+        }, {
+          "name" : {
+            "value" : "Leng Yan"
+          }
+        }, {
+          "name" : {
+            "value" : "Leng Yan Jing"
+          }
+        } ],
+        "name" : "LengYan"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Chinese Pop"
+          }
+        } ],
+        "name" : "ChinesePopMusic"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "A Mi Tuo Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Sutra of Amitabha"
+          }
+        }, {
+          "name" : {
+            "value" : "O Mi Tuo Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Amitabha Sutra"
+          }
+        } ],
+        "name" : "AmitabhaSutra"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Vimalakirti Sutra"
+          }
+        }, {
+          "name" : {
+            "value" : "Wei Mo Jie Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Wei Mo Jie"
+          }
+        } ],
+        "name" : "WeiMoJie"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Xin Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Heart Sutra"
+          }
+        } ],
+        "name" : "HeartSutra"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Medicine Buddha"
+          }
+        }, {
+          "name" : {
+            "value" : "Yao Si Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Yao Shi Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "Medicine Buddha Sutra"
+          }
+        } ],
+        "name" : "MedicineBuddhaSutra"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Guan Shi Yin Pu Sa Pu Men Pin"
+          }
+        }, {
+          "name" : {
+            "value" : "Pu Men Pin"
+          }
+        }, {
+          "name" : {
+            "value" : "Pu Men Pin of Lotus Sutra"
+          }
+        } ],
+        "name" : "PuMenPin"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Pu Xian Pu Sa"
+          }
+        }, {
+          "name" : {
+            "value" : "Samantabhadra"
+          }
+        }, {
+          "name" : {
+            "value" : "Vows Of Samantabhadra"
+          }
+        }, {
+          "name" : {
+            "value" : "Ten Great Vows"
+          }
+        }, {
+          "name" : {
+            "value" : "Pu Xian Pu Sa Xing Yuan Pin"
+          }
+        }, {
+          "name" : {
+            "value" : "Xing Yuan Pin"
+          }
+        } ],
+        "name" : "XingYuanPin"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Agama Sutra"
+          }
+        }, {
+          "name" : {
+            "value" : "Ah Han Jing"
+          }
+        }, {
+          "name" : {
+            "value" : "A Han"
+          }
+        }, {
+          "name" : {
+            "value" : "Ah Han"
+          }
+        }, {
+          "name" : {
+            "value" : "Theravada"
+          }
+        }, {
+          "name" : {
+            "value" : "Theravada sutras"
+          }
+        } ],
+        "name" : "AHan"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Fa Yuan Wen"
+          }
+        }, {
+          "name" : {
+            "value" : "pure land vows"
+          }
+        }, {
+          "name" : {
+            "value" : "Xi Fang Fa Yuan Wen"
+          }
+        } ],
+        "name" : "FaYuanWen"
+      }, {
+        "values" : [ {
+          "name" : {
+            "value" : "Chang Hui Wen"
+          }
+        }, {
+          "name" : {
+            "value" : "Repentance Prayer"
+          }
+        }, {
+          "name" : {
+            "value" : "88 Buddhas"
+          }
+        }, {
+          "name" : {
+            "value" : "Ba Shi Ba Fo"
+          }
+        } ],
+        "name" : "RepentancePrayer"
+      }, {
+        "name" : "DharmaMusic",
+        "values" : [ {
+          "name" : {
+            "value" : "Dharma Music"
+          }
+        } ]
+      }, {
+        "name" : "ThichNhatHanh",
+        "values" : [ {
+          "name" : {
+            "value" : "Thich Nhat Hanh"
+          }
+        } ]
+      }, {
+        "name" : "WordOfBuddha",
+        "values" : [ {
+          "name" : {
+            "value" : "Word Of Buddha"
+          }
+        } ]
+      }, {
+        "name" : "ThousandYearsBodhiRoad",
+        "values" : [ {
+          "name" : {
+            "value" : "Thousand Years Bodhi Road"
+          }
+        }, {
+          "name" : {
+            "value" : "Thousand Years of Bodhi Road"
+          }
+        }, {
+          "name" : {
+            "value" : "Qian Nian Pu Ti Lu"
+          }
+        } ]
+      }, {
+        "name" : "ThriceYearning",
+        "values" : [ {
+          "name" : {
+            "value" : "Thrice Yearning"
+          }
+        }, {
+          "name" : {
+            "value" : "San Shi Xi Nian"
+          }
+        }, {
+          "name" : {
+            "value" : "San Si Xi Nian"
+          }
+        } ]
+      }, {
+        "name" : "GreatCompassionSutra",
+        "values" : [ {
+          "name" : {
+            "value" : "Great Compassion Sutra"
+          }
+        }, {
+          "name" : {
+            "value" : "Da Bei Xin Tuo Luo Ni Jing"
+          }
+        } ]
+      }, {
+        "name" : "FaGuJiangTang",
+        "values" : [ {
+          "name" : {
+            "value" : "Fa Gu Jiang Tang"
+          }
+        }, {
+          "name" : {
+            "value" : "Dharma Drum Mountain"
+          }
+        }, {
+          "name" : {
+            "value" : "Dharma Drum Lectures"
+          }
+        }, {
+          "name" : {
+            "value" : "Dharma Drum Mountain lectures"
+          }
+        } ]
+      }, {
+        "name" : "GreatCompassionRepentance",
+        "values" : [ {
+          "name" : {
+            "value" : "Great Compassion Repentance"
+          }
+        }, {
+          "name" : {
+            "value" : "Da Bei Zhou"
+          }
+        }, {
+          "name" : {
+            "value" : "Da Bei Zou"
+          }
+        } ]
+      }, {
+        "name" : "EmperorLiangRepentance",
+        "values" : [ {
+          "name" : {
+            "value" : "Liang Huang Bao Chan"
+          }
+        }, {
+          "name" : {
+            "value" : "Emperor Liang Repentance"
+          }
+        } ]
+      }, {
+        "name" : "EditorFavorite",
+        "values" : [ {
+          "name" : {
+            "value" : "Editor Favorite"
+          }
+        }, {
+          "name" : {
+            "value" : "Favorite Sutras"
+          }
+        }, {
+          "name" : {
+            "value" : "Jin Xuan"
+          }
+        } ]
+      }, {
+        "name" : "BabyStories",
+        "values" : [ {
+          "name" : {
+            "value" : "Baby Stories"
+          }
+        }, {
+          "name" : {
+            "value" : "Baby Story"
+          }
+        }, {
+          "name" : {
+            "value" : "tell a baby story"
+          }
+        }, {
+          "name" : {
+            "value" : "bedtime story"
+          }
+        } ]
+      }, {
+        "name" : "BabySongs",
+        "values" : [ {
+          "name" : {
+            "value" : "Baby Songs"
+          }
+        }, {
+          "name" : {
+            "value" : "Baby Music"
+          }
+        } ]
+      }, {
+        "name" : "TechTalks",
+        "values" : [ {
+          "name" : {
+            "value" : "Tech Talks"
+          }
+        } ]
+      } ]
     },
-    "dialog": {
-      "intents": [
-        {
-          "name": "LangIntent",
-          "confirmationRequired": true,
-          "prompts": {
-            "confirmation": "Confirm.Intent-LangIntent"
-          },
-          "slots": [
-            {
-              "name": "Lang",
-              "type": "Lang",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Slot.991969149754.365926476130"
-              }
-            }
-          ]
+    "dialog" : {
+      "intents" : [ {
+        "name" : "LangIntent",
+        "confirmationRequired" : true,
+        "prompts" : {
+          "confirmation" : "Confirm.Intent-LangIntent"
         },
-        {
-          "name": "PlayList",
-          "confirmationRequired": false,
-          "slots": [
-            {
-              "name": "LIST_NUMBER",
-              "type": "AMAZON.NUMBER",
-              "elicitationRequired": true,
-              "confirmationRequired": false,
-              "prompts": {
-                "elicitation": "Elicit.Intent-PlayList.IntentSlot-LIST_NUMBER"
-              }
-            }
-          ]
-        },
-        {
-          "name": "CustomNameIntent",
-          "confirmationRequired": false,
-          "slots": [
-            {
-              "name": "JinKong",
-              "type": "JinKong",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "Amituofo",
-              "type": "Amituofo",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "EarthStore",
-              "type": "EarthStore",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "InfiniteLife",
-              "type": "InfiniteLife",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "GuanYin",
-              "type": "GuanYin",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "DiamondSutra",
-              "type": "DiamondSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "LotusSutra",
-              "type": "LotusSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "SutraChanting",
-              "type": "SutraChanting",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "EmptyCloud",
-              "type": "EmptyCloud",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "PlatformSutra",
-              "type": "PlatformSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "ShengYan",
-              "type": "ShengYan",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "YinGuang",
-              "type": "YinGuang",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "PersonalList",
-              "type": "PersonalList",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "VisualizationSutra",
-              "type": "VisualizationSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "PureLand",
-              "type": "PureLand",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "HuaYan",
-              "type": "HuaYan",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "YiJiaoJing",
-              "type": "YiJiaoJing",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "LengYan",
-              "type": "LengYan",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "ChinesePopMusic",
-              "type": "ChinesePopMusic",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "AmitabhaSutra",
-              "type": "AmitabhaSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "WeiMoJie",
-              "type": "WeiMoJie",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "HeartSutra",
-              "type": "HeartSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "MedicineBuddhaSutra",
-              "type": "MedicineBuddhaSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "AHan",
-              "type": "AHan",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "PuMenPin",
-              "type": "PuMenPin",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "XingYuanPin",
-              "type": "XingYuanPin",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "FaYuanWen",
-              "type": "FaYuanWen",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "RepentancePrayer",
-              "type": "RepentancePrayer",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "DharmaMusic",
-              "type": "DharmaMusic",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "ThichNhatHanh",
-              "type": "ThichNhatHanh",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "WordOfBuddha",
-              "type": "WordOfBuddha",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "ThousandYearsBodhiRoad",
-              "type": "ThousandYearsBodhiRoad",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "ThriceYearning",
-              "type": "ThriceYearning",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "GreatCompassionSutra",
-              "type": "GreatCompassionSutra",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "FaGuJiangTang",
-              "type": "FaGuJiangTang",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "GreatCompassionRepentance",
-              "type": "GreatCompassionRepentance",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "EmperorLiangRepentance",
-              "type": "EmperorLiangRepentance",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "EditorFavorite",
-              "type": "EditorFavorite",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "BabyStories",
-              "type": "BabyStories",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            },
-            {
-              "name": "BabySongs",
-              "type": "BabySongs",
-              "elicitationRequired": false,
-              "confirmationRequired": false
-            }
-          ]
-        }
-      ]
+        "slots" : [ {
+          "name" : "Lang",
+          "type" : "Lang",
+          "elicitationRequired" : true,
+          "confirmationRequired" : false,
+          "prompts" : {
+            "elicitation" : "Elicit.Slot.991969149754.365926476130"
+          }
+        } ]
+      }, {
+        "name" : "PlayList",
+        "confirmationRequired" : false,
+        "slots" : [ {
+          "name" : "LIST_NUMBER",
+          "type" : "AMAZON.NUMBER",
+          "elicitationRequired" : true,
+          "confirmationRequired" : false,
+          "prompts" : {
+            "elicitation" : "Elicit.Intent-PlayList.IntentSlot-LIST_NUMBER"
+          }
+        } ]
+      }, {
+        "name" : "CustomNameIntent",
+        "confirmationRequired" : false,
+        "slots" : [ {
+          "name" : "JinKong",
+          "type" : "JinKong",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "Amituofo",
+          "type" : "Amituofo",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "EarthStore",
+          "type" : "EarthStore",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "InfiniteLife",
+          "type" : "InfiniteLife",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "GuanYin",
+          "type" : "GuanYin",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "DiamondSutra",
+          "type" : "DiamondSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "LotusSutra",
+          "type" : "LotusSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "SutraChanting",
+          "type" : "SutraChanting",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "EmptyCloud",
+          "type" : "EmptyCloud",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "PlatformSutra",
+          "type" : "PlatformSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "ShengYan",
+          "type" : "ShengYan",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "YinGuang",
+          "type" : "YinGuang",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "PersonalList",
+          "type" : "PersonalList",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "VisualizationSutra",
+          "type" : "VisualizationSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "PureLand",
+          "type" : "PureLand",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "HuaYan",
+          "type" : "HuaYan",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "YiJiaoJing",
+          "type" : "YiJiaoJing",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "LengYan",
+          "type" : "LengYan",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "ChinesePopMusic",
+          "type" : "ChinesePopMusic",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "AmitabhaSutra",
+          "type" : "AmitabhaSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "WeiMoJie",
+          "type" : "WeiMoJie",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "HeartSutra",
+          "type" : "HeartSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "MedicineBuddhaSutra",
+          "type" : "MedicineBuddhaSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "AHan",
+          "type" : "AHan",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "PuMenPin",
+          "type" : "PuMenPin",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "XingYuanPin",
+          "type" : "XingYuanPin",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "FaYuanWen",
+          "type" : "FaYuanWen",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "RepentancePrayer",
+          "type" : "RepentancePrayer",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "DharmaMusic",
+          "type" : "DharmaMusic",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "ThichNhatHanh",
+          "type" : "ThichNhatHanh",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "WordOfBuddha",
+          "type" : "WordOfBuddha",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "ThousandYearsBodhiRoad",
+          "type" : "ThousandYearsBodhiRoad",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "ThriceYearning",
+          "type" : "ThriceYearning",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "GreatCompassionSutra",
+          "type" : "GreatCompassionSutra",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "FaGuJiangTang",
+          "type" : "FaGuJiangTang",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "GreatCompassionRepentance",
+          "type" : "GreatCompassionRepentance",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "EmperorLiangRepentance",
+          "type" : "EmperorLiangRepentance",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "EditorFavorite",
+          "type" : "EditorFavorite",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "BabyStories",
+          "type" : "BabyStories",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "BabySongs",
+          "type" : "BabySongs",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        }, {
+          "name" : "TechTalks",
+          "type" : "TechTalks",
+          "elicitationRequired" : false,
+          "confirmationRequired" : false
+        } ]
+      } ]
     },
-    "prompts": [
-      {
-        "id": "Confirm.Intent-LangIntent",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Set language to {Lang}?"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Intent-PlayList.IntentSlot-LIST_NUMBER",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Say a play list number."
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.991969149754.365926476130",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Which language do you prefer, English, Chinese or all languages?"
-          }
-        ]
-      },
-      {
-        "id": "Confirm.Slot.991969149754.365926476130",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Set your language preference to {Lang} ?"
-          }
-        ]
-      }
-    ]
+    "prompts" : [ {
+      "id" : "Confirm.Intent-LangIntent",
+      "variations" : [ {
+        "type" : "PlainText",
+        "value" : "Set language to {Lang}?"
+      } ]
+    }, {
+      "id" : "Elicit.Intent-PlayList.IntentSlot-LIST_NUMBER",
+      "variations" : [ {
+        "type" : "PlainText",
+        "value" : "Say a play list number."
+      } ]
+    }, {
+      "id" : "Elicit.Slot.991969149754.365926476130",
+      "variations" : [ {
+        "type" : "PlainText",
+        "value" : "Which language do you prefer, English, Chinese or all languages?"
+      } ]
+    }, {
+      "id" : "Confirm.Slot.991969149754.365926476130",
+      "variations" : [ {
+        "type" : "PlainText",
+        "value" : "Set your language preference to {Lang} ?"
+      } ]
+    } ]
   }
 }
