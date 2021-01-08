@@ -9,11 +9,66 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.google.common.collect.ImmutableSet.of;
-import static merits.funskills.pureland.model.PlayList.*;
-import static merits.funskills.pureland.model.Tag.Chinese;
-import static merits.funskills.pureland.model.Tag.English;
-import static merits.funskills.pureland.model.Tag.Private;
-import static merits.funskills.pureland.model.Tag.TAG;
+import static merits.funskills.pureland.model.PlayList.AmitabhaChanting;
+import static merits.funskills.pureland.model.PlayList.AmitabhaChantingChinKung;
+import static merits.funskills.pureland.model.PlayList.AmitabhaSutraEnglish;
+import static merits.funskills.pureland.model.PlayList.BabySongsChinese;
+import static merits.funskills.pureland.model.PlayList.BabySongsEnglish;
+import static merits.funskills.pureland.model.PlayList.BabyStoriesChinese;
+import static merits.funskills.pureland.model.PlayList.BabyStoriesEnglish;
+import static merits.funskills.pureland.model.PlayList.DizangSutra;
+import static merits.funskills.pureland.model.PlayList.EarthStore;
+import static merits.funskills.pureland.model.PlayList.Eight;
+import static merits.funskills.pureland.model.PlayList.Eleven;
+import static merits.funskills.pureland.model.PlayList.EmperorLiangRepentance;
+import static merits.funskills.pureland.model.PlayList.EmperorLiangRepentanceChant;
+import static merits.funskills.pureland.model.PlayList.EnglishFaGuJiangTang;
+import static merits.funskills.pureland.model.PlayList.EnglishHeartSutra;
+import static merits.funskills.pureland.model.PlayList.EnglishLotusSutra;
+import static merits.funskills.pureland.model.PlayList.EnglishMedicineBuddha;
+import static merits.funskills.pureland.model.PlayList.EnglishPlatformSutra;
+import static merits.funskills.pureland.model.PlayList.EnglishPureLand;
+import static merits.funskills.pureland.model.PlayList.EnglishSutraChantings;
+import static merits.funskills.pureland.model.PlayList.FaGuJiangTang;
+import static merits.funskills.pureland.model.PlayList.FavoriteSutras;
+import static merits.funskills.pureland.model.PlayList.Fifteen;
+import static merits.funskills.pureland.model.PlayList.Five;
+import static merits.funskills.pureland.model.PlayList.Fourteen;
+import static merits.funskills.pureland.model.PlayList.GreatCompassionPrayer;
+import static merits.funskills.pureland.model.PlayList.GreatCompassionSutra;
+import static merits.funskills.pureland.model.PlayList.HeartSutra;
+import static merits.funskills.pureland.model.PlayList.HuayanSutra;
+import static merits.funskills.pureland.model.PlayList.InfiniteLifeSutra;
+import static merits.funskills.pureland.model.PlayList.InfiniteLifeSutraChinKung;
+import static merits.funskills.pureland.model.PlayList.InfiniteLifeSutraEnglish;
+import static merits.funskills.pureland.model.PlayList.LengYan;
+import static merits.funskills.pureland.model.PlayList.Nine;
+import static merits.funskills.pureland.model.PlayList.One;
+import static merits.funskills.pureland.model.PlayList.OneHundredFour;
+import static merits.funskills.pureland.model.PlayList.OneHundredThree;
+import static merits.funskills.pureland.model.PlayList.PersonalList;
+import static merits.funskills.pureland.model.PlayList.PuMenPin;
+import static merits.funskills.pureland.model.PlayList.PureLandVows;
+import static merits.funskills.pureland.model.PlayList.Repentance;
+import static merits.funskills.pureland.model.PlayList.ShengYen;
+import static merits.funskills.pureland.model.PlayList.Six;
+import static merits.funskills.pureland.model.PlayList.SutraChantings;
+import static merits.funskills.pureland.model.PlayList.TechTalks;
+import static merits.funskills.pureland.model.PlayList.Ten;
+import static merits.funskills.pureland.model.PlayList.ThichNhatHanh;
+import static merits.funskills.pureland.model.PlayList.ThousandYearsBodhiRoad;
+import static merits.funskills.pureland.model.PlayList.ThriceYearning;
+import static merits.funskills.pureland.model.PlayList.Twelve;
+import static merits.funskills.pureland.model.PlayList.Twenty;
+import static merits.funskills.pureland.model.PlayList.TwentySix;
+import static merits.funskills.pureland.model.PlayList.Two;
+import static merits.funskills.pureland.model.PlayList.VimalakirtiSutra;
+import static merits.funskills.pureland.model.PlayList.VisualizationSutra;
+import static merits.funskills.pureland.model.PlayList.VisualizationSutraEnglish;
+import static merits.funskills.pureland.model.PlayList.VowsOfSamantabhadra;
+import static merits.funskills.pureland.model.PlayList.WordOfBuddha;
+import static merits.funskills.pureland.model.PlayList.XingYuanPin;
+import static merits.funskills.pureland.model.PlayList.YinGuang;
 
 public class NameMapping {
 
@@ -61,7 +116,8 @@ public class NameMapping {
             entry("RepentancePrayer", of(Repentance)),
             entry("PersonalList", of(PersonalList)),
             entry("BabyStories", of(BabyStoriesChinese, BabyStoriesEnglish)),
-            entry("BabySongs", of(BabySongsChinese, BabySongsEnglish))
+            entry("BabySongs", of(BabySongsChinese, BabySongsEnglish)),
+            entry("TechTalks", of(TechTalks))
     ).collect(entriesToMap()));
 
     private static <K, V> Map.Entry<K, V> entry(K key, V value) {
