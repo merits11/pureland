@@ -13,6 +13,7 @@ Resources:
       MemorySize: 512
       Timeout: 15
       CodeUri: build/distributions/purelandmusic-1.0-SNAPSHOT.zip
+      AutoPublishAlias: livelive
       Policies:
        - AWSLambdaExecute # Managed Policy
        - AmazonS3ReadOnlyAccess
@@ -40,6 +41,8 @@ Resources:
              Resource:
                - !Sub 'arn:aws:dynamodb:us-east-1:711575676778:table/pureLandTable-${FunctionNameSuffix}'
                - !Sub 'arn:aws:dynamodb:us-east-1:711575676778:table/pureLandTable-${FunctionNameSuffix}/index/*'
+      DeploymentPreference:
+        Type: AllAtOnce
       Events:
         AlexaSkillEvent:
           Type: AlexaSkill
