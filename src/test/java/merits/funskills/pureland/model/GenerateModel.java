@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -33,9 +34,17 @@ public class GenerateModel {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final String modelFile = "configuration/model.json";
-    private static final String manifestFile = "configuration/manifest.json";
+    private static final String manifestFile = "skill.json";
     private static final String descriptionFile = "configuration/description.txt";
     private static final String htmlIndex = "configuration/purelandhelp.html";
+    private static final String[] LOCALES = new String[]{
+            "en-US",
+            "en-CA",
+            "en-IN",
+            "en-AU",
+            "en-GB"
+
+    };
 
     private JsonNode getModel() throws Exception {
         try (FileReader fileReader = new FileReader(modelFile)) {
@@ -109,6 +118,9 @@ public class GenerateModel {
                 }
             });
             writeJson(model, getModel(), modelFile);
+            for (String locale : LOCALES) {
+                FileUtils.copyFile(new File(modelFile), new File("interactionModel/custom/" + locale + ".json"));
+            }
         } catch (Exception error) {
             log.warn("This is not actual test, don't fail!", error);
         }

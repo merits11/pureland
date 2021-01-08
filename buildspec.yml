@@ -23,6 +23,5 @@ reports:
 artifacts:
   files:
     - 'packaged-template.yaml'
-    - 'build/appspec.yaml'
-    - 'configuration/description.txt'
-    - 'configuration/*.json'
+    - 'skill.json'
+    - 'interactionModel/custom/*.json'
