@@ -17,8 +17,8 @@ public class PlayListManagerTest {
 
     @Test
     public void testGetDurationByName() throws Exception {
-        when(s3ObjectSummary.getKey()).thenReturn("AmitabhaChanting/南無阿彌陀佛 慧普法師-284s.mp4");
-        assertEquals(284000L, PlayListManager.getDuration(s3ObjectSummary));
+        when(s3ObjectSummary.getKey()).thenReturn("AmitabhaChanting/南無阿彌陀佛 慧普法師-284.1s.mp4");
+        assertEquals(284100L, PlayListManager.getDuration(s3ObjectSummary));
     }
 
     @Test

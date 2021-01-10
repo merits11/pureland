@@ -103,8 +103,8 @@ public class PlayListManager {
             return Optional.empty();
         }
         String durationStr = s3Key.substring(durationStartIndex, durationEndIndex);
-        if (NumberUtils.isDigits(durationStr) && s3Key.charAt(durationEndIndex) == 's') {
-            return Optional.of(Long.valueOf(durationStr) * 1000);
+        if (NumberUtils.isParsable(durationStr) && s3Key.charAt(durationEndIndex) == 's') {
+            return Optional.of((long)(Double.valueOf(durationStr) * 1000));
         }
         return Optional.empty();
     }
