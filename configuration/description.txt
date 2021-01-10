@@ -91,7 +91,7 @@ The skill will automatically save the last played position and will resume from 
 
 After you launched the skill, say "help", the skill will send all available lists and instructions to your Alexa app. Check the below page for most complete information on all lists:
 
-https://bit.ly/2uz8Hdd
+https://www.purelandmedia.com
 
 - Language Settings
 The skill will ask you which language you prefer on first launch. With a language settings, it will try to deliver you content of your chosen language. Language can be set to English/Chinese/All Languages, default is 'All Languages'.

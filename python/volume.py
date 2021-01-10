@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import argparse
 import os
@@ -11,6 +11,8 @@ from pydub import AudioSegment
 
 
 def get_files(folder, recursive):
+    if os.path.isfile(folder):
+        return [folder]
     if not recursive:
         return glob(folder + u"/*.mp3")
     matches = []
@@ -55,6 +57,7 @@ def main(args):
         except Exception as e:
             print(u"%s: failed  due to exception." % mp3)
             traceback.print_exc()
+            raise e
         finally:
             index += 1
 
@@ -67,6 +70,6 @@ if __name__ == u"__main__":
     parser.add_argument(u'--since', type=float, default=-1, help=u'Work only on files days ago')
     parser.add_argument(u'-d', u'--dir', required=True, help=u'Directory to find mp3 files')
     parser.add_argument(u'-t', u'--target', default=-17, type=float, help=u'Target DB')
-    parser.add_argument(u'-m', u'--minChange', default=3, type=float, help=u'Min db to add')
+    parser.add_argument(u'-m', u'--minChange', default=1, type=float, help=u'Min db to add')
     args = parser.parse_args()
     main(args)
