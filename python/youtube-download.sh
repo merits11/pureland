@@ -16,10 +16,9 @@ echo "Job started, max wait $wait_seconds seconds"
 function adjust_volume() {
   for f in "$1"/*.mp3; do
     echo "Adjusting volume for $f..."
-    if ! /home/ec2-user/scripts/volume.py --update -d "$f"; then
-      return 1
-    fi
+    /home/ec2-user/scripts/volume.py --update -d "$f"
   done
+  echo "Volume adjusting done."
 }
 
 while true; do

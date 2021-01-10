@@ -37,6 +37,7 @@ def main(args):
         if args.show:
             print(u"%s : %s" % (datetime.fromtimestamp(os.path.getmtime(mp3)), mp3))
             continue
+        tmp = mp3 + u".tmp"
         try:
             song = AudioSegment.from_mp3(mp3)
             current_dbs = song.dBFS
@@ -47,7 +48,6 @@ def main(args):
                 if args.update:
                     print(u"Exporting %s, add %.2f db" % (mp3, dbs_to_add))
                     song = song + dbs_to_add
-                    tmp = mp3 + u".tmp"
                     song.export(tmp, format=u"mp3")
                     shutil.move(tmp, mp3)
                 else:
@@ -57,7 +57,6 @@ def main(args):
         except Exception as e:
             print(u"%s: failed  due to exception." % mp3)
             traceback.print_exc()
-            raise e
         finally:
             index += 1
 
