@@ -29,15 +29,15 @@ import merits.funskills.pureland.model.PlayState;
 public class PlaybackRequestHandler extends BaseRequestHandler {
 
     private static final Set<Class<? extends Request>> REQUESTS = ImmutableSet.of(
-        PlaybackStartedRequest.class,
-        PlaybackFailedRequest.class,
-        PlaybackNearlyFinishedRequest.class,
-        PlaybackStoppedRequest.class,
-        PlaybackFinishedRequest.class,
-        PauseCommandIssuedRequest.class,
-        NextCommandIssuedRequest.class,
-        PreviousCommandIssuedRequest.class,
-        PlayCommandIssuedRequest.class
+            PlaybackStartedRequest.class,
+            PlaybackFailedRequest.class,
+            PlaybackNearlyFinishedRequest.class,
+            PlaybackStoppedRequest.class,
+            PlaybackFinishedRequest.class,
+            PauseCommandIssuedRequest.class,
+            NextCommandIssuedRequest.class,
+            PreviousCommandIssuedRequest.class,
+            PlayCommandIssuedRequest.class
     );
 
     @Override
@@ -104,7 +104,7 @@ public class PlaybackRequestHandler extends BaseRequestHandler {
             PlayList playList = playState.currentPlayList();
             PlayItem playItem = playHelper.getPlayItem(playList, playState.getCurrentSeq());
             playState.setOffsetInMs(request.getCurrentPlaybackState().getOffsetInMilliseconds());
-            return toolbox.playLastSong(playState, "");
+            return toolbox.playNextSong(playState, "");
         }
         return input.getResponseBuilder().build();
     }
@@ -123,6 +123,11 @@ public class PlaybackRequestHandler extends BaseRequestHandler {
         PlayState playState = playHelper.getPlayStateByStreamToken(audioPlayerState.getToken());
         if (playState == null) {
             playState = playHelper.getPlayStateBySystemState(systemState);
+        }
+        if (audioPlayerState != null
+                && audioPlayerState.getOffsetInMilliseconds() != null
+                && audioPlayerState.getOffsetInMilliseconds() > playState.getOffsetInMs()) {
+            playState.setOffsetInMs(audioPlayerState.getOffsetInMilliseconds());
         }
         return playState;
     }

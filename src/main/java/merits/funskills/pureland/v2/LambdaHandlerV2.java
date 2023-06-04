@@ -70,7 +70,8 @@ public class LambdaHandlerV2 implements RequestStreamHandler {
         final String inputJson = new String(serializedSpeechletRequest, StandardCharsets.UTF_8);
         log.info("Request received: {}", inputJson);
         if (isS3Event(inputJson)) {
-            AudioPlayHelperV2.getInstance().updateLibrary();
+            boolean forceUpdate = !inputJson.contains("test-only");
+            AudioPlayHelperV2.getInstance().updateLibrary(forceUpdate);
             return;
         }
         RequestEnvelope requestEnvelope = serializer.deserialize(inputJson, RequestEnvelope.class);

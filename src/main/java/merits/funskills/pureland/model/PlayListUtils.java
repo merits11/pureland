@@ -155,6 +155,12 @@ public class PlayListUtils {
             .collect(Collectors.toList());
     }
 
+    public static List<PlayList> getNonVirtualLists() {
+        return Arrays.stream(PlayList.values())
+                .filter(pl -> !pl.isTagged(Tag.Virtual))
+                .collect(Collectors.toList());
+    }
+
     public static String[] splitByCamelCase(final String s) {
         return s.split("(?<=.)(?=\\p{Lu})");
     }

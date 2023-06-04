@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 import argparse
 import os
 import shutil
@@ -59,6 +58,8 @@ def main(args):
             traceback.print_exc()
         finally:
             index += 1
+            if os.path.exists(tmp):
+                os.remove(tmp)
 
 
 if __name__ == u"__main__":

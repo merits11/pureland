@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  FunctionNameSuffix:
+    Type: String
+Resources:
+  MyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: PureLandMusic-${FunctionNameSuffix}
+      Handler: merits.funskills.pureland.v2.LambdaHandlerV2::handleRequest
+      Runtime: java11
+      MemorySize: 512
+      Timeout: 15
+      CodeUri: s3://purelandcodebucket/48cf26a7d0cdbf96183c325cb4b43e1a
+      AutoPublishAlias: livelive
+      Policies:
+      - AWSLambdaExecute
+      - AmazonS3ReadOnlyAccess
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - s3:GeneratePresignedUrl
+          Resource: arn:aws:s3:::purelandmusic
+        - Effect: Allow
+          Action:
+          - s3:Put*
+          Resource: arn:aws:s3:::purelandcodebucket
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - dynamodb:GetItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetRecords
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:UpdateTimeToLive
+          - dynamodb:Query
+          Resource:
+          - Fn::Sub: arn:aws:dynamodb:us-east-1:711575676778:table/pureLandTable-${FunctionNameSuffix}
+          - Fn::Sub: arn:aws:dynamodb:us-east-1:711575676778:table/pureLandTable-${FunctionNameSuffix}/index/*
+      DeploymentPreference:
+        Type: AllAtOnce
+      Events:
+        AlexaSkillEvent:
+          Type: AlexaSkill

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -e
+queue="https://sqs.us-east-1.amazonaws.com/711575676778/cloudActionQueue"
+target_folder="TechTalks"
+regex='^https://.+$'
+echo "Welcome, use '-c' option to customize, use 'aws s3 ls purelandmusic/' to see all folders."
+echo "Example: youtube-dl-submit -c SutraChantings https://your-youtube-link"
+echo "Starting EC2 instance to process message..."
+aws ec2 start-instances --instance-ids i-0762a9b3438444ab9 --region us-east-1 > /dev/null
+args=""
+while [ $# -gt 0 ]; do
+  if [[ $1 =~ $regex ]]; then
+    echo "Submitting link $1..."
+    message_body="{\"Link\":\"$1\",\"Folder\":\"$target_folder\",\"Args\":\"$args\"}"
+    aws sqs send-message --queue-url "$queue" --message-body "$message_body" --region us-east-1 > /dev/null
+    echo "Message sent:"
+    echo "$message_body"
+  elif [[ $1 == "--customize" || $1 == "-c"  ]]; then
+    echo "Enter youtube-dl options(like --yes-playlist --playlist-items 1-3,7,10-13):"
+    read -r args
+    echo "$args will be applied."
+  else
+    if [[ $1 =~ ^[A-Za-z0-9_-]+$ ]]; then
+      target_folder="$1"
+      echo "Setting target_folder to $target_folder..."
+    fi
+  fi
+  shift
+done

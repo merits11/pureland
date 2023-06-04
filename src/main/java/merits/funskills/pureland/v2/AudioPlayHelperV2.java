@@ -36,6 +36,7 @@ import merits.funskills.pureland.model.UpdateLog;
 import merits.funskills.pureland.model.UserSetting;
 import merits.funskills.pureland.utils.AppConfig;
 import merits.funskills.pureland.utils.PlayListManager;
+import org.apache.commons.lang3.StringUtils;
 
 import static java.util.Comparator.comparing;
 import static java.util.Comparator.reverseOrder;
@@ -55,8 +56,8 @@ public class AudioPlayHelperV2 {
         this.playListManager = new PlayListManager(amazonS3Client);
     }
 
-    void updateLibrary() {
-        playListManager.updateLibrary();
+    void updateLibrary(boolean forceUpdate) {
+        playListManager.updateLibrary(forceUpdate);
     }
 
     public static AudioPlayHelperV2 getInstance() {
@@ -238,6 +239,9 @@ public class AudioPlayHelperV2 {
     }
 
     public PlayState getPlayStateByStreamToken(final String streamToken) {
+        if(StringUtils.isEmpty(streamToken)){
+            return null;
+        }
         Token tokenObj = Token.fromStreamToken(streamToken);
         PlayState playState = this.dynamoDBMapper.load(PlayState.class, tokenObj.getUuid(), getConfig());
         if (playState != null && playState.currentPlayList() == null) {

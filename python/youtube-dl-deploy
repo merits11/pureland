@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -e
+instance=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=youtube-dl"|jq '.Reservations[0].Instances[0]')
+state=$(echo "$instance" |jq  -r '.State.Name')
+instance_id=$(echo "$instance" |jq  -r '.InstanceId')
+public_dns_name=$(echo "$instance" |jq  -r '.PublicDnsName')
+echo "Instance $instance_id current state: $state"
+if [ "$state" != "running" ]; then
+  echo "Starting instance ..."
+  aws ec2 start-instances --instance-ids "$instance_id" --region us-east-1|jq '.StartingInstances[0]'
+  while [ "$state" != "running" ]; do
+    echo "Instance is in state $state, wait 15 seconds"
+    sleep 15
+    instance=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=youtube-dl"|jq '.Reservations[0].Instances[0]')
+    public_dns_name=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=youtube-dl" | jq -r '.Reservations[0].Instances[0].PublicDnsName')
+    state=$(echo "$instance" |jq  -r '.State.Name')
+  done
+fi
+
+cd /Users/junmao/Dropbox/Code/AlexaSkillsSet/pureland/python
+for f in *.sh
+do
+  scp "$f" "$public_dns_name":/home/ec2-user/scripts/
+done
+for f in *.py
+do
+  scp "$f" "$public_dns_name":/home/ec2-user/scripts/
+done

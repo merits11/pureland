@@ -1,22 +1,20 @@
 package merits.funskills.pureland.v2.handlers;
 
-import java.util.Optional;
-import java.util.Set;
-
-import com.google.common.collect.ImmutableSet;
-
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
-
+import com.google.common.collect.ImmutableSet;
 import merits.funskills.pureland.model.PlayList;
 import merits.funskills.pureland.model.PlayListUtils;
+
+import java.util.Optional;
+import java.util.Set;
 
 public class PlaylistRequestHandler extends BaseRequestHandler {
 
     private static final String SLOT_LIST_NAME = "LIST_NUMBER";
-    private static final Set<String> INTENTS = ImmutableSet.of("PlayList", "EveningService", "MorningService");
+    private static final Set<String> INTENTS = ImmutableSet.of("PlayList", "EveningService", "MorningService", "AMAZON.FallbackIntent");
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -42,6 +40,8 @@ public class PlaylistRequestHandler extends BaseRequestHandler {
             return playList(input, PlayList.EveningService);
         } else if ("MorningService".equals(intent.getName())) {
             return playList(input, PlayList.MorningService);
+        } else if ("AMAZON.FallbackIntent".equals(intent.getName())) {
+            return askResponse(text("fallback.prompt"), text("play.reprompt"));
         }
         return askResponse(text("playlist.noslot"), text("play.reprompt"));
     }

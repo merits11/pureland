@@ -9,7 +9,7 @@ if [ -z "$wait_seconds" ]; then
 fi
 last_message_time=$(date +%s)
 arg_region="us-east-1"
-output_template='%(title)s-%(id)s-%(duration)ss.%(ext)s'
+output_template='%(title)s-%(id)s-%(duration)ds.%(ext)s'
 
 echo "Job started, max wait $wait_seconds seconds"
 
@@ -22,7 +22,7 @@ function adjust_volume() {
 }
 
 while true; do
-  echo "Polling SQS messages... one at a time"
+  echo "Polling for message... one at a time"
   aws sqs receive-message --wait-time-seconds 20 --queue-url "$queue" --max-number-of-messages 1 --region "$arg_region" >"$tmp_msg_file"
   cat $tmp_msg_file
   body=$(jq -r '.Messages[0].Body' $tmp_msg_file)
@@ -41,7 +41,7 @@ while true; do
     cur_time=$(date +%s)
     seconds_since_last=$((cur_time - last_message_time))
     if [ "$seconds_since_last" -gt "$wait_seconds" ]; then
-      echo "No message for more than $wait_seconds seconds, kill instance now"
+      echo "No message for more than $wait_seconds seconds, stop instance now"
       break
     else
       echo "No message for $seconds_since_last seconds, wait for another round..."
